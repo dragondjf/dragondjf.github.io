@@ -138,10 +138,6 @@ $(document).ready(function () {
         return false;
     });
 
-    $('#showtext').click(function () {
-        alert($(".ace_scroller dark"));
-        $(".ace_scroller dark").toggle();
-    });
     $('#import_file_button').hover(function () {
         $('#import_button').addClass('hover');
     }, function () {
