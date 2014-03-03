@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <style type="text/css">
+    <title>web 学习</title> <style type="text/css"> html {
+        margin:0;
+        padding:0;
+        border:0;
+        height: 100%;
+    }
+    body {
+        font-size:12px;
+        color: white;
+        background-color: #0D2E4C;
+        margin-top: 100px;
+    }
+    #content {
+        width: 60%;
+        height: 80%;
+        float: left;
+        background-color: white;
+        margin-left: 100px;
+        padding: 10px 30px;
+        border-radius: 5px;
+    }
+    .vtop {
+        vertical-align:top;
+    }
+    .note-updated {
+        white-space:nowrap;
+        font-family:helvetica, arial, sans-serif;
+        color:#a8aeb3;
+        font-size:12px;
+        display:inline-block;
+        zoom:1;
+        *display:inline;
+        height:22px;
+        vertical-align:bottom;
+        line-height:1;
+    }
+    .divider {
+        border-bottom:1px solid #e4e4e4;
+        clear:both;
+        margin:20px 0;
+    }
+    .shared-by {
+        position:relative;
+        top: 5px;
+        left:-35px;
+        font-family:caecilia-bold, helvetica, arial, sans-serif;
+        font-weight:normal;
+        -webkit-font-smoothing:antialiased;
+        font-size:12px;
+        display:inline-block;
+        zoom:1;
+        *display:inline;
+        -webkit-border-radius:3px;
+        -moz-border-radius:3px;
+        border-radius:3px;
+    }
+    .shared-by-desktop {
+        -webkit-box-shadow:0 1px 0 #4c8533;
+        -moz-box-shadow:0 1px 0 #4c8533;
+        box-shadow:0 1px 0 #4c8533;
+        background-color:rgba(255, 255, 255, 0.048);
+        background-image:-moz-linear-gradient(top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.12));
+        background-image:-ms-linear-gradient(top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.12));
+        background-image:-webkit-gradient(linear, 0 0, 0 100%, from(rgba(255, 255, 255, 0)), to(rgba(255, 255, 255, 0.12)));
+        background-image:-webkit-linear-gradient(top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.12));
+        background-image:-o-linear-gradient(top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.12));
+        background-image:linear-gradient(top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.12));
+        background-repeat:repeat-x;
+        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffffff', endColorstr='#1fffffff', GradientType=0);
+        border-color:rgba(255, 255, 255, 0.12) rgba(255, 255, 255, 0.12) rgba(217, 217, 217, 0.12);
+        border-color:rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+        background-color:#62af43;
+        color:#ffffff;
+        padding:8px 8px 6px;
+    }
+    @media only screen and (min-width: 480px) and (max-width: 709px) {
+        .shared-by-desktop {
+            display:none;
+        }
+    }
+    @media only screen and (max-width: 479px) {
+        .shared-by-desktop {
+            display:none;
+        }
+    }
+    @media print {
+        .shared-by-desktop {
+            display:none;
+        }
+    }
+    @media print {
+        .shared-by-desktop {
+            -webkit-box-shadow:none;
+            -moz-box-shadow:none;
+            box-shadow:none;
+            background-image:none;
+        }
+    }
+    #rightbar {
+        width: 20%;
+        float: left;
+        background-color: #556c81;
+    }
+    #rightnav {
+        width: 80%;
+        height: 80%;
+        line-height: 40px;
+        list-style-type: none;
+        color: white;
+        padding: 10% auto;
+        position: fixed;
+    }
+    #rightnav li a {
+        display: block;
+        text-align:left;
+        color: white;
+        background:#556c81;
+        padding-left: 24px;
+    }
+    #rightnav li a:link {
+        text-decoration:none;
+    }
+    #rightnav li a:visited {
+        text-decoration:none;
+    }
+    #rightnav li a:hover {
+        text-decoration:none;
+        font-weight:bold;
+    }
+    #rightnav li {
+        width: 20%;
+        clear: both;
+        border-bottom: 1px solid #0D2E4C;
+    }
+    #rightnav li a:hover {
+        color: #FFC76D;
+        background:#344f68;
+    }
+    #rightnav li ul {
+        line-height: 36px;
+        list-style-type: none;
+        text-align:left;
+        padding: 0;
+        width: 100%;
+    }
+    #rightnav li ul li {
+        width: 100%;
+        padding: 0;
+        border-bottom: none;
+    }
+    #rightnav li ul a {
+        color: white;
+        display: block;
+        width: 80%;
+        text-align:left;
+        padding-left:20%;
+        background: #556c81;
+    }
+    #rightnav li ul a:link {
+        color: white;
+        text-decoration:none;
+    }
+    #rightnav li ul a:visited {
+        color: white;
+        text-decoration:none;
+        /*background-color: #0D2E4C;*/
+    }
+    #rightnav li ul a:hover {
+        color: #FFC76D;
+        text-decoration:none;
+        font-weight:normal;
+        background:#344f68;
+    }
+    </style>
+    <!-- <link type="text/css" href="../css/themeevernote.css" rel="stylesheet"> -->
+    <script type="text/javascript" src="../js/jquery-1.11.0.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $("#rightnav>li>a").click(function(event) {
+            $("#rightnav>li>a").css('background-color', '#556c81');
+            $("#rightnav>li>ul>li>a").css('background-color', '#556c81');
+
+            $(this).parent().children('ul>li>a').css('background-color', '#344f68');
+            $(this).css('background-color', '#0D2E4C');
+            $("#rightnav>li>ul").hide();
+            $(this).parent().children('ul').toggle('slow');
+        });
+        $("#rightnav>li>a").on('mouseleave', '', function(event) {
+            $(this).css('background-color', '#556c81');
+        });
+        $("#rightnav>li>a").on('mouseenter', '', function(event) {
+            $(this).css('background-color', '#344f68');
+        });
+
+        $("#rightnav>li>ul>li>a").click(function(event) {
+            $("#rightnav>li>ul>li>a").css('background-color', '#556c81');
+            $(this).parent().parent().children('li>a').css('background-color', '#344f68');
+            $(this).parent().parent().parent().children('a').css('background-color', '#344f68');
+            $(this).css('background-color', '#0D2E4C');
+        });
+        $("#rightnav>li>ul>li>a").on('mouseleave', '', function(event) {
+            $(this).css('background-color', '#556c81');
+        });
+        $("#rightnav>li>ul>li>a").on('mouseenter', '', function(event) {
+            $(this).css('background-color', '#344f68');
+        });
+
+        $("#rightnav>li>ul").hide();
+        $($("#rightnav>li>ul")[0]).show()
+
+    });
+    </script>
+</head>
+
+<body>
+    <div id="content" class="wrapper">
+        <div class="shared-by shared-by-desktop">
+            <div class="shared-by-corner"></div>
+            {{page.title}}
+        </div>
+        <br>
+        <br>
+        <div class="vtop">
+            <div class="note-updated">
+                <span>作者: dragondjf</span>
+            </div>
+            <div class="note-updated">
+                <span>时间：{{ page.date | date_to_string }}</span>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div class="note-content">
+            <div>
+                {% for post in site.posts %}
+　　　　　　          <li>{{ post.date | date_to_string }} <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+　　　　        {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div id="rightbar">
+        <ul id="rightnav">
+            <li><a href="#object">对象</a>
+                <ul>
+                    <li><a href="#object.general">对象使用和属性</a>
+                    </li>
+                    <li><a href="#object.prototype">原型</a>
+                    </li>
+                    <li>
+                        <a href="#object.hasownproperty">
+                            <code>hasOwnProperty</code>函数</a>
+                    </li>
+                    <li>
+                        <a href="#object.forinloop">
+                            <code>for in</code>循环</a>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="#function">函数</a>
+                <ul>
+                    <li><a href="#function.general">函数声明与表达式</a>
+                    </li>
+                    <li>
+                        <a href="#function.this">
+                            <code>this</code>的工作原理</a>
+                    </li>
+                    <li><a href="#function.closures">闭包和引用</a>
+                    </li>
+                    <li>
+                        <a href="#function.arguments">
+                            <code>arguments</code>对象</a>
+                    </li>
+                    <li><a href="#function.constructors">构造函数</a>
+                    </li>
+                    <li><a href="#function.scopes">作用域与命名空间</a>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="#">产品</a>
+                <ul>
+                    <li><a href="#">产品一</a>
+                    </li>
+                    <li><a href="#">产品一</a>
+                    </li>
+                    <li><a href="#">产品一</a>
+                    </li>
+                    <li><a href="#">产品一</a>
+                    </li>
+                    <li><a href="#">产品一</a>
+                    </li>
+                    <li><a href="#">产品一</a>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="#">产品</a>
+                <ul>
+                    <li><a href="#">产品一</a>
+                    </li>
+                    <li><a href="#">产品一</a>
+                    </li>
+                    <li><a href="#">产品一</a>
+                    </li>
+                    <li><a href="#">产品一</a>
+                    </li>
+                    <li><a href="#">产品一</a>
+                    </li>
+                    <li><a href="#">产品一</a>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="#">产品</a>
+                <ul>
+                    <li><a href="#">产品一</a>
+                    </li>
+                    <li><a href="#">产品一</a>
+                    </li>
+                    <li><a href="#">产品一</a>
+                    </li>
+                    <li><a href="#">产品一</a>
+                    </li>
+                    <li><a href="#">产品一</a>
+                    </li>
+                    <li><a href="#">产品一</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>
