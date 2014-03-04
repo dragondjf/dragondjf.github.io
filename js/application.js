@@ -41,6 +41,7 @@ function initRightBar(){
 }
 
 $('div .shared-by').click(function(event) {
+    $('div .shared-by').hide();
     $(this).siblings('#preview').children('.note-content').toggle('fast');
 });
 
