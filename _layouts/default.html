@@ -8,8 +8,8 @@
     <link rel="stylesheet" type="text/css" href="../css/evernote/evernote.css">
 </head>
 <body>
-    <div id="content" class="wrapper">
-        {% for post in site.posts %}
+    {% for post in site.posts %}
+        <div id="content" class="wrapper">
             <div class="shared-by shared-by-desktop">
                 <div class="shared-by-corner"></div>
                 {{ post.title }}
@@ -17,7 +17,7 @@
             <br>
             <br>
             <div id="preview">
-                <section id={{ post.id}}>
+                <section id={{ post.id }}>
                     <div class="vtop">
                         <div class="note-updated">
                             <span>作者: dragondjf</span>
@@ -32,8 +32,8 @@
                     </div>
                 </section>
             </div>
-        {% endfor %}
-    </div>
+        </div>
+    {% endfor %}
     <div id="rightbar">
         <ul id="rightnav">
             <li><a href="#object">对象</a>
