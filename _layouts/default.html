@@ -1,311 +1,11 @@
 <!DOCTYPE html>
+
 <head>
     <meta charset="utf-8">
-    <title>{{ page.title }}</title> 
-    <style type="text/css">
-        html {
-            margin:0;
-            padding:0;
-            border:0;
-            height: 100%;
-        }
-        body {
-            font-size:12px;
-            color: white;
-            background-color: #0D2E4C;
-            margin-top: 100px;
-        }
-        #content {
-            width: 60%;
-            height: 80%;
-            float: left;
-            background-color: white;
-            margin-left: 100px;
-            padding: 10px 30px;
-            border-radius: 5px;
-        }
-        .vtop {
-            vertical-align:top;
-        }
-        .note-updated {
-            white-space:nowrap;
-            font-family:helvetica, arial, sans-serif;
-            color:#a8aeb3;
-            font-size:12px;
-            display:inline-block;
-            zoom:1;
-            *display:inline;
-            height:22px;
-            vertical-align:bottom;
-            line-height:1;
-        }
-        .divider {
-            border-bottom:1px solid #e4e4e4;
-            clear:both;
-            margin:20px 0;
-        }
-        .shared-by {
-            position:relative;
-            top: 5px;
-            left:-35px;
-            font-family:caecilia-bold, helvetica, arial, sans-serif;
-            font-weight:normal;
-            -webkit-font-smoothing:antialiased;
-            font-size:12px;
-            display:inline-block;
-            zoom:1;
-            *display:inline;
-            -webkit-border-radius:3px;
-            -moz-border-radius:3px;
-            border-radius:3px;
-        }
-        .shared-by-desktop {
-            -webkit-box-shadow:0 1px 0 #4c8533;
-            -moz-box-shadow:0 1px 0 #4c8533;
-            box-shadow:0 1px 0 #4c8533;
-            background-color:rgba(255, 255, 255, 0.048);
-            background-image:-moz-linear-gradient(top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.12));
-            background-image:-ms-linear-gradient(top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.12));
-            background-image:-webkit-gradient(linear, 0 0, 0 100%, from(rgba(255, 255, 255, 0)), to(rgba(255, 255, 255, 0.12)));
-            background-image:-webkit-linear-gradient(top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.12));
-            background-image:-o-linear-gradient(top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.12));
-            background-image:linear-gradient(top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.12));
-            background-repeat:repeat-x;
-            filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffffff', endColorstr='#1fffffff', GradientType=0);
-            border-color:rgba(255, 255, 255, 0.12) rgba(255, 255, 255, 0.12) rgba(217, 217, 217, 0.12);
-            border-color:rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-            background-color:#62af43;
-            color:#ffffff;
-            padding:8px 8px 6px;
-        }
-        
-        .note-content{padding-right:10px;position:relative;overflow-x:auto;overflow-wrap:break-word;word-wrap:break-word;}.note-content html,.note-content body,.note-content div,.note-content iframe,.note-content h1,.note-content h2,.note-content h3,.note-content h4,.note-content h5,.note-content h6,.note-content p,.note-content blockquote,.note-content pre,.note-content a,.note-content code,.note-content del,.note-content dfn,.note-content em,.note-content img,.note-content q,.note-content dl,.note-content dt,.note-content dd,.note-content ol,.note-content ul,.note-content li{margin:0;padding:0;border:0;}
-        .note-content a,.note-content abbr,.note-content acronym,.note-content address,.note-content area,.note-content b,.note-content bdo,.note-content big,.note-content blockquote,.note-content caption,.note-content center,.note-content cite,.note-content code,.note-content col,.note-content colgroup,.note-content dd,.note-content del,.note-content dfn,.note-content div,.note-content dl,.note-content dt,.note-content em,.note-content font,.note-content h3,.note-content h4,.note-content h5,.note-content h6,.note-content hr,.note-content i,.note-content ins,.note-content kbd,.note-content li,.note-content map,.note-content ol,.note-content p,.note-content pre,.note-content q,.note-content s,.note-content samp,.note-content small,.note-content span,.note-content strike,.note-content strong,.note-content sub,.note-content sup,.note-content table,.note-content tbody,.note-content td,.note-content tfoot,.note-content th,.note-content thead,.note-content tr,.note-content tt,.note-content u,.note-content ul{line-height:1.428571em;}
-        .note-content body{font-family:Helvetica,Arial,"Droid Sans",sans-serif;font-size:14px;margin:1.428571em;}
-        .note-content a:link,.note-content a:visited{color:#047ac6;}
-        .note-content a:hover,.note-content a:active{color:#2596de;}
-        .note-content h1,.note-content h2,.note-content h3,.note-content h4,.note-content h5,.note-content h6{font-family:Helvetica,Arial,"Droid Sans",sans-serif;font-weight:bold;}
-        .note-content h1{font-size:1.5em;line-height:.9523em;margin-bottom:.4761em;margin-top:.9523em;}
-        .note-content h2{font-size:1.286em;line-height:1.111em;margin-bottom:.5556em;margin-top:1.111em;}
-        .note-content h3{font-size:1em;margin-bottom:.714285em;margin-top:1.4285em;}
-        .note-content h4,.note-content h5,.note-content h6{font-size:1em;font-weight:bold;}
-        .note-content div{font-family:Helvetica,Arial,"Droid Sans",sans-serif;font-size:14px;}
-        .note-content p{margin-bottom:.714285em;}
-        .note-content img.en-media{margin-bottom:1.286em;max-width:100%;height:auto;}
-        .note-content img.en-media[height="1"]{height:1px;}
-        .note-content p+img,.note-content p+div img{margin-top:.714285em;}
-        .note-content div+img,.note-content div+div img{margin-top:.857412em;}
-        .note-content img+img,.note-content div+div img+img{margin-top:0;}
-        .note-content ul,.note-content ol{list-style-position:outside;margin-top:.2857em;margin-bottom:.714285em;margin-left:2em;padding-left:0;}
-        .note-content li ul,.note-content li ol{margin-bottom:0;margin-top:0;}
-        .note-content p+ul,.note-content p+ol,.note-content h1+ul,.note-content h1+ol,.note-content h2+ul,.note-content h2+ol{margin-top:-0.428571em;}
-        .note-content blockquote{border-left-color:#bfbfbf;border-left-style:solid;border-left-width:2px;margin-left:1.4285em;padding-left:.714285em;margin-top:1.4285em;margin-bottom:1.4285em;}
-        .note-content pre,.note-content code{font-family:Monaco, Courier, monospace;}
-        .note-content del{text-decoration:line-through;}
-        .note-content dfn,.note-content cite{font-style:italic;}
-        .note-content table{font-size:1em;}
-        .note-content th,.note-content td{padding:.2em 2em .2em 0em;text-align:left;}
-        .note-content button.en-ignore{margin-bottom:1em;}
-        .note-content .highlight{border:1px solid #d4cd7e;background:#F6EE96;}
-        .note-content .Decrypted{background-color:#F7F7F7;padding:5px;}
-        .note-content .Decrypted .Header{font-family:Helvetica,Arial,sans-serif;font-size:11px;padding-bottom:5px;color:#404040;}
-        .note-content .Decrypted .Body{background-color:white;padding:5px;}
-
-        .note-content h1 {
-            margin: 20px 0px 10px; padding: 0px; -webkit-font-smoothing: antialiased; cursor: text; position: relative; font-size: 28px; font-family: Helvetica, arial, sans-serif;
-        }
-        .note-content h2 {
-            margin: 20px 0px 10px; padding: 0px; -webkit-font-smoothing: antialiased; cursor: text; position: relative; font-size: 24px; font-family: Helvetica, arial, sans-serif;
-        }
-        .note-content h3 {
-            margin: 20px 0px 10px; padding: 0px; -webkit-font-smoothing: antialiased; cursor: text; position: relative; font-size: 20px; font-family: Helvetica, arial, sans-serif;
-        }
-        .note-content h4 {
-            margin: 20px 0px 10px; padding: 0px; -webkit-font-smoothing: antialiased; cursor: text; position: relative; font-size: 16px; font-family: Helvetica, arial, sans-serif;
-        }
-        .note-content h5 {
-            margin: 20px 0px 10px; padding: 0px; -webkit-font-smoothing: antialiased; cursor: text; position: relative; font-size: 12px; font-family: Helvetica, arial, sans-serif;
-        }
-        .note-content h6 {
-            margin: 20px 0px 10px; padding: 0px; -webkit-font-smoothing: antialiased; cursor: text; position: relative; font-size: 8px; font-family: Helvetica, arial, sans-serif;
-        }
-
-        .note-content blockquote{
-            margin: 15px 0px; border-left-width: 4px; border-left-style: solid; border-left-color: rgb(221, 221, 221); padding: 0px 15px; color: rgb(119, 119, 119); font-family: Helvetica, arial, sans-serif; font-size: 14px; line-height: 22px;
-        }
-
-        pre code {
-          display: block;
-          padding: 0.5em;
-          background: #23241f;
-        }
-        pre .tag,
-        pre code {
-          color: #f8f8f2;
-        }
-        pre .keyword,
-        pre .function,
-        pre .literal,
-        pre .change,
-        pre .winutils,
-        pre .flow,
-        pre .lisp .title,
-        pre .clojure .built_in,
-        pre .nginx .title,
-        pre .tex .special {
-          color: #66d9ef;
-        }
-        pre .variable,
-        pre .params {
-          color: #fd9720;
-        }
-        pre .constant {
-          color: #66d9ef;
-        }
-        pre .title,
-        pre .class .title,
-        pre .css .class {
-          color: #a6e22e;
-        }
-        pre .attribute,
-        pre .symbol,
-        pre .symbol .string,
-        pre .tag .title,
-        pre .value,
-        pre .css .tag {
-          color: #f92672;
-        }
-        pre .number,
-        pre .preprocessor,
-        pre .regexp {
-          color: #ae81ff;
-        }
-        pre .tag .value,
-        pre .string,
-        pre .css .id,
-        pre .subst,
-        pre .haskell .type,
-        pre .ruby .class .parent,
-        pre .built_in,
-        pre .sql .aggregate,
-        pre .django .template_tag,
-        pre .django .variable,
-        pre .smalltalk .class,
-        pre .django .filter .argument,
-        pre .smalltalk .localvars,
-        pre .smalltalk .array,
-        pre .attr_selector,
-        pre .pseudo,
-        pre .addition,
-        pre .stream,
-        pre .envvar,
-        pre .apache .tag,
-        pre .apache .cbracket,
-        pre .tex .command,
-        pre .prompt {
-          color: #e6db74;
-        }
-        pre .comment,
-        pre .javadoc,
-        pre .java .annotation,
-        pre .python .decorator,
-        pre .template_comment,
-        pre .pi,
-        pre .doctype,
-        pre .deletion,
-        pre .shebang,
-        pre .apache .sqbracket,
-        pre .tex .formula {
-          color: #75715e;
-        }
-        pre .coffeescript .javascript,
-        pre .javascript .xml,
-        pre .tex .formula {
-          opacity: 0.5;
-        }
-        pre .xml .javascript,
-        pre .xml .vbscript,
-        pre .xml .css,
-        pre .xml .cdata {
-          opacity: 0.5;
-        }
-
-        #rightbar {
-            width: 20%;
-            float: left;
-            background-color: #556c81;
-        }
-        #rightnav {
-            width: 80%;
-            height: 80%;
-            line-height: 40px;
-            list-style-type: none;
-            color: white;
-            padding: 10% auto;
-            position: fixed;
-        }
-        #rightnav li a {
-            display: block;
-            text-align:left;
-            color: white;
-            background:#556c81;
-            padding-left: 24px;
-        }
-        #rightnav li a:link {
-            text-decoration:none;
-        }
-        #rightnav li a:visited {
-            text-decoration:none;
-        }
-        #rightnav li a:hover {
-            text-decoration:none;
-            font-weight:bold;
-        }
-        #rightnav li {
-            width: 20%;
-            clear: both;
-            border-bottom: 1px solid #0D2E4C;
-        }
-        #rightnav li a:hover {
-            color: #FFC76D;
-            background:#344f68;
-        }
-        #rightnav li ul {
-            line-height: 36px;
-            list-style-type: none;
-            text-align:left;
-            padding: 0;
-            width: 100%;
-        }
-        #rightnav li ul li {
-            width: 100%;
-            padding: 0;
-            border-bottom: none;
-        }
-        #rightnav li ul a {
-            color: white;
-            display: block;
-            width: 80%;
-            text-align:left;
-            padding-left:20%;
-            background: #556c81;
-        }
-        #rightnav li ul a:link {
-            color: white;
-            text-decoration:none;
-        }
-        #rightnav li ul a:visited {
-            color: white;
-            text-decoration:none;
-            /*background-color: #0D2E4C;*/
-        }
-        #rightnav li ul a:hover {
-            color: #FFC76D;
-            text-decoration:none;
-            font-weight:normal;
-            background:#344f68;
-        }
-    </style>
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" type="text/css" href="../css/evernote/layout.css">
+    <link rel="stylesheet" type="text/css" href="../css/evernote/rightbar.css">
+    <link rel="stylesheet" type="text/css" href="../css/evernote/evernote.css">
 </head>
 <body>
     <div id="content" class="wrapper">
@@ -317,17 +17,17 @@
         <br>
         <div id="preview">
             {% for post in site.posts %}
-                <div class="vtop">
-                    <div class="note-updated">
-                        <span>作者: dragondjf</span>
-                    </div>
-                    <div class="note-updated">
-                        <span>时间：{{ post.date | date_to_string }}</span>
-                    </div>
+            <div class="vtop">
+                <div class="note-updated">
+                    <span>作者: dragondjf</span>
                 </div>
-                <div class="divider"></div>
-                <div class="note-content">
-                    {{post.content}}
+                <div class="note-updated">
+                    <span>时间：{{ post.date | date_to_string }}</span>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="note-content">
+                {{post.content}}
             </div>
             {% endfor %}
         </div>
@@ -421,46 +121,48 @@
         </ul>
     </div>
 </body>
-    <script type="text/javascript" src="../js/highlight/highlight.pack.js"></script>
-    <script type="text/javascript" src="../js/jquery-1.11.0.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-    <script type="text/javascript">
+<script type="text/javascript" src="../js/highlight/highlight.pack.js"></script>
+<script type="text/javascript" src="../js/jquery-1.11.0.js"></script>
+<script>
+hljs.initHighlightingOnLoad();
+</script>
+<script type="text/javascript">
+function initrightBar() {
+    $("#rightnav>li>a").click(function(event) {
+        $("#rightnav>li>a").css('background-color', '#556c81');
+        $("#rightnav>li>ul>li>a").css('background-color', '#556c81');
 
-    function initrightBar(){
-        $("#rightnav>li>a").click(function(event) {
-            $("#rightnav>li>a").css('background-color', '#556c81');
-            $("#rightnav>li>ul>li>a").css('background-color', '#556c81');
-
-            $(this).parent().children('ul>li>a').css('background-color', '#344f68');
-            $(this).css('background-color', '#0D2E4C');
-            $("#rightnav>li>ul").hide();
-            $(this).parent().children('ul').toggle('slow');
-        });
-        $("#rightnav>li>a").on('mouseleave', '', function(event) {
-            $(this).css('background-color', '#556c81');
-        });
-        $("#rightnav>li>a").on('mouseenter', '', function(event) {
-            $(this).css('background-color', '#344f68');
-        });
-
-        $("#rightnav>li>ul>li>a").click(function(event) {
-            $("#rightnav>li>ul>li>a").css('background-color', '#556c81');
-            $(this).parent().parent().children('li>a').css('background-color', '#344f68');
-            $(this).parent().parent().parent().children('a').css('background-color', '#344f68');
-            $(this).css('background-color', '#0D2E4C');
-        });
-        $("#rightnav>li>ul>li>a").on('mouseleave', '', function(event) {
-            $(this).css('background-color', '#556c81');
-        });
-        $("#rightnav>li>ul>li>a").on('mouseenter', '', function(event) {
-            $(this).css('background-color', '#344f68');
-        });
-
+        $(this).parent().children('ul>li>a').css('background-color', '#344f68');
+        $(this).css('background-color', '#0D2E4C');
         $("#rightnav>li>ul").hide();
-        $($("#rightnav>li>ul")[0]).show()
-    }
-    $(document).ready(function() {
-        initrightBar();
+        $(this).parent().children('ul').toggle('slow');
     });
-    </script>
+    $("#rightnav>li>a").on('mouseleave', '', function(event) {
+        $(this).css('background-color', '#556c81');
+    });
+    $("#rightnav>li>a").on('mouseenter', '', function(event) {
+        $(this).css('background-color', '#344f68');
+    });
+
+    $("#rightnav>li>ul>li>a").click(function(event) {
+        $("#rightnav>li>ul>li>a").css('background-color', '#556c81');
+        $(this).parent().parent().children('li>a').css('background-color', '#344f68');
+        $(this).parent().parent().parent().children('a').css('background-color', '#344f68');
+        $(this).css('background-color', '#0D2E4C');
+    });
+    $("#rightnav>li>ul>li>a").on('mouseleave', '', function(event) {
+        $(this).css('background-color', '#556c81');
+    });
+    $("#rightnav>li>ul>li>a").on('mouseenter', '', function(event) {
+        $(this).css('background-color', '#344f68');
+    });
+
+    $("#rightnav>li>ul").hide();
+    $($("#rightnav>li>ul")[0]).show()
+}
+$(document).ready(function() {
+    initrightBar();
+});
+</script>
+
 </html>
