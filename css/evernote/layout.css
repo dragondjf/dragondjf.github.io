@@ -22,7 +22,6 @@ body {
 
 #rightbar {
     width: 15%;
-    /*float*/: right;
     right: 1%;
     background-color: #556c81;
     position: fixed;
