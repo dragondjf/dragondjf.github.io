@@ -159,6 +159,30 @@
 </head>
 
 <body>
+    <div id="content" class="wrapper">
+        <div class="shared-by shared-by-desktop">
+            <div class="shared-by-corner"></div>
+            {{page.title}}
+        </div>
+        <br>
+        <br>
+        <div class="vtop">
+            <div class="note-updated">
+                <span>作者: dragondjf</span>
+            </div>
+            <div class="note-updated">
+                <span>时间：{{ page.date | date_to_string }}</span>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div class="note-content">
+            <div>
+                {% for post in site.posts %}
+　　　　　　          <li>{{ post.date | date_to_string }} <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+　　　　        {% endfor %}
+            </div>
+        </div>
+    </div>
     <div id="rightbar">
         <ul id="rightnav">
             <li><a href="#object">对象</a>
