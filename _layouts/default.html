@@ -163,22 +163,24 @@
     <div id="content" class="wrapper">
         <div class="shared-by shared-by-desktop">
             <div class="shared-by-corner"></div>
-            dsdsdsds
+            {{page.title}}
         </div>
         <br>
         <br>
-        <div class="vtop">
-            <div class="note-updated">
-                <span>作者: dragondjf</span>
+        {% for post in site.posts %}
+            <div class="vtop">
+                <div class="note-updated">
+                    <span>作者: dragondjf</span>
+                </div>
+                <div class="note-updated">
+                    <span>时间：{{ post.date | date_to_string }}</span>
+                </div>
             </div>
-            <div class="note-updated">
-                <span>时间：</span>
-            </div>
+            <div class="divider"></div>
+            <div class="note-content">
+                {{post.content}}
         </div>
-        <div class="divider"></div>
-        <div class="note-content">
-            sddsds
-        </div>
+        {% endfor %}
     </div>
     <div id="rightbar">
         <ul id="rightnav">
