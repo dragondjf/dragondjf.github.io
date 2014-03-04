@@ -8,6 +8,7 @@
 </head>
 <body>
     {% for post in site.posts %}
+    <section id="{{ post.id }}">
         <div id="content" class="wrapper">
             <div class="shared-by shared-by-desktop">
                 <div class="shared-by-corner"></div>
@@ -16,23 +17,22 @@
             <br>
             <br>
             <div id="preview">
-                <section>
-                    <div class="vtop">
-                        <div class="note-updated">
-                            <span>作者: dragondjf</span>
-                        </div>
-                        <div class="note-updated">
-                            <span>时间：{{ post.date | date_to_string }}</span>
-                        </div>
+                <div class="vtop">
+                    <div class="note-updated">
+                        <span>作者: dragondjf</span>
                     </div>
-                    <div class="divider"></div>
-                    <div class="note-content">
-                        {{ post.content }}
+                    <div class="note-updated">
+                        <span>时间：{{ post.date | date_to_string }}</span>
                     </div>
-                </section>
+                </div>
+                <div class="divider"></div>
+                <div class="note-content">
+                    {{ post.content }}
+                </div>
             </div>
         </div>
-        <div id="blank"></div>
+    </section>
+    <div id="blank"></div>
     {% endfor %}
 
     <div id="rightbar">
