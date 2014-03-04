@@ -47,7 +47,7 @@ $('div .shared-by').click(function(event) {
     flag = $.inArray(current, all);
     all.splice(current, 1);
     all.hide();
-    $(this).siblings('#preview').children('.note-content').toggle('fast');
+    current.toggle('fast');
 });
 
 $(document).ready(function() {
