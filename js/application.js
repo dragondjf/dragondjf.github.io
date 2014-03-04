@@ -36,9 +36,19 @@ function initRightBar(){
 
     $("#rightnav>li>ul").hide();
     $($("#rightnav>li>ul")[0]).show()
+
+
 }
+
+$('div .shared-by').click(function(event) {
+    $(this).siblings('#preview').children('.note-content').toggle('slow');
+});
 
 $(document).ready(function() {
     initRightBar();
     hljs.initHighlightingOnLoad();
+    var contents = $('div .shared-by').siblings('#preview').children('.note-content')
+    for (var i = contents.length - 1; i >= 0; i--) {
+        $(contents[i]).hide();
+    };
 });
