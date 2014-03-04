@@ -1,5 +1,4 @@
 function initRightBar(){
-    $("#hmenu>li>ul>li").css('width', $("#hmenu>li").width().toString());
     $("#rightnav>li>a").click(function(event) {
         $("#rightnav>li>a").css('background-color', '#556c81');
         $("#rightnav>li>ul>li>a").css('background-color', '#556c81');
