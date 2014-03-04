@@ -47,7 +47,7 @@ $('div .shared-by').click(function(event) {
     // flag = $.inArray(current, all);
     // all.splice(current, 1);
     // all.hide();
-    current.fadeIn('fast');
+    current.fadeToggle('fast');
 });
 
 $(document).ready(function() {
