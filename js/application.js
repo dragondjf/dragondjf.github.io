@@ -44,10 +44,10 @@ $('div .shared-by').click(function(event) {
     var flag = false;
     var current = $(this).siblings('#preview').children('.note-content');
     var all = $('.note-content');
-    flag = $.inArray(current, all);
-    all.splice(current, 1);
+    // flag = $.inArray(current, all);
+    // all.splice(current, 1);
     all.hide();
-    current.toggle('fast');
+    current.fadeToggle('fast');
 });
 
 $(document).ready(function() {
