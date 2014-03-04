@@ -46,15 +46,12 @@ $('div .shared-by').click(function(event) {
     var all = $('.note-content');
     // flag = $.inArray(current, all);
     // all.splice(current, 1);
-    all.hide();
+    // all.hide();
     current.fadeIn('fast');
 });
 
 $(document).ready(function() {
     initRightBar();
     hljs.initHighlightingOnLoad();
-    var contents = $('div .shared-by').siblings('#preview').children('.note-content')
-    for (var i = contents.length - 1; i >= 0; i--) {
-        $(contents[i]).hide();
-    };
+    $('.note-content').hide();
 });
