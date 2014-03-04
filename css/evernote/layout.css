@@ -11,7 +11,7 @@ body {
     margin-top: 100px;
 }
 #content {
-    width: 70%;
+    width: 60%;
     height: 80%;
     float: left;
     background-color: white;
@@ -21,8 +21,7 @@ body {
 }
 
 #rightbar {
-    width: 15%;
-    right: 1%;
+    right: 25%;
     background-color: #556c81;
     position: fixed;
 }
