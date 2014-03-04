@@ -1,7 +1,7 @@
 ---
 layout: default
 title: python socket编程之select I/O
-id: selectIO
+tag: selectIO
 ---
 python socket编程之select I/O
 =======================================
