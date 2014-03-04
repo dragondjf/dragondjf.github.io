@@ -8,7 +8,7 @@
 </head>
 <body>
     {% for post in site.posts %}
-    <section id="{{ post.tag }}">
+    <article id="{{ post.tag }}">
         <div id="content" class="wrapper">
             <div class="shared-by shared-by-desktop">
                 <div class="shared-by-corner"></div>
@@ -31,7 +31,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </article>
     <div id="blank"></div>
     {% endfor %}
 
