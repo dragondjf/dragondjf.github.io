@@ -51,23 +51,17 @@
     <div class="row">
 
         <div class="span9">
-        
-
-        
-
-
     <div class='article'>
         <div class="content-title">
-            <a href="../python/ioloop.html"><h1>tornado 之 ioloop模块解读</h1></a>
+            <h1>tornado 之 ioloop模块解读</h1>
 2014-08-31 16:20:00
 
 by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
  
 
 
- 
         </div>
-        
+	
         <div><h4>1.ioloop是什么？</h4>
 <blockquote>
 <p><strong>ioloop</strong>是tornado事件驱动机制的核心模块，在linux下使用高效的<strong>epoll</strong>异步I/O模型, 在FreeBSD（mac）下使用高效的<strong>kqueue</strong>，在windows使用普通的<strong>select</strong>模型，正是基于epoll/kqueue/select, tornado在网络异步编程上表现优秀,下面就是对ioloop的个人理解。</p>
@@ -389,21 +383,23 @@ by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
 </td></tr></table>
 
 <p>上面代码就建立了一个非阻塞的高效的异步的echo server</p></div>
-        <hr />
+	
+        <hr>
+
+        <h2>Comments</h2>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'dragondjf'; 
+    var disqus_title = 'tornado 之 ioloop模块解读';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
-		
-<div class="pagination">
-<ul>
-    <li class="prev disabled"><a href="#">&larr; Previous</a></li>
-
-    <li class="active"><a href="../category/python.html">1</a></li>
-
-    <li class="next disabled"><a href="#">&rarr; Next</a></li>
-
-</ul>
-</div>
- 
-  
         </div>
         
         <div class="span3">
