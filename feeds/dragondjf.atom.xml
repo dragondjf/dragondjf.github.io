@@ -11,4 +11,4 @@
     ffpython—C++ 嵌入、扩展Python的开发库
     并将这个库集成到QFramer中去，思考如何在c++程序中使用python,并总结一套合理的开发流程和规范&lt;/p&gt;
 &lt;p&gt;2.学习thrift 
-    Thrfit是一种开源的跨语言的服务部署框架，这里的服务是指RPC，即远程过程调用了。它最初是由Facebook开发的，后来Facebook将其开源了。&lt;/p&gt;</summary><category term="plan"></category><category term="学习"></category></entry></feed>
+    Thrfit是一种开源的跨语言的服务部署框架，这里的服务是指RPC，即远程过程调用了。它最初是由Facebook开发的，后来Facebook将其开源了。&lt;/p&gt;</summary><category term="plan"></category><category term="学习"></category><category term="ffpython"></category></entry></feed>
