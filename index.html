@@ -58,8 +58,8 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="./xue-xi-ji-hua/9.html"><h1>2014 8月学习计划</h1></a>
-2014-08-31 16:20:00
+            <a href="./javascript/classie.html"><h1>javascript工具库之classie</h1></a>
+2014-09-10 16:20:00
 
 by <a class="url fn" href="./author/dragondjf.html">dragondjf</a>
  
@@ -68,22 +68,111 @@ by <a class="url fn" href="./author/dragondjf.html">dragondjf</a>
  
         </div>
         
-        <div><h3>1.需要完成的任务</h3>
-<p>完成QSetup项目，基于Qt和7z的安装报制作工具，具备以下功能：<br />
-1. 快速安装 <br />
-2. 自定义安装<br />
-3. 个性化选项配置：安装路径，快捷方式，开机自启动，任务栏，开始菜单等等<br />
-4. 简单大气的安装进度条<br />
-5. 安装完成后打开readem 和 自动运行程序  </p>
-<h3>2.需要学习框架：</h3>
-<p>1.ffpython 
-    ffpython—C++ 嵌入、扩展Python的开发库
-    并将这个库集成到QFramer中去，思考如何在c++程序中使用python,并总结一套合理的开发流程和规范</p>
-<p>2.学习thrift 
-    Thrfit是一种开源的跨语言的服务部署框架，这里的服务是指RPC，即远程过程调用了。它最初是由Facebook开发的，后来Facebook将其开源了。</p></div>
+        <div><blockquote>
+<p>在html中引入<script src="classie.js"></script>即可在后续js中利用<code>classie</code>对象为documentElement 判断是否包含、 增加 或 删除某个class。</p>
+</blockquote>
+<div class="highlight"><pre><span class="cm">/*!</span>
+<span class="cm"> * classie - class helper functions</span>
+<span class="cm"> * from bonzo https://github.com/ded/bonzo</span>
+<span class="cm"> * </span>
+<span class="cm"> * classie.has( elem, &#39;my-class&#39; ) -&gt; true/false</span>
+<span class="cm"> * classie.add( elem, &#39;my-new-class&#39; )</span>
+<span class="cm"> * classie.remove( elem, &#39;my-unwanted-class&#39; )</span>
+<span class="cm"> * classie.toggle( elem, &#39;my-class&#39; )</span>
+<span class="cm"> */</span>
+
+<span class="cm">/*jshint browser: true, strict: true, undef: true */</span>
+<span class="cm">/*global define: false */</span>
+
+<span class="p">(</span> <span class="k">function</span><span class="p">(</span> <span class="n">window</span> <span class="p">)</span> <span class="p">{</span>
+
+<span class="p">&#39;</span><span class="k">use</span> <span class="n">strict</span><span class="p">&#39;;</span>
+
+<span class="c1">// class helper functions from bonzo https://github.com/ded/bonzo</span>
+
+<span class="k">function</span> <span class="n">classReg</span><span class="p">(</span> <span class="n">className</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="n">RegExp</span><span class="p">(</span><span class="s">&quot;(^|</span><span class="se">\\</span><span class="s">s+)&quot;</span> <span class="o">+</span> <span class="n">className</span> <span class="o">+</span> <span class="s">&quot;(</span><span class="se">\\</span><span class="s">s+|$)&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// classList support for class management</span>
+<span class="c1">// altho to be fair, the api sucks because it won&#39;t accept multiple classes at once</span>
+<span class="k">var</span> <span class="n">hasClass</span><span class="p">,</span> <span class="n">addClass</span><span class="p">,</span> <span class="n">removeClass</span><span class="p">;</span>
+
+<span class="k">if</span> <span class="p">(</span> <span class="p">&#39;</span><span class="n">classList</span><span class="p">&#39;</span> <span class="n">in</span> <span class="n">document</span><span class="p">.</span><span class="n">documentElement</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="n">hasClass</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span> <span class="n">elem</span><span class="p">,</span> <span class="n">c</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">elem</span><span class="p">.</span><span class="n">classList</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span> <span class="n">c</span> <span class="p">);</span>
+  <span class="p">};</span>
+  <span class="n">addClass</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span> <span class="n">elem</span><span class="p">,</span> <span class="n">c</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="n">elem</span><span class="p">.</span><span class="n">classList</span><span class="p">.</span><span class="n">add</span><span class="p">(</span> <span class="n">c</span> <span class="p">);</span>
+  <span class="p">};</span>
+  <span class="n">removeClass</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span> <span class="n">elem</span><span class="p">,</span> <span class="n">c</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="n">elem</span><span class="p">.</span><span class="n">classList</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span> <span class="n">c</span> <span class="p">);</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="p">{</span>
+  <span class="n">hasClass</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span> <span class="n">elem</span><span class="p">,</span> <span class="n">c</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">classReg</span><span class="p">(</span> <span class="n">c</span> <span class="p">).</span><span class="n">test</span><span class="p">(</span> <span class="n">elem</span><span class="p">.</span><span class="n">className</span> <span class="p">);</span>
+  <span class="p">};</span>
+  <span class="n">addClass</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span> <span class="n">elem</span><span class="p">,</span> <span class="n">c</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">hasClass</span><span class="p">(</span> <span class="n">elem</span><span class="p">,</span> <span class="n">c</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+      <span class="n">elem</span><span class="p">.</span><span class="n">className</span> <span class="o">=</span> <span class="n">elem</span><span class="p">.</span><span class="n">className</span> <span class="o">+</span> <span class="sc">&#39; &#39;</span> <span class="o">+</span> <span class="n">c</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+  <span class="n">removeClass</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span> <span class="n">elem</span><span class="p">,</span> <span class="n">c</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="n">elem</span><span class="p">.</span><span class="n">className</span> <span class="o">=</span> <span class="n">elem</span><span class="p">.</span><span class="n">className</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span> <span class="n">classReg</span><span class="p">(</span> <span class="n">c</span> <span class="p">),</span> <span class="sc">&#39; &#39;</span> <span class="p">);</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="k">function</span> <span class="n">toggleClass</span><span class="p">(</span> <span class="n">elem</span><span class="p">,</span> <span class="n">c</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">var</span> <span class="n">fn</span> <span class="o">=</span> <span class="n">hasClass</span><span class="p">(</span> <span class="n">elem</span><span class="p">,</span> <span class="n">c</span> <span class="p">)</span> <span class="o">?</span> <span class="n">removeClass</span> <span class="o">:</span> <span class="n">addClass</span><span class="p">;</span>
+  <span class="n">fn</span><span class="p">(</span> <span class="n">elem</span><span class="p">,</span> <span class="n">c</span> <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">var</span> <span class="n">classie</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="c1">// full names</span>
+  <span class="nl">hasClass:</span> <span class="n">hasClass</span><span class="p">,</span>
+  <span class="nl">addClass:</span> <span class="n">addClass</span><span class="p">,</span>
+  <span class="nl">removeClass:</span> <span class="n">removeClass</span><span class="p">,</span>
+  <span class="nl">toggleClass:</span> <span class="n">toggleClass</span><span class="p">,</span>
+  <span class="c1">// short names</span>
+  <span class="nl">has:</span> <span class="n">hasClass</span><span class="p">,</span>
+  <span class="nl">add:</span> <span class="n">addClass</span><span class="p">,</span>
+  <span class="nl">remove:</span> <span class="n">removeClass</span><span class="p">,</span>
+  <span class="nl">toggle:</span> <span class="n">toggleClass</span>
+<span class="p">};</span>
+
+<span class="c1">// transport</span>
+<span class="k">if</span> <span class="p">(</span> <span class="n">typeof</span> <span class="n">define</span> <span class="o">===</span> <span class="p">&#39;</span><span class="k">function</span><span class="p">&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">define</span><span class="p">.</span><span class="n">amd</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// AMD</span>
+  <span class="n">define</span><span class="p">(</span> <span class="n">classie</span> <span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="c1">// browser global</span>
+  <span class="n">window</span><span class="p">.</span><span class="n">classie</span> <span class="o">=</span> <span class="n">classie</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">})(</span> <span class="n">window</span> <span class="p">);</span>
+</pre></div></div>
         <hr />
     </div>
 		
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="./xue-xi-ji-hua/9.html"><h2>2014 8月学习计划</h2></a>
+        <div class= "well small"> 2014-08-31 16:20:00
+
+by <a class="url fn" href="./author/dragondjf.html">dragondjf</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>完成blog搭建，学习ffpython, 做好QSetup</p> <a class="btn btn-info xsmall" href="./xue-xi-ji-hua/9.html">read more</a></div>
+    </div>	
+				
 
  
         
@@ -137,6 +226,7 @@ by <a class="url fn" href="./author/dragondjf.html">dragondjf</a>
                 Categories
                 </li>
                 
+                <li><a href="./category/javascript.html">javascript</a></li>
                 <li><a href="./category/python.html">Python</a></li>
                 <li><a href="./category/xue-xi-ji-hua.html">学习计划</a></li>
                    

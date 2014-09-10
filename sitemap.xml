@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>./index.html</loc>
-<lastmod>2014-09-09T21:22:41-00:00</lastmod>
+<lastmod>2014-09-10T14:34:58-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>./archives.html</loc>
-<lastmod>2014-09-09T21:22:41-00:00</lastmod>
+<lastmod>2014-09-10T14:34:58-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>./tags.html</loc>
-<lastmod>2014-09-09T21:22:41-00:00</lastmod>
+<lastmod>2014-09-10T14:34:58-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>./categories.html</loc>
-<lastmod>2014-09-09T21:22:41-00:00</lastmod>
+<lastmod>2014-09-10T14:34:58-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -36,6 +36,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2014-02-05T14:10:00-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.3</priority>
+</url>
+
+<url>
+<loc>./javascript/classie.html</loc>
+<lastmod>2014-09-10T16:20:00-00:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
 </url>
 
 <url>
@@ -50,6 +57,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2014-08-31T16:20:00-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
+</url>
+
+<url>
+<loc>./category/javascript.html</loc>
+<lastmod>2014-09-10T16:20:00:%s</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
 </url>
 
 <url>
@@ -68,7 +82,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>./tag/web.html</loc>
-<lastmod>2014-08-31T16:20:00:%s</lastmod>
+<lastmod>2014-09-10T16:20:00:%s</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -83,6 +97,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>./tag/tornado.html</loc>
 <lastmod>2014-08-31T16:20:00:%s</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>./tag/javascript.html</loc>
+<lastmod>2014-09-10T16:20:00:%s</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -110,7 +131,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>./author/dragondjf.html</loc>
-<lastmod>2014-08-31T16:20:00:%s</lastmod>
+<lastmod>2014-09-10T16:20:00:%s</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
