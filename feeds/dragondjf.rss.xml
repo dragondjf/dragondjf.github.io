@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>保持一颗激情的心</title><link>./</link><description></description><atom:link href="./feeds%5Cdragondjf.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 10 Sep 2014 16:20:00 +0800</lastBuildDate><item><title>javascript工具库之classie</title><link>./javascript/classie.html</link><description>&lt;blockquote&gt;
-&lt;p&gt;在html中引入&lt;code&gt;&amp;lt;script src="classie.js"&amp;gt;&amp;lt;/script&amp;gt;&lt;/code&gt;即可在后续js中利用&lt;code&gt;classie&lt;/code&gt;对象为documentElement 判断是否包含、 增加 或 删除某个class。&lt;/p&gt;
+&lt;p&gt;在html中引入&lt;code&gt;&amp;lt;script src="classie.js"&amp;gt;&amp;lt;/script&lt;/code&gt;即可在后续js中利用&lt;code&gt;classie&lt;/code&gt;对象为documentElement 判断是否包含、 增加 或 删除某个class。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cm"&gt;/*!&lt;/span&gt;
 &lt;span class="cm"&gt; * classie - class helper functions&lt;/span&gt;
