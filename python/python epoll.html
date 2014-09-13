@@ -55,51 +55,51 @@
     <div class="row">
 
         <div class="span9">
-        
-
-        
-
-
     <div class='article'>
         <div class="content-title">
-            <a href="../xue-xi-ji-hua/9.html"><h1>2014 8月学习计划</h1></a>
-2014-08-31 16:20:00
+            <h1>python epoll 解读</h1>
+2014-09-13 20:27:00
 
 by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
  
 
 
- 
         </div>
-        
-        <div><h3>1.需要完成的任务</h3>
-<p>完成QSetup项目，基于Qt和7z的安装报制作工具，具备以下功能：<br />
-1. 快速安装 <br />
-2. 自定义安装<br />
-3. 个性化选项配置：安装路径，快捷方式，开机自启动，任务栏，开始菜单等等<br />
-4. 简单大气的安装进度条<br />
-5. 安装完成后打开readem 和 自动运行程序  </p>
-<h3>2.需要学习框架：</h3>
-<p>1.ffpython 
-    ffpython—C++ 嵌入、扩展Python的开发库
-    并将这个库集成到QFramer中去，思考如何在c++程序中使用python,并总结一套合理的开发流程和规范</p>
-<p>2.学习thrift 
-    Thrfit是一种开源的跨语言的服务部署框架，这里的服务是指RPC，即远程过程调用了。它最初是由Facebook开发的，后来Facebook将其开源了。</p></div>
-        <hr />
+	
+        <div><h6>1. 水平触发</h6>
+<div class="highlight"><pre><span class="err">只要某个</span><span class="n">socket</span><span class="err">处于</span><span class="n">readable</span><span class="o">/</span><span class="n">writable</span><span class="err">状态，无论什么时候进行</span><span class="n">epoll_wait</span><span class="err">都会返回该</span><span class="n">socket</span><span class="err">；</span>
+    <span class="err">对于</span><span class="n">non</span><span class="o">-</span><span class="n">blocking</span><span class="err">的</span><span class="n">socket</span><span class="err">，正确的读写操作为</span><span class="o">:</span>
+    <span class="err">读：忽略掉</span><span class="n">errno</span> <span class="o">=</span> <span class="n">EAGAIN</span><span class="err">的错误，下次继续读</span>
+    <span class="err">写：忽略掉</span><span class="n">errno</span> <span class="o">=</span> <span class="n">EAGAIN</span><span class="err">的错误，下次继续写</span>
+</pre></div>
+
+
+<h6>2. 边缘触发</h6>
+<div class="highlight"><pre><span class="err">只有某个</span><span class="n">socket</span><span class="err">从</span><span class="n">unreadable</span><span class="err">变为</span><span class="n">readable</span><span class="err">或从</span><span class="n">unwritable</span><span class="err">变为</span><span class="n">writable</span><span class="err">时，</span><span class="n">epoll_wait</span><span class="err">才会返回该</span><span class="n">socket</span><span class="err">；</span>
+    <span class="err">所以，在</span><span class="n">epoll</span><span class="err">的</span><span class="n">ET</span><span class="err">模式下，正确的读写方式为</span><span class="o">:</span>
+    <span class="err">读：只要可读，就一直读，直到返回</span><span class="mi">0</span><span class="err">，或者</span> <span class="n">errno</span> <span class="o">=</span> <span class="n">EAGAIN</span>
+    <span class="err">写</span><span class="o">:</span><span class="err">只要可写，就一直写，直到数据发送完，或者</span> <span class="n">errno</span> <span class="o">=</span> <span class="n">EAGAIN</span>
+</pre></div>
+
+
+<p>详情参见：http://fatezero.org/archives/</p></div>
+	
+        <hr>
+
+        <h2>Comments</h2>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'dragondjf'; 
+    var disqus_title = 'python epoll 解读';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
-		
-<div class="pagination">
-<ul>
-    <li class="prev disabled"><a href="#">&larr; Previous</a></li>
-
-    <li class="active"><a href="../tag/xue-xi.html">1</a></li>
-
-    <li class="next disabled"><a href="#">&rarr; Next</a></li>
-
-</ul>
-</div>
- 
-  
         </div>
         
         <div class="span3">

@@ -16,7 +16,9 @@
     <link href="../theme/bootstrap.min.css" rel="stylesheet">
     <link href="../theme/bootstrap.min.responsive.css" rel="stylesheet">
     <link href="../theme/local.css" rel="stylesheet">
-    <link href="../theme/pygments.css" rel="stylesheet">
+    <!-- <link href="../theme/pygments.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/styles/default.min.css">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/highlight.min.js"></script>
 
 </head>
 
@@ -60,8 +62,8 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="../pyqtpyside/PyQt/PySide.html"><h1>PyQt/PySide 国际化实现</h1></a>
-2014-09-13 19:56:00
+            <a href="../python/python epoll.html"><h1>python epoll 解读</h1></a>
+2014-09-13 20:27:00
 
 by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
  
@@ -70,126 +72,44 @@ by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
  
         </div>
         
-        <div><h3>1.概述：</h3>
-<p>在程序是使用<strong>self.tr</strong>对需要进行翻译的字符串进行修饰,实质上这样做就是标定这些字符串是可以进行国际化操作的.</p>
-<h3>2.步骤：</h3>
-<h6>第一步：</h6>
-<p>新建<strong>main.pro</strong>工程文件，文件格式如下：</p>
-<div class="highlight"><pre><span class="n">SOURCES</span> <span class="o">+=</span> <span class="n">main</span><span class="p">.</span><span class="n">py</span>
-<span class="n">SOURCES</span> <span class="o">+=</span> <span class="n">app</span><span class="p">.</span><span class="n">py</span>
-<span class="n">SOURCES</span> <span class="o">+=</span> <span class="n">db</span><span class="p">.</span><span class="n">py</span>
-<span class="n">SOURCES</span> <span class="o">+=</span> <span class="n">help</span><span class="p">.</span><span class="n">py</span>
-<span class="n">TRANSLATIONS</span> <span class="o">+=</span> <span class="n">main</span><span class="p">.</span><span class="n">ts</span>
+        <div><h6>1. 水平触发</h6>
+<div class="highlight"><pre><span class="err">只要某个</span><span class="n">socket</span><span class="err">处于</span><span class="n">readable</span><span class="o">/</span><span class="n">writable</span><span class="err">状态，无论什么时候进行</span><span class="n">epoll_wait</span><span class="err">都会返回该</span><span class="n">socket</span><span class="err">；</span>
+    <span class="err">对于</span><span class="n">non</span><span class="o">-</span><span class="n">blocking</span><span class="err">的</span><span class="n">socket</span><span class="err">，正确的读写操作为</span><span class="o">:</span>
+    <span class="err">读：忽略掉</span><span class="n">errno</span> <span class="o">=</span> <span class="n">EAGAIN</span><span class="err">的错误，下次继续读</span>
+    <span class="err">写：忽略掉</span><span class="n">errno</span> <span class="o">=</span> <span class="n">EAGAIN</span><span class="err">的错误，下次继续写</span>
 </pre></div>
 
 
-<h6>第二步:</h6>
-<p>利用pylupdate4(PyQt4)或者pyside-lupdate(PySide)进行翻译文件提取：</p>
-<blockquote>
-<p>PyQt4  </p>
-</blockquote>
-<div class="highlight"><pre><span class="n">pylupdate4</span> <span class="n">main</span><span class="p">.</span><span class="n">pro</span>
+<h6>2. 边缘触发</h6>
+<div class="highlight"><pre><span class="err">只有某个</span><span class="n">socket</span><span class="err">从</span><span class="n">unreadable</span><span class="err">变为</span><span class="n">readable</span><span class="err">或从</span><span class="n">unwritable</span><span class="err">变为</span><span class="n">writable</span><span class="err">时，</span><span class="n">epoll_wait</span><span class="err">才会返回该</span><span class="n">socket</span><span class="err">；</span>
+    <span class="err">所以，在</span><span class="n">epoll</span><span class="err">的</span><span class="n">ET</span><span class="err">模式下，正确的读写方式为</span><span class="o">:</span>
+    <span class="err">读：只要可读，就一直读，直到返回</span><span class="mi">0</span><span class="err">，或者</span> <span class="n">errno</span> <span class="o">=</span> <span class="n">EAGAIN</span>
+    <span class="err">写</span><span class="o">:</span><span class="err">只要可写，就一直写，直到数据发送完，或者</span> <span class="n">errno</span> <span class="o">=</span> <span class="n">EAGAIN</span>
 </pre></div>
 
 
-<blockquote>
-<p>PySide  </p>
-</blockquote>
-<div class="highlight"><pre><span class="n">pyside</span><span class="o">-</span><span class="n">lupdate</span> <span class="n">main</span><span class="p">.</span><span class="n">pro</span>
-</pre></div>
-
-
-<p>这样会在当前目录生成一个main.ts(main.pro中<strong>TRANSLATIONS</strong>的值)</p>
-<h6>第三步:</h6>
-<p>利用PyQt4或者是PySide安装目录下的linguist.exe打开main.ts，逐项进行翻译</p>
-<h5>第四步:</h5>
-<p>利用PyQt4或者是PySide安装目录下的lrelease进行翻译
-    lrelease main.ts
-这样会在当前目录下生成一个main.qm的翻译文件</p>
-<h3>第五步：</h3>
-<div class="highlight"><pre><span class="n">import</span> <span class="n">sys</span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span>
-<span class="n">trans</span> <span class="o">=</span> <span class="n">QTranslator</span><span class="p">()</span>
-<span class="n">trans</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s">&quot;main.qm&quot;</span><span class="p">)</span>
-<span class="n">app</span><span class="p">.</span><span class="n">installTranslator</span><span class="p">(</span><span class="n">trans</span><span class="p">)</span>
-<span class="n">main</span> <span class="o">=</span> <span class="n">CenterWindow</span><span class="p">()</span>
-<span class="n">main</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
-<span class="n">sys</span><span class="p">.</span><span class="n">exit</span><span class="p">(</span><span class="n">app</span><span class="p">.</span><span class="n">exec_</span><span class="p">())</span>
-</pre></div>
-
-
-<p>其中的   </p>
-<div class="highlight"><pre><span class="n">trans</span> <span class="o">=</span> <span class="n">QTranslator</span><span class="p">()</span>
-<span class="n">trans</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s">&quot;main.qm&quot;</span><span class="p">)</span>
-<span class="n">app</span><span class="p">.</span><span class="n">installTranslator</span><span class="p">(</span><span class="n">trans</span><span class="p">)</span>
-</pre></div>
-
-
-<p>就是将main.qm加载到程序当中去，这样即可实现程序国际化</p>
-<p><br>
-<br></p>
-<h1>PyQt/PySide 资源文件使用</h1>
-<h3>步骤：</h3>
-<p>第一步： 利用QtDesigner进行资源文件的创建或者是手动创建<strong>main.qrc</strong>：  </p>
-<div class="highlight"><pre>    <span class="cp">&lt;!DOCTYPE RCC&gt;</span><span class="nt">&lt;RCC</span> <span class="na">version=</span><span class="s">&quot;1.0&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;qresource&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;filenew.png&quot;</span><span class="nt">&gt;</span>images/filenew.png<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;fileopen.png&quot;</span><span class="nt">&gt;</span>images/fileopen.png<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;filesave.png&quot;</span><span class="nt">&gt;</span>images/filesave.png<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;filesaveas.png&quot;</span><span class="nt">&gt;</span>images/filesaveas.png<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;fileprint.png&quot;</span><span class="nt">&gt;</span>images/fileprint.png<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;filequit.png&quot;</span><span class="nt">&gt;</span>images/filequit.png<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;editinvert.png&quot;</span><span class="nt">&gt;</span>images/editinvert.png<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;editswap.png&quot;</span><span class="nt">&gt;</span>images/editswap.png<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;editzoom.png&quot;</span><span class="nt">&gt;</span>images/editzoom.png<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;editmirror.png&quot;</span><span class="nt">&gt;</span>images/editmirror.png<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;editunmirror.png&quot;</span><span class="nt">&gt;</span>images/editunmirror.png<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;editmirrorhoriz.png&quot;</span><span class="nt">&gt;</span>images/editmirrorhoriz.png<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;editmirrorvert.png&quot;</span><span class="nt">&gt;</span>images/editmirrorvert.png<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;back.png&quot;</span><span class="nt">&gt;</span>images/back.png<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;home.png&quot;</span><span class="nt">&gt;</span>images/home.png<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;icon.png&quot;</span><span class="nt">&gt;</span>images/icon.png<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;/qresource&gt;</span>
-    <span class="nt">&lt;qresource&gt;</span>
-    <span class="nt">&lt;file&gt;</span>imagechanger.qm<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;/qresource&gt;</span>
-    <span class="nt">&lt;qresource&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;editmenu.html&quot;</span><span class="nt">&gt;</span>help/editmenu.html<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;filemenu.html&quot;</span><span class="nt">&gt;</span>help/filemenu.html<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;index.html&quot;</span><span class="nt">&gt;</span>help/index.html<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;/qresource&gt;</span>
-    <span class="nt">&lt;qresource</span> <span class="na">lang=</span><span class="s">&quot;fr&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;editmenu.html&quot;</span><span class="nt">&gt;</span>help/editmenu_fr.html<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;filemenu.html&quot;</span><span class="nt">&gt;</span>help/filemenu_fr.html<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;index.html&quot;</span><span class="nt">&gt;</span>help/index_fr.html<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;/qresource&gt;</span>
-    <span class="nt">&lt;/RCC&gt;</span>
-</pre></div>
-
-
-<p>生成对应资源文件的xml数据结构。</p>
-<p>第二步： 利用pyrcc4(PyQt4)或者是pyside-rcc(PySide)进行编译</p>
-<div class="highlight"><pre>    <span class="n">pyrcc4</span> <span class="n">resources</span><span class="p">.</span><span class="n">qrc</span> <span class="o">-</span><span class="n">o</span> <span class="n">qrc_resources</span><span class="p">.</span><span class="n">py</span>
-</pre></div>
-
-
-<p>或者是  </p>
-<div class="highlight"><pre>    <span class="n">pysdie</span><span class="o">-</span><span class="n">rcc</span> <span class="n">resources</span><span class="p">.</span><span class="n">qrc</span> <span class="o">-</span><span class="n">o</span> <span class="n">qrc_resources</span><span class="p">.</span><span class="n">py</span>
-</pre></div>
-
-
-<p>这样即可生成一个<strong>qrc_resources.py</strong>资源文件py库</p>
-<p>第三步：在主程序中导入<strong>qrc_resources.py</strong>库即可</p>
-<div class="highlight"><pre>    <span class="n">import</span> <span class="n">qrc_resources</span>
-    <span class="n">app</span><span class="p">.</span><span class="n">setWindowIcon</span><span class="p">(</span><span class="n">QIcon</span><span class="p">(</span><span class="s">&quot;:/icon.png&quot;</span><span class="p">))</span>
-</pre></div>
-
-
-<p>注意： 必须加上<strong>":/"</strong>进行路径限定</p>
-<p>利用好资源文件可以方便的对资源文件进行固化和程序发布。</p></div>
+<p>详情参见：http://fatezero.org/archives/</p></div>
         <hr />
     </div>
 		
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../pyqtpyside/PyQt/PySide.html"><h2>PyQt/PySide 国际化实现</h2></a>
+        <div class= "well small"> 2014-09-13 19:56:00
+
+by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
+ 
+
+
+ </div>
+        <div class="summary"> <a class="btn btn-info xsmall" href="../pyqtpyside/PyQt/PySide.html">read more</a></div>
+    </div>	
+				
 
  
         
@@ -295,4 +215,11 @@ by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
 </a>
  
 </body>
+<script>
+    $(document).ready(function() {
+      $('pre').each(function(i, block) {
+        hljs.highlightBlock(block);
+      });
+    });
+</script>
 </html>

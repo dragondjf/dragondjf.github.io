@@ -16,7 +16,9 @@
     <link href="./theme/bootstrap.min.css" rel="stylesheet">
     <link href="./theme/bootstrap.min.responsive.css" rel="stylesheet">
     <link href="./theme/local.css" rel="stylesheet">
-    <link href="./theme/pygments.css" rel="stylesheet">
+    <!-- <link href="./theme/pygments.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/styles/default.min.css">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/highlight.min.js"></script>
 
 </head>
 
@@ -60,8 +62,8 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="./c/Inheritance（继承）.html"><h1>c++之private、protect、public Inheritance（继承）</h1></a>
-2014-09-13 19:56:00
+            <a href="./python/python epoll.html"><h1>python epoll 解读</h1></a>
+2014-09-13 20:27:00
 
 by <a class="url fn" href="./author/dragondjf.html">dragondjf</a>
  
@@ -70,29 +72,44 @@ by <a class="url fn" href="./author/dragondjf.html">dragondjf</a>
  
         </div>
         
-        <div><ul>
-<li>Protected and public members(data and function) of a base class are accessible from a derived class(for all three: public, protected and private inheritance). </li>
-</ul>
-<blockquote>
-<p>无论哪种继承，子类内部均可访问protect 和 public成员</p>
-</blockquote>
-<ul>
-<li>Objects of derived class with private and protected inheritance cannot access any data member of a base class.</li>
-</ul>
-<blockquote>
-<p>protect、private继承类的实例对象无法访问基类的任何数据</p>
-</blockquote>
-<ul>
-<li>Objects of derived class with public inheritance can access only public member of a base class.</li>
-</ul>
-<blockquote>
-<p>public继承类的实例对象自能访问基类的public数据</p>
-</blockquote>
-<p><img alt="Alt text" src="../static/c++/inheritance.png" /></p>
-<p>详情参见http://www.programiz.com/cpp-programming/public-protected-private-inheritance</p></div>
+        <div><h6>1. 水平触发</h6>
+<div class="highlight"><pre><span class="err">只要某个</span><span class="n">socket</span><span class="err">处于</span><span class="n">readable</span><span class="o">/</span><span class="n">writable</span><span class="err">状态，无论什么时候进行</span><span class="n">epoll_wait</span><span class="err">都会返回该</span><span class="n">socket</span><span class="err">；</span>
+    <span class="err">对于</span><span class="n">non</span><span class="o">-</span><span class="n">blocking</span><span class="err">的</span><span class="n">socket</span><span class="err">，正确的读写操作为</span><span class="o">:</span>
+    <span class="err">读：忽略掉</span><span class="n">errno</span> <span class="o">=</span> <span class="n">EAGAIN</span><span class="err">的错误，下次继续读</span>
+    <span class="err">写：忽略掉</span><span class="n">errno</span> <span class="o">=</span> <span class="n">EAGAIN</span><span class="err">的错误，下次继续写</span>
+</pre></div>
+
+
+<h6>2. 边缘触发</h6>
+<div class="highlight"><pre><span class="err">只有某个</span><span class="n">socket</span><span class="err">从</span><span class="n">unreadable</span><span class="err">变为</span><span class="n">readable</span><span class="err">或从</span><span class="n">unwritable</span><span class="err">变为</span><span class="n">writable</span><span class="err">时，</span><span class="n">epoll_wait</span><span class="err">才会返回该</span><span class="n">socket</span><span class="err">；</span>
+    <span class="err">所以，在</span><span class="n">epoll</span><span class="err">的</span><span class="n">ET</span><span class="err">模式下，正确的读写方式为</span><span class="o">:</span>
+    <span class="err">读：只要可读，就一直读，直到返回</span><span class="mi">0</span><span class="err">，或者</span> <span class="n">errno</span> <span class="o">=</span> <span class="n">EAGAIN</span>
+    <span class="err">写</span><span class="o">:</span><span class="err">只要可写，就一直写，直到数据发送完，或者</span> <span class="n">errno</span> <span class="o">=</span> <span class="n">EAGAIN</span>
+</pre></div>
+
+
+<p>详情参见：http://fatezero.org/archives/</p></div>
         <hr />
     </div>
 		
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="./c/Inheritance（继承）.html"><h2>c++之private、protect、public Inheritance（继承）</h2></a>
+        <div class= "well small"> 2014-09-13 19:56:00
+
+by <a class="url fn" href="./author/dragondjf.html">dragondjf</a>
+ 
+
+
+ </div>
+        <div class="summary"> <a class="btn btn-info xsmall" href="./c/Inheritance（继承）.html">read more</a></div>
+    </div>	
+				
 
  
         
@@ -252,4 +269,11 @@ by <a class="url fn" href="./author/dragondjf.html">dragondjf</a>
 </a>
  
 </body>
+<script>
+    $(document).ready(function() {
+      $('pre').each(function(i, block) {
+        hljs.highlightBlock(block);
+      });
+    });
+</script>
 </html>

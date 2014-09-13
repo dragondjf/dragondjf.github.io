@@ -16,7 +16,9 @@
     <link href="./theme/bootstrap.min.css" rel="stylesheet">
     <link href="./theme/bootstrap.min.responsive.css" rel="stylesheet">
     <link href="./theme/local.css" rel="stylesheet">
-    <link href="./theme/pygments.css" rel="stylesheet">
+    <!-- <link href="./theme/pygments.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/styles/default.min.css">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/highlight.min.js"></script>
 
 </head>
 
@@ -58,6 +60,7 @@
     <li><a href="./tag/c.html">c++</a></li>
     <li><a href="./tag/qt.html">Qt</a></li>
     <li><a href="./tag/pyside.html">PySide</a></li>
+    <li><a href="./tag/epoll.html">epoll</a></li>
     <li><a href="./tag/python.html">Python</a></li>
     <li><a href="./tag/javascript.html">javascript</a></li>
     <li><a href="./tag/ffpython.html">ffpython</a></li>
@@ -141,4 +144,11 @@
 </a>
  
 </body>
+<script>
+    $(document).ready(function() {
+      $('pre').each(function(i, block) {
+        hljs.highlightBlock(block);
+      });
+    });
+</script>
 </html>

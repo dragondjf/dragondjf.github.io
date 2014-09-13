@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>保持一颗激情的心</title><link>./</link><description></description><atom:link href="./feeds%5Cdragondjf.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 13 Sep 2014 19:56:00 +0800</lastBuildDate><item><title>c++之private、protect、public Inheritance（继承）</title><link>./c/Inheritance%EF%BC%88%E7%BB%A7%E6%89%BF%EF%BC%89.html</link><description>&lt;ul&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>保持一颗激情的心</title><link>./</link><description></description><atom:link href="./feeds%5Cdragondjf.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 13 Sep 2014 20:27:00 +0800</lastBuildDate><item><title>python epoll 解读</title><link>./python/python%20epoll.html</link><description>&lt;h6&gt;1. 水平触发&lt;/h6&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;只要某个&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="err"&gt;处于&lt;/span&gt;&lt;span class="n"&gt;readable&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;writable&lt;/span&gt;&lt;span class="err"&gt;状态，无论什么时候进行&lt;/span&gt;&lt;span class="n"&gt;epoll_wait&lt;/span&gt;&lt;span class="err"&gt;都会返回该&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="err"&gt;；&lt;/span&gt;
+    &lt;span class="err"&gt;对于&lt;/span&gt;&lt;span class="n"&gt;non&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;blocking&lt;/span&gt;&lt;span class="err"&gt;的&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="err"&gt;，正确的读写操作为&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+    &lt;span class="err"&gt;读：忽略掉&lt;/span&gt;&lt;span class="n"&gt;errno&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;EAGAIN&lt;/span&gt;&lt;span class="err"&gt;的错误，下次继续读&lt;/span&gt;
+    &lt;span class="err"&gt;写：忽略掉&lt;/span&gt;&lt;span class="n"&gt;errno&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;EAGAIN&lt;/span&gt;&lt;span class="err"&gt;的错误，下次继续写&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h6&gt;2. 边缘触发&lt;/h6&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;只有某个&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="err"&gt;从&lt;/span&gt;&lt;span class="n"&gt;unreadable&lt;/span&gt;&lt;span class="err"&gt;变为&lt;/span&gt;&lt;span class="n"&gt;readable&lt;/span&gt;&lt;span class="err"&gt;或从&lt;/span&gt;&lt;span class="n"&gt;unwritable&lt;/span&gt;&lt;span class="err"&gt;变为&lt;/span&gt;&lt;span class="n"&gt;writable&lt;/span&gt;&lt;span class="err"&gt;时，&lt;/span&gt;&lt;span class="n"&gt;epoll_wait&lt;/span&gt;&lt;span class="err"&gt;才会返回该&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="err"&gt;；&lt;/span&gt;
+    &lt;span class="err"&gt;所以，在&lt;/span&gt;&lt;span class="n"&gt;epoll&lt;/span&gt;&lt;span class="err"&gt;的&lt;/span&gt;&lt;span class="n"&gt;ET&lt;/span&gt;&lt;span class="err"&gt;模式下，正确的读写方式为&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+    &lt;span class="err"&gt;读：只要可读，就一直读，直到返回&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="err"&gt;，或者&lt;/span&gt; &lt;span class="n"&gt;errno&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;EAGAIN&lt;/span&gt;
+    &lt;span class="err"&gt;写&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="err"&gt;只要可写，就一直写，直到数据发送完，或者&lt;/span&gt; &lt;span class="n"&gt;errno&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;EAGAIN&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;详情参见：http://fatezero.org/archives/&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">dragondjf</dc:creator><pubDate>Sat, 13 Sep 2014 20:27:00 +0800</pubDate><guid>tag:,2014-09-13:./python/python epoll.html</guid><category>python</category><category>epoll</category></item><item><title>c++之private、protect、public Inheritance（继承）</title><link>./c/Inheritance%EF%BC%88%E7%BB%A7%E6%89%BF%EF%BC%89.html</link><description>&lt;ul&gt;
 &lt;li&gt;Protected and public members(data and function) of a base class are accessible from a derived class(for all three: public, protected and private inheritance). &lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
