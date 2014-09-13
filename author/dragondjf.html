@@ -60,7 +60,7 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="../javascript/classie.html"><h1>javascript工具库之classie</h1></a>
+            <a href="../pyqtpyside/PyQt/PySide.html"><h1>PyQt/PySide 国际化实现</h1></a>
 2014-09-10 16:20:00
 
 by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
@@ -70,93 +70,144 @@ by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
  
         </div>
         
-        <div><blockquote>
-<p>在html中引入<code>&lt;script src="classie.js"&gt;&lt;/script</code>即可在后续js中利用<code>classie</code>对象为documentElement 判断是否包含、 增加 或 删除某个class。</p>
+        <div><h3>1.概述：</h3>
+<p>在程序是使用<strong>self.tr</strong>对需要进行翻译的字符串进行修饰,实质上这样做就是标定这些字符串是可以进行国际化操作的.</p>
+<h3>2.步骤：</h3>
+<h6>第一步：</h6>
+<p>新建<strong>main.pro</strong>工程文件，文件格式如下：</p>
+<div class="highlight"><pre><span class="n">SOURCES</span> <span class="o">+=</span> <span class="n">main</span><span class="p">.</span><span class="n">py</span>
+<span class="n">SOURCES</span> <span class="o">+=</span> <span class="n">app</span><span class="p">.</span><span class="n">py</span>
+<span class="n">SOURCES</span> <span class="o">+=</span> <span class="n">db</span><span class="p">.</span><span class="n">py</span>
+<span class="n">SOURCES</span> <span class="o">+=</span> <span class="n">help</span><span class="p">.</span><span class="n">py</span>
+<span class="n">TRANSLATIONS</span> <span class="o">+=</span> <span class="n">main</span><span class="p">.</span><span class="n">ts</span>
+</pre></div>
+
+
+<h6>第二步:</h6>
+<p>利用pylupdate4(PyQt4)或者pyside-lupdate(PySide)进行翻译文件提取：</p>
+<blockquote>
+<p>PyQt4  </p>
 </blockquote>
-<div class="highlight"><pre><span class="cm">/*!</span>
-<span class="cm"> * classie - class helper functions</span>
-<span class="cm"> * from bonzo https://github.com/ded/bonzo</span>
-<span class="cm"> * </span>
-<span class="cm"> * classie.has( elem, &#39;my-class&#39; ) -&gt; true/false</span>
-<span class="cm"> * classie.add( elem, &#39;my-new-class&#39; )</span>
-<span class="cm"> * classie.remove( elem, &#39;my-unwanted-class&#39; )</span>
-<span class="cm"> * classie.toggle( elem, &#39;my-class&#39; )</span>
-<span class="cm"> */</span>
+<div class="highlight"><pre><span class="n">pylupdate4</span> <span class="n">main</span><span class="p">.</span><span class="n">pro</span>
+</pre></div>
 
-<span class="cm">/*jshint browser: true, strict: true, undef: true */</span>
-<span class="cm">/*global define: false */</span>
 
-<span class="p">(</span> <span class="k">function</span><span class="p">(</span> <span class="n">window</span> <span class="p">)</span> <span class="p">{</span>
+<blockquote>
+<p>PySide  </p>
+</blockquote>
+<div class="highlight"><pre><span class="n">pyside</span><span class="o">-</span><span class="n">lupdate</span> <span class="n">main</span><span class="p">.</span><span class="n">pro</span>
+</pre></div>
 
-<span class="p">&#39;</span><span class="k">use</span> <span class="n">strict</span><span class="p">&#39;;</span>
 
-<span class="c1">// class helper functions from bonzo https://github.com/ded/bonzo</span>
+<p>这样会在当前目录生成一个main.ts(main.pro中<strong>TRANSLATIONS</strong>的值)</p>
+<h6>第三步:</h6>
+<p>利用PyQt4或者是PySide安装目录下的linguist.exe打开main.ts，逐项进行翻译</p>
+<h5>第四步:</h5>
+<p>利用PyQt4或者是PySide安装目录下的lrelease进行翻译
+    lrelease main.ts
+这样会在当前目录下生成一个main.qm的翻译文件</p>
+<h3>第五步：</h3>
+<div class="highlight"><pre><span class="n">import</span> <span class="n">sys</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span>
+<span class="n">trans</span> <span class="o">=</span> <span class="n">QTranslator</span><span class="p">()</span>
+<span class="n">trans</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s">&quot;main.qm&quot;</span><span class="p">)</span>
+<span class="n">app</span><span class="p">.</span><span class="n">installTranslator</span><span class="p">(</span><span class="n">trans</span><span class="p">)</span>
+<span class="n">main</span> <span class="o">=</span> <span class="n">CenterWindow</span><span class="p">()</span>
+<span class="n">main</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">sys</span><span class="p">.</span><span class="n">exit</span><span class="p">(</span><span class="n">app</span><span class="p">.</span><span class="n">exec_</span><span class="p">())</span>
+</pre></div>
 
-<span class="k">function</span> <span class="n">classReg</span><span class="p">(</span> <span class="n">className</span> <span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="k">new</span> <span class="n">RegExp</span><span class="p">(</span><span class="s">&quot;(^|</span><span class="se">\\</span><span class="s">s+)&quot;</span> <span class="o">+</span> <span class="n">className</span> <span class="o">+</span> <span class="s">&quot;(</span><span class="se">\\</span><span class="s">s+|$)&quot;</span><span class="p">);</span>
-<span class="p">}</span>
 
-<span class="c1">// classList support for class management</span>
-<span class="c1">// altho to be fair, the api sucks because it won&#39;t accept multiple classes at once</span>
-<span class="k">var</span> <span class="n">hasClass</span><span class="p">,</span> <span class="n">addClass</span><span class="p">,</span> <span class="n">removeClass</span><span class="p">;</span>
+<p>其中的   </p>
+<div class="highlight"><pre><span class="n">trans</span> <span class="o">=</span> <span class="n">QTranslator</span><span class="p">()</span>
+<span class="n">trans</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s">&quot;main.qm&quot;</span><span class="p">)</span>
+<span class="n">app</span><span class="p">.</span><span class="n">installTranslator</span><span class="p">(</span><span class="n">trans</span><span class="p">)</span>
+</pre></div>
 
-<span class="k">if</span> <span class="p">(</span> <span class="p">&#39;</span><span class="n">classList</span><span class="p">&#39;</span> <span class="n">in</span> <span class="n">document</span><span class="p">.</span><span class="n">documentElement</span> <span class="p">)</span> <span class="p">{</span>
-  <span class="n">hasClass</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span> <span class="n">elem</span><span class="p">,</span> <span class="n">c</span> <span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">elem</span><span class="p">.</span><span class="n">classList</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span> <span class="n">c</span> <span class="p">);</span>
-  <span class="p">};</span>
-  <span class="n">addClass</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span> <span class="n">elem</span><span class="p">,</span> <span class="n">c</span> <span class="p">)</span> <span class="p">{</span>
-    <span class="n">elem</span><span class="p">.</span><span class="n">classList</span><span class="p">.</span><span class="n">add</span><span class="p">(</span> <span class="n">c</span> <span class="p">);</span>
-  <span class="p">};</span>
-  <span class="n">removeClass</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span> <span class="n">elem</span><span class="p">,</span> <span class="n">c</span> <span class="p">)</span> <span class="p">{</span>
-    <span class="n">elem</span><span class="p">.</span><span class="n">classList</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span> <span class="n">c</span> <span class="p">);</span>
-  <span class="p">};</span>
-<span class="p">}</span>
-<span class="k">else</span> <span class="p">{</span>
-  <span class="n">hasClass</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span> <span class="n">elem</span><span class="p">,</span> <span class="n">c</span> <span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">classReg</span><span class="p">(</span> <span class="n">c</span> <span class="p">).</span><span class="n">test</span><span class="p">(</span> <span class="n">elem</span><span class="p">.</span><span class="n">className</span> <span class="p">);</span>
-  <span class="p">};</span>
-  <span class="n">addClass</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span> <span class="n">elem</span><span class="p">,</span> <span class="n">c</span> <span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">hasClass</span><span class="p">(</span> <span class="n">elem</span><span class="p">,</span> <span class="n">c</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
-      <span class="n">elem</span><span class="p">.</span><span class="n">className</span> <span class="o">=</span> <span class="n">elem</span><span class="p">.</span><span class="n">className</span> <span class="o">+</span> <span class="sc">&#39; &#39;</span> <span class="o">+</span> <span class="n">c</span><span class="p">;</span>
-    <span class="p">}</span>
-  <span class="p">};</span>
-  <span class="n">removeClass</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span> <span class="n">elem</span><span class="p">,</span> <span class="n">c</span> <span class="p">)</span> <span class="p">{</span>
-    <span class="n">elem</span><span class="p">.</span><span class="n">className</span> <span class="o">=</span> <span class="n">elem</span><span class="p">.</span><span class="n">className</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span> <span class="n">classReg</span><span class="p">(</span> <span class="n">c</span> <span class="p">),</span> <span class="sc">&#39; &#39;</span> <span class="p">);</span>
-  <span class="p">};</span>
-<span class="p">}</span>
 
-<span class="k">function</span> <span class="n">toggleClass</span><span class="p">(</span> <span class="n">elem</span><span class="p">,</span> <span class="n">c</span> <span class="p">)</span> <span class="p">{</span>
-  <span class="k">var</span> <span class="n">fn</span> <span class="o">=</span> <span class="n">hasClass</span><span class="p">(</span> <span class="n">elem</span><span class="p">,</span> <span class="n">c</span> <span class="p">)</span> <span class="o">?</span> <span class="n">removeClass</span> <span class="o">:</span> <span class="n">addClass</span><span class="p">;</span>
-  <span class="n">fn</span><span class="p">(</span> <span class="n">elem</span><span class="p">,</span> <span class="n">c</span> <span class="p">);</span>
-<span class="p">}</span>
+<p>就是将main.qm加载到程序当中去，这样即可实现程序国际化</p>
+<p><br>
+<br></p>
+<h1>PyQt/PySide 资源文件使用</h1>
+<h3>步骤：</h3>
+<p>第一步： 利用QtDesigner进行资源文件的创建或者是手动创建<strong>main.qrc</strong>：  </p>
+<div class="highlight"><pre>    <span class="cp">&lt;!DOCTYPE RCC&gt;</span><span class="nt">&lt;RCC</span> <span class="na">version=</span><span class="s">&quot;1.0&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;qresource&gt;</span>
+    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;filenew.png&quot;</span><span class="nt">&gt;</span>images/filenew.png<span class="nt">&lt;/file&gt;</span>
+    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;fileopen.png&quot;</span><span class="nt">&gt;</span>images/fileopen.png<span class="nt">&lt;/file&gt;</span>
+    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;filesave.png&quot;</span><span class="nt">&gt;</span>images/filesave.png<span class="nt">&lt;/file&gt;</span>
+    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;filesaveas.png&quot;</span><span class="nt">&gt;</span>images/filesaveas.png<span class="nt">&lt;/file&gt;</span>
+    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;fileprint.png&quot;</span><span class="nt">&gt;</span>images/fileprint.png<span class="nt">&lt;/file&gt;</span>
+    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;filequit.png&quot;</span><span class="nt">&gt;</span>images/filequit.png<span class="nt">&lt;/file&gt;</span>
+    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;editinvert.png&quot;</span><span class="nt">&gt;</span>images/editinvert.png<span class="nt">&lt;/file&gt;</span>
+    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;editswap.png&quot;</span><span class="nt">&gt;</span>images/editswap.png<span class="nt">&lt;/file&gt;</span>
+    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;editzoom.png&quot;</span><span class="nt">&gt;</span>images/editzoom.png<span class="nt">&lt;/file&gt;</span>
+    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;editmirror.png&quot;</span><span class="nt">&gt;</span>images/editmirror.png<span class="nt">&lt;/file&gt;</span>
+    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;editunmirror.png&quot;</span><span class="nt">&gt;</span>images/editunmirror.png<span class="nt">&lt;/file&gt;</span>
+    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;editmirrorhoriz.png&quot;</span><span class="nt">&gt;</span>images/editmirrorhoriz.png<span class="nt">&lt;/file&gt;</span>
+    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;editmirrorvert.png&quot;</span><span class="nt">&gt;</span>images/editmirrorvert.png<span class="nt">&lt;/file&gt;</span>
+    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;back.png&quot;</span><span class="nt">&gt;</span>images/back.png<span class="nt">&lt;/file&gt;</span>
+    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;home.png&quot;</span><span class="nt">&gt;</span>images/home.png<span class="nt">&lt;/file&gt;</span>
+    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;icon.png&quot;</span><span class="nt">&gt;</span>images/icon.png<span class="nt">&lt;/file&gt;</span>
+    <span class="nt">&lt;/qresource&gt;</span>
+    <span class="nt">&lt;qresource&gt;</span>
+    <span class="nt">&lt;file&gt;</span>imagechanger.qm<span class="nt">&lt;/file&gt;</span>
+    <span class="nt">&lt;/qresource&gt;</span>
+    <span class="nt">&lt;qresource&gt;</span>
+    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;editmenu.html&quot;</span><span class="nt">&gt;</span>help/editmenu.html<span class="nt">&lt;/file&gt;</span>
+    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;filemenu.html&quot;</span><span class="nt">&gt;</span>help/filemenu.html<span class="nt">&lt;/file&gt;</span>
+    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;index.html&quot;</span><span class="nt">&gt;</span>help/index.html<span class="nt">&lt;/file&gt;</span>
+    <span class="nt">&lt;/qresource&gt;</span>
+    <span class="nt">&lt;qresource</span> <span class="na">lang=</span><span class="s">&quot;fr&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;editmenu.html&quot;</span><span class="nt">&gt;</span>help/editmenu_fr.html<span class="nt">&lt;/file&gt;</span>
+    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;filemenu.html&quot;</span><span class="nt">&gt;</span>help/filemenu_fr.html<span class="nt">&lt;/file&gt;</span>
+    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;index.html&quot;</span><span class="nt">&gt;</span>help/index_fr.html<span class="nt">&lt;/file&gt;</span>
+    <span class="nt">&lt;/qresource&gt;</span>
+    <span class="nt">&lt;/RCC&gt;</span>
+</pre></div>
 
-<span class="k">var</span> <span class="n">classie</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="c1">// full names</span>
-  <span class="nl">hasClass:</span> <span class="n">hasClass</span><span class="p">,</span>
-  <span class="nl">addClass:</span> <span class="n">addClass</span><span class="p">,</span>
-  <span class="nl">removeClass:</span> <span class="n">removeClass</span><span class="p">,</span>
-  <span class="nl">toggleClass:</span> <span class="n">toggleClass</span><span class="p">,</span>
-  <span class="c1">// short names</span>
-  <span class="nl">has:</span> <span class="n">hasClass</span><span class="p">,</span>
-  <span class="nl">add:</span> <span class="n">addClass</span><span class="p">,</span>
-  <span class="nl">remove:</span> <span class="n">removeClass</span><span class="p">,</span>
-  <span class="nl">toggle:</span> <span class="n">toggleClass</span>
-<span class="p">};</span>
 
-<span class="c1">// transport</span>
-<span class="k">if</span> <span class="p">(</span> <span class="n">typeof</span> <span class="n">define</span> <span class="o">===</span> <span class="p">&#39;</span><span class="k">function</span><span class="p">&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">define</span><span class="p">.</span><span class="n">amd</span> <span class="p">)</span> <span class="p">{</span>
-  <span class="c1">// AMD</span>
-  <span class="n">define</span><span class="p">(</span> <span class="n">classie</span> <span class="p">);</span>
-<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-  <span class="c1">// browser global</span>
-  <span class="n">window</span><span class="p">.</span><span class="n">classie</span> <span class="o">=</span> <span class="n">classie</span><span class="p">;</span>
-<span class="p">}</span>
+<p>生成对应资源文件的xml数据结构。</p>
+<p>第二步： 利用pyrcc4(PyQt4)或者是pyside-rcc(PySide)进行编译</p>
+<div class="highlight"><pre>    <span class="n">pyrcc4</span> <span class="n">resources</span><span class="p">.</span><span class="n">qrc</span> <span class="o">-</span><span class="n">o</span> <span class="n">qrc_resources</span><span class="p">.</span><span class="n">py</span>
+</pre></div>
 
-<span class="p">})(</span> <span class="n">window</span> <span class="p">);</span>
-</pre></div></div>
+
+<p>或者是  </p>
+<div class="highlight"><pre>    <span class="n">pysdie</span><span class="o">-</span><span class="n">rcc</span> <span class="n">resources</span><span class="p">.</span><span class="n">qrc</span> <span class="o">-</span><span class="n">o</span> <span class="n">qrc_resources</span><span class="p">.</span><span class="n">py</span>
+</pre></div>
+
+
+<p>这样即可生成一个<strong>qrc_resources.py</strong>资源文件py库</p>
+<p>第三步：在主程序中导入<strong>qrc_resources.py</strong>库即可</p>
+<div class="highlight"><pre>    <span class="n">import</span> <span class="n">qrc_resources</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">setWindowIcon</span><span class="p">(</span><span class="n">QIcon</span><span class="p">(</span><span class="s">&quot;:/icon.png&quot;</span><span class="p">))</span>
+</pre></div>
+
+
+<p>注意： 必须加上<strong>":/"</strong>进行路径限定</p>
+<p>利用好资源文件可以方便的对资源文件进行固化和程序发布。</p></div>
         <hr />
     </div>
 		
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../javascript/classie.html"><h2>javascript工具库之classie</h2></a>
+        <div class= "well small"> 2014-09-10 16:20:00
+
+by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
+ 
+
+
+ </div>
+        <div class="summary"> <a class="btn btn-info xsmall" href="../javascript/classie.html">read more</a></div>
+    </div>	
+				
 
  
         
@@ -229,6 +280,7 @@ by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
                 </li>
                 
                 <li><a href="../category/javascript.html">javascript</a></li>
+                <li><a href="../category/pyqtpyside.html">PyQt/PySide</a></li>
                 <li><a href="../category/python.html">Python</a></li>
                 <li><a href="../category/xue-xi-ji-hua.html">学习计划</a></li>
                    

@@ -1,5 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>保持一颗激情的心</title><link href="./" rel="alternate"></link><link href="./feeds%5Cdragondjf.atom.xml" rel="self"></link><id>./</id><updated>2014-09-10T16:20:00+08:00</updated><entry><title>javascript工具库之classie</title><link href="./javascript/classie.html" rel="alternate"></link><updated>2014-09-10T16:20:00+08:00</updated><author><name>dragondjf</name></author><id>tag:,2014-09-10:./javascript/classie.html</id><summary type="html">&lt;blockquote&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>保持一颗激情的心</title><link href="./" rel="alternate"></link><link href="./feeds%5Cdragondjf.atom.xml" rel="self"></link><id>./</id><updated>2014-09-10T16:20:00+08:00</updated><entry><title>PyQt/PySide 国际化实现</title><link href="./pyqtpyside/PyQt/PySide.html" rel="alternate"></link><updated>2014-09-10T16:20:00+08:00</updated><author><name>dragondjf</name></author><id>tag:,2014-09-10:./pyqtpyside/PyQt/PySide.html</id><summary type="html">&lt;h3&gt;1.概述：&lt;/h3&gt;
+&lt;p&gt;在程序是使用&lt;strong&gt;self.tr&lt;/strong&gt;对需要进行翻译的字符串进行修饰,实质上这样做就是标定这些字符串是可以进行国际化操作的.&lt;/p&gt;
+&lt;h3&gt;2.步骤：&lt;/h3&gt;
+&lt;h6&gt;第一步：&lt;/h6&gt;
+&lt;p&gt;新建&lt;strong&gt;main.pro&lt;/strong&gt;工程文件，文件格式如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;SOURCES&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+&lt;span class="n"&gt;SOURCES&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+&lt;span class="n"&gt;SOURCES&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+&lt;span class="n"&gt;SOURCES&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+&lt;span class="n"&gt;TRANSLATIONS&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ts&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h6&gt;第二步:&lt;/h6&gt;
+&lt;p&gt;利用pylupdate4(PyQt4)或者pyside-lupdate(PySide)进行翻译文件提取：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;PyQt4  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;pylupdate4&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pro&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;blockquote&gt;
+&lt;p&gt;PySide  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;pyside&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;lupdate&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pro&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;这样会在当前目录生成一个main.ts(main.pro中&lt;strong&gt;TRANSLATIONS&lt;/strong&gt;的值)&lt;/p&gt;
+&lt;h6&gt;第三步:&lt;/h6&gt;
+&lt;p&gt;利用PyQt4或者是PySide安装目录下的linguist.exe打开main.ts，逐项进行翻译&lt;/p&gt;
+&lt;h5&gt;第四步:&lt;/h5&gt;
+&lt;p&gt;利用PyQt4或者是PySide安装目录下的lrelease进行翻译
+    lrelease main.ts
+这样会在当前目录下生成一个main.qm的翻译文件&lt;/p&gt;
+&lt;h3&gt;第五步：&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;import&lt;/span&gt; &lt;span class="n"&gt;sys&lt;/span&gt;
+&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;QApplication&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;trans&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;QTranslator&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;trans&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;load&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;main.qm&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;installTranslator&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;trans&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;main&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;CenterWindow&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exec_&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;其中的   &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;trans&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;QTranslator&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;trans&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;load&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;main.qm&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;installTranslator&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;trans&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;就是将main.qm加载到程序当中去，这样即可实现程序国际化&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;h1&gt;PyQt/PySide 资源文件使用&lt;/h1&gt;
+&lt;h3&gt;步骤：&lt;/h3&gt;
+&lt;p&gt;第一步： 利用QtDesigner进行资源文件的创建或者是手动创建&lt;strong&gt;main.qrc&lt;/strong&gt;：  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="cp"&gt;&amp;lt;!DOCTYPE RCC&amp;gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;RCC&lt;/span&gt; &lt;span class="na"&gt;version=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;1.0&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;qresource&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;filenew.png&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;images/filenew.png&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;fileopen.png&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;images/fileopen.png&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;filesave.png&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;images/filesave.png&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;filesaveas.png&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;images/filesaveas.png&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;fileprint.png&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;images/fileprint.png&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;filequit.png&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;images/filequit.png&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;editinvert.png&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;images/editinvert.png&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;editswap.png&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;images/editswap.png&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;editzoom.png&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;images/editzoom.png&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;editmirror.png&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;images/editmirror.png&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;editunmirror.png&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;images/editunmirror.png&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;editmirrorhoriz.png&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;images/editmirrorhoriz.png&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;editmirrorvert.png&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;images/editmirrorvert.png&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;back.png&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;images/back.png&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;home.png&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;images/home.png&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;icon.png&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;images/icon.png&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/qresource&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;qresource&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&amp;gt;&lt;/span&gt;imagechanger.qm&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/qresource&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;qresource&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;editmenu.html&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;help/editmenu.html&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;filemenu.html&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;help/filemenu.html&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;index.html&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;help/index.html&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/qresource&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;qresource&lt;/span&gt; &lt;span class="na"&gt;lang=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;fr&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;editmenu.html&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;help/editmenu_fr.html&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;filemenu.html&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;help/filemenu_fr.html&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;index.html&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;help/index_fr.html&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/qresource&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/RCC&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;生成对应资源文件的xml数据结构。&lt;/p&gt;
+&lt;p&gt;第二步： 利用pyrcc4(PyQt4)或者是pyside-rcc(PySide)进行编译&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="n"&gt;pyrcc4&lt;/span&gt; &lt;span class="n"&gt;resources&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;qrc&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;o&lt;/span&gt; &lt;span class="n"&gt;qrc_resources&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;或者是  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="n"&gt;pysdie&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;rcc&lt;/span&gt; &lt;span class="n"&gt;resources&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;qrc&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;o&lt;/span&gt; &lt;span class="n"&gt;qrc_resources&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;这样即可生成一个&lt;strong&gt;qrc_resources.py&lt;/strong&gt;资源文件py库&lt;/p&gt;
+&lt;p&gt;第三步：在主程序中导入&lt;strong&gt;qrc_resources.py&lt;/strong&gt;库即可&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="n"&gt;import&lt;/span&gt; &lt;span class="n"&gt;qrc_resources&lt;/span&gt;
+    &lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;setWindowIcon&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;QIcon&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;:/icon.png&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;注意： 必须加上&lt;strong&gt;":/"&lt;/strong&gt;进行路径限定&lt;/p&gt;
+&lt;p&gt;利用好资源文件可以方便的对资源文件进行固化和程序发布。&lt;/p&gt;</summary><category term="PyQt"></category><category term="PySide"></category><category term="Qt"></category><category term="Python"></category></entry><entry><title>javascript工具库之classie</title><link href="./javascript/classie.html" rel="alternate"></link><updated>2014-09-10T16:20:00+08:00</updated><author><name>dragondjf</name></author><id>tag:,2014-09-10:./javascript/classie.html</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;在html中引入&lt;code&gt;&amp;lt;script src="classie.js"&amp;gt;&amp;lt;/script&lt;/code&gt;即可在后续js中利用&lt;code&gt;classie&lt;/code&gt;对象为documentElement 判断是否包含、 增加 或 删除某个class。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cm"&gt;/*!&lt;/span&gt;
