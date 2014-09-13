@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>保持一颗激情的心</title><link>./</link><description></description><atom:link href="./feeds%5Cdragondjf.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 10 Sep 2014 16:20:00 +0800</lastBuildDate><item><title>PyQt/PySide 国际化实现</title><link>./pyqtpyside/PyQt/PySide.html</link><description>&lt;h3&gt;1.概述：&lt;/h3&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>保持一颗激情的心</title><link>./</link><description></description><atom:link href="./feeds%5Cdragondjf.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 13 Sep 2014 19:56:00 +0800</lastBuildDate><item><title>PyQt/PySide 国际化实现</title><link>./pyqtpyside/PyQt/PySide.html</link><description>&lt;h3&gt;1.概述：&lt;/h3&gt;
 &lt;p&gt;在程序是使用&lt;strong&gt;self.tr&lt;/strong&gt;对需要进行翻译的字符串进行修饰,实质上这样做就是标定这些字符串是可以进行国际化操作的.&lt;/p&gt;
 &lt;h3&gt;2.步骤：&lt;/h3&gt;
 &lt;h6&gt;第一步：&lt;/h6&gt;
@@ -115,7 +115,7 @@
 
 
 &lt;p&gt;注意： 必须加上&lt;strong&gt;":/"&lt;/strong&gt;进行路径限定&lt;/p&gt;
-&lt;p&gt;利用好资源文件可以方便的对资源文件进行固化和程序发布。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">dragondjf</dc:creator><pubDate>Wed, 10 Sep 2014 16:20:00 +0800</pubDate><guid>tag:,2014-09-10:./pyqtpyside/PyQt/PySide.html</guid><category>PyQt</category><category>PySide</category><category>Qt</category><category>Python</category></item><item><title>javascript工具库之classie</title><link>./javascript/classie.html</link><description>&lt;blockquote&gt;
+&lt;p&gt;利用好资源文件可以方便的对资源文件进行固化和程序发布。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">dragondjf</dc:creator><pubDate>Sat, 13 Sep 2014 19:56:00 +0800</pubDate><guid>tag:,2014-09-13:./pyqtpyside/PyQt/PySide.html</guid><category>PyQt</category><category>PySide</category><category>Qt</category><category>Python</category></item><item><title>javascript工具库之classie</title><link>./javascript/classie.html</link><description>&lt;blockquote&gt;
 &lt;p&gt;在html中引入&lt;code&gt;&amp;lt;script src="classie.js"&amp;gt;&amp;lt;/script&lt;/code&gt;即可在后续js中利用&lt;code&gt;classie&lt;/code&gt;对象为documentElement 判断是否包含、 增加 或 删除某个class。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cm"&gt;/*!&lt;/span&gt;

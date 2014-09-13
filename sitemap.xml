@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>./index.html</loc>
-<lastmod>2014-09-13T19:54:09-00:00</lastmod>
+<lastmod>2014-09-13T19:57:15-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>./archives.html</loc>
-<lastmod>2014-09-13T19:54:09-00:00</lastmod>
+<lastmod>2014-09-13T19:57:15-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>./tags.html</loc>
-<lastmod>2014-09-13T19:54:09-00:00</lastmod>
+<lastmod>2014-09-13T19:57:15-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>./categories.html</loc>
-<lastmod>2014-09-13T19:54:09-00:00</lastmod>
+<lastmod>2014-09-13T19:57:15-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -40,7 +40,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>./pyqtpyside/PyQt/PySide.html</loc>
-<lastmod>2014-09-10T16:20:00-00:00</lastmod>
+<lastmod>2014-09-13T19:56:00-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
@@ -75,7 +75,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>./category/pyqtpyside.html</loc>
-<lastmod>2014-09-10T16:20:00:%s</lastmod>
+<lastmod>2014-09-13T19:56:00:%s</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -110,21 +110,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>./tag/qt.html</loc>
-<lastmod>2014-09-10T16:20:00:%s</lastmod>
+<lastmod>2014-09-13T19:56:00:%s</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>./tag/pyside.html</loc>
-<lastmod>2014-09-10T16:20:00:%s</lastmod>
+<lastmod>2014-09-13T19:56:00:%s</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>./tag/python.html</loc>
-<lastmod>2014-09-10T16:20:00:%s</lastmod>
+<lastmod>2014-09-13T19:56:00:%s</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -138,7 +138,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>./tag/pyqt.html</loc>
-<lastmod>2014-09-10T16:20:00:%s</lastmod>
+<lastmod>2014-09-13T19:56:00:%s</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -166,7 +166,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>./author/dragondjf.html</loc>
-<lastmod>2014-09-10T16:20:00:%s</lastmod>
+<lastmod>2014-09-13T19:56:00:%s</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

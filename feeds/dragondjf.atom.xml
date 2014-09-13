@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>保持一颗激情的心</title><link href="./" rel="alternate"></link><link href="./feeds%5Cdragondjf.atom.xml" rel="self"></link><id>./</id><updated>2014-09-10T16:20:00+08:00</updated><entry><title>PyQt/PySide 国际化实现</title><link href="./pyqtpyside/PyQt/PySide.html" rel="alternate"></link><updated>2014-09-10T16:20:00+08:00</updated><author><name>dragondjf</name></author><id>tag:,2014-09-10:./pyqtpyside/PyQt/PySide.html</id><summary type="html">&lt;h3&gt;1.概述：&lt;/h3&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>保持一颗激情的心</title><link href="./" rel="alternate"></link><link href="./feeds%5Cdragondjf.atom.xml" rel="self"></link><id>./</id><updated>2014-09-13T19:56:00+08:00</updated><entry><title>PyQt/PySide 国际化实现</title><link href="./pyqtpyside/PyQt/PySide.html" rel="alternate"></link><updated>2014-09-13T19:56:00+08:00</updated><author><name>dragondjf</name></author><id>tag:,2014-09-13:./pyqtpyside/PyQt/PySide.html</id><summary type="html">&lt;h3&gt;1.概述：&lt;/h3&gt;
 &lt;p&gt;在程序是使用&lt;strong&gt;self.tr&lt;/strong&gt;对需要进行翻译的字符串进行修饰,实质上这样做就是标定这些字符串是可以进行国际化操作的.&lt;/p&gt;
 &lt;h3&gt;2.步骤：&lt;/h3&gt;
 &lt;h6&gt;第一步：&lt;/h6&gt;
