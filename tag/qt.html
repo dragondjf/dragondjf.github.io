@@ -62,8 +62,8 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="../pyqtpyside/PyQt/PySide.html"><h1>PyQt/PySide 国际化实现</h1></a>
-2014-09-13 19:56:00
+            <a href="../qt/Qt--QThread.html"><h1>Qt--QThread之可重入和线程安全(Reentrancy and Thread-Safety)</h1></a>
+2014-09-13 20:53:00
 
 by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
  
@@ -72,126 +72,43 @@ by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
  
         </div>
         
-        <div><h3>1.概述：</h3>
-<p>在程序是使用<strong>self.tr</strong>对需要进行翻译的字符串进行修饰,实质上这样做就是标定这些字符串是可以进行国际化操作的.</p>
-<h3>2.步骤：</h3>
-<h6>第一步：</h6>
-<p>新建<strong>main.pro</strong>工程文件，文件格式如下：</p>
-<div class="highlight"><pre><span class="n">SOURCES</span> <span class="o">+=</span> <span class="n">main</span><span class="p">.</span><span class="n">py</span>
-<span class="n">SOURCES</span> <span class="o">+=</span> <span class="n">app</span><span class="p">.</span><span class="n">py</span>
-<span class="n">SOURCES</span> <span class="o">+=</span> <span class="n">db</span><span class="p">.</span><span class="n">py</span>
-<span class="n">SOURCES</span> <span class="o">+=</span> <span class="n">help</span><span class="p">.</span><span class="n">py</span>
-<span class="n">TRANSLATIONS</span> <span class="o">+=</span> <span class="n">main</span><span class="p">.</span><span class="n">ts</span>
-</pre></div>
-
-
-<h6>第二步:</h6>
-<p>利用pylupdate4(PyQt4)或者pyside-lupdate(PySide)进行翻译文件提取：</p>
-<blockquote>
-<p>PyQt4  </p>
-</blockquote>
-<div class="highlight"><pre><span class="n">pylupdate4</span> <span class="n">main</span><span class="p">.</span><span class="n">pro</span>
-</pre></div>
-
-
-<blockquote>
-<p>PySide  </p>
-</blockquote>
-<div class="highlight"><pre><span class="n">pyside</span><span class="o">-</span><span class="n">lupdate</span> <span class="n">main</span><span class="p">.</span><span class="n">pro</span>
-</pre></div>
-
-
-<p>这样会在当前目录生成一个main.ts(main.pro中<strong>TRANSLATIONS</strong>的值)</p>
-<h6>第三步:</h6>
-<p>利用PyQt4或者是PySide安装目录下的linguist.exe打开main.ts，逐项进行翻译</p>
-<h5>第四步:</h5>
-<p>利用PyQt4或者是PySide安装目录下的lrelease进行翻译
-    lrelease main.ts
-这样会在当前目录下生成一个main.qm的翻译文件</p>
-<h3>第五步：</h3>
-<div class="highlight"><pre><span class="n">import</span> <span class="n">sys</span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span>
-<span class="n">trans</span> <span class="o">=</span> <span class="n">QTranslator</span><span class="p">()</span>
-<span class="n">trans</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s">&quot;main.qm&quot;</span><span class="p">)</span>
-<span class="n">app</span><span class="p">.</span><span class="n">installTranslator</span><span class="p">(</span><span class="n">trans</span><span class="p">)</span>
-<span class="n">main</span> <span class="o">=</span> <span class="n">CenterWindow</span><span class="p">()</span>
-<span class="n">main</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
-<span class="n">sys</span><span class="p">.</span><span class="n">exit</span><span class="p">(</span><span class="n">app</span><span class="p">.</span><span class="n">exec_</span><span class="p">())</span>
-</pre></div>
-
-
-<p>其中的   </p>
-<div class="highlight"><pre><span class="n">trans</span> <span class="o">=</span> <span class="n">QTranslator</span><span class="p">()</span>
-<span class="n">trans</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s">&quot;main.qm&quot;</span><span class="p">)</span>
-<span class="n">app</span><span class="p">.</span><span class="n">installTranslator</span><span class="p">(</span><span class="n">trans</span><span class="p">)</span>
-</pre></div>
-
-
-<p>就是将main.qm加载到程序当中去，这样即可实现程序国际化</p>
-<p><br>
-<br></p>
-<h1>PyQt/PySide 资源文件使用</h1>
-<h3>步骤：</h3>
-<p>第一步： 利用QtDesigner进行资源文件的创建或者是手动创建<strong>main.qrc</strong>：  </p>
-<div class="highlight"><pre>    <span class="cp">&lt;!DOCTYPE RCC&gt;</span><span class="nt">&lt;RCC</span> <span class="na">version=</span><span class="s">&quot;1.0&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;qresource&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;filenew.png&quot;</span><span class="nt">&gt;</span>images/filenew.png<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;fileopen.png&quot;</span><span class="nt">&gt;</span>images/fileopen.png<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;filesave.png&quot;</span><span class="nt">&gt;</span>images/filesave.png<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;filesaveas.png&quot;</span><span class="nt">&gt;</span>images/filesaveas.png<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;fileprint.png&quot;</span><span class="nt">&gt;</span>images/fileprint.png<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;filequit.png&quot;</span><span class="nt">&gt;</span>images/filequit.png<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;editinvert.png&quot;</span><span class="nt">&gt;</span>images/editinvert.png<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;editswap.png&quot;</span><span class="nt">&gt;</span>images/editswap.png<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;editzoom.png&quot;</span><span class="nt">&gt;</span>images/editzoom.png<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;editmirror.png&quot;</span><span class="nt">&gt;</span>images/editmirror.png<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;editunmirror.png&quot;</span><span class="nt">&gt;</span>images/editunmirror.png<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;editmirrorhoriz.png&quot;</span><span class="nt">&gt;</span>images/editmirrorhoriz.png<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;editmirrorvert.png&quot;</span><span class="nt">&gt;</span>images/editmirrorvert.png<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;back.png&quot;</span><span class="nt">&gt;</span>images/back.png<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;home.png&quot;</span><span class="nt">&gt;</span>images/home.png<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;icon.png&quot;</span><span class="nt">&gt;</span>images/icon.png<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;/qresource&gt;</span>
-    <span class="nt">&lt;qresource&gt;</span>
-    <span class="nt">&lt;file&gt;</span>imagechanger.qm<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;/qresource&gt;</span>
-    <span class="nt">&lt;qresource&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;editmenu.html&quot;</span><span class="nt">&gt;</span>help/editmenu.html<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;filemenu.html&quot;</span><span class="nt">&gt;</span>help/filemenu.html<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;index.html&quot;</span><span class="nt">&gt;</span>help/index.html<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;/qresource&gt;</span>
-    <span class="nt">&lt;qresource</span> <span class="na">lang=</span><span class="s">&quot;fr&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;editmenu.html&quot;</span><span class="nt">&gt;</span>help/editmenu_fr.html<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;filemenu.html&quot;</span><span class="nt">&gt;</span>help/filemenu_fr.html<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;file</span> <span class="na">alias=</span><span class="s">&quot;index.html&quot;</span><span class="nt">&gt;</span>help/index_fr.html<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;/qresource&gt;</span>
-    <span class="nt">&lt;/RCC&gt;</span>
-</pre></div>
-
-
-<p>生成对应资源文件的xml数据结构。</p>
-<p>第二步： 利用pyrcc4(PyQt4)或者是pyside-rcc(PySide)进行编译</p>
-<div class="highlight"><pre>    <span class="n">pyrcc4</span> <span class="n">resources</span><span class="p">.</span><span class="n">qrc</span> <span class="o">-</span><span class="n">o</span> <span class="n">qrc_resources</span><span class="p">.</span><span class="n">py</span>
-</pre></div>
-
-
-<p>或者是  </p>
-<div class="highlight"><pre>    <span class="n">pysdie</span><span class="o">-</span><span class="n">rcc</span> <span class="n">resources</span><span class="p">.</span><span class="n">qrc</span> <span class="o">-</span><span class="n">o</span> <span class="n">qrc_resources</span><span class="p">.</span><span class="n">py</span>
-</pre></div>
-
-
-<p>这样即可生成一个<strong>qrc_resources.py</strong>资源文件py库</p>
-<p>第三步：在主程序中导入<strong>qrc_resources.py</strong>库即可</p>
-<div class="highlight"><pre>    <span class="n">import</span> <span class="n">qrc_resources</span>
-    <span class="n">app</span><span class="p">.</span><span class="n">setWindowIcon</span><span class="p">(</span><span class="n">QIcon</span><span class="p">(</span><span class="s">&quot;:/icon.png&quot;</span><span class="p">))</span>
-</pre></div>
-
-
-<p>注意： 必须加上<strong>":/"</strong>进行路径限定</p>
-<p>利用好资源文件可以方便的对资源文件进行固化和程序发布。</p></div>
+        <div><p>1.概述
+    Reentrancy（可重入） and Thread-Safety（线程安全）这两个术语用于标识类和方法在多线程程序中如何使用。</p>
+<ul>
+<li>A thread-safe function can be called simultaneously from multiple threads, even when the invocations use shared data, because all references to the shared data are serialized.
+    <code>一个线程安全的方法可以被多个线程同时调用，甚至每次调用都使用了共享数据因为所有对共享数据的引用是序列化（时间轴）</code>。</li>
+<li>
+<p>A reentrant function can also be called simultaneously from multiple threads, but only if each invocation uses its own data.
+    <code>一个可重入的方法也可以被多个线程同时调用，但是每次调用使用的都是自己内部数据，互不干扰。</code></p>
+<p><code>故，一个线程安全的方法总是可重入的，一个可重入的方法并不一定线程安全。</code>
++ By extension, a class is said to be reentrant if its member functions can be called safely from multiple threads, as long as each thread uses a different instance of the class. The class is thread-safe if its member functions can be called safely from multiple threads, even if all the threads use the same instance of the class.</p>
+<p><code>推而广之:</code>
+<code>如果它的成员函数可以安全地从多个线程调用，只要每个线程使用的类的不同实例， 这个类被认为是可重入的;</code>
+<code>如果它的成员函数可以安全地从多个线程调用，即使所有线程使用的类的同一个实例，这个类被认为是线程安全的.</code></p>
+</li>
+</ul>
+<p>详情参见<a href="http://qt-project.org/doc/qt-5/threads-reentrancy.html">http://qt-project.org/doc/qt-5/threads-reentrancy.html</a></p></div>
         <hr />
     </div>
 		
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../pyqtpyside/PyQt/PySide.html"><h2>PyQt/PySide 国际化实现</h2></a>
+        <div class= "well small"> 2014-09-13 19:56:00
+
+by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
+ 
+
+
+ </div>
+        <div class="summary"> <a class="btn btn-info xsmall" href="../pyqtpyside/PyQt/PySide.html">read more</a></div>
+    </div>	
+				
 <div class="pagination">
 <ul>
     <li class="prev disabled"><a href="#">&larr; Previous</a></li>
@@ -231,6 +148,7 @@ by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
                 <li><a href="../category/javascript.html">javascript</a></li>
                 <li><a href="../category/pyqtpyside.html">PyQt/PySide</a></li>
                 <li><a href="../category/python.html">Python</a></li>
+                <li><a href="../category/qt.html">Qt</a></li>
                 <li><a href="../category/xue-xi-ji-hua.html">学习计划</a></li>
                    
             </ul>

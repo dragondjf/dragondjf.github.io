@@ -55,51 +55,50 @@
     <div class="row">
 
         <div class="span9">
-        
-
-        
-
-
     <div class='article'>
         <div class="content-title">
-            <a href="../xue-xi-ji-hua/9.html"><h1>2014 8月学习计划</h1></a>
-2014-08-31 16:20:00
+            <h1>Qt--QThread之可重入和线程安全(Reentrancy and Thread-Safety)</h1>
+2014-09-13 20:53:00
 
 by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
  
 
 
- 
         </div>
-        
-        <div><h3>1.需要完成的任务</h3>
-<p>完成QSetup项目，基于Qt和7z的安装报制作工具，具备以下功能：<br />
-1. 快速安装 <br />
-2. 自定义安装<br />
-3. 个性化选项配置：安装路径，快捷方式，开机自启动，任务栏，开始菜单等等<br />
-4. 简单大气的安装进度条<br />
-5. 安装完成后打开readem 和 自动运行程序  </p>
-<h3>2.需要学习框架：</h3>
-<p>1.ffpython 
-    ffpython—C++ 嵌入、扩展Python的开发库
-    并将这个库集成到QFramer中去，思考如何在c++程序中使用python,并总结一套合理的开发流程和规范</p>
-<p>2.学习thrift 
-    Thrfit是一种开源的跨语言的服务部署框架，这里的服务是指RPC，即远程过程调用了。它最初是由Facebook开发的，后来Facebook将其开源了。</p></div>
-        <hr />
-    </div>
-		
-<div class="pagination">
+	
+        <div><p>1.概述
+    Reentrancy（可重入） and Thread-Safety（线程安全）这两个术语用于标识类和方法在多线程程序中如何使用。</p>
 <ul>
-    <li class="prev disabled"><a href="#">&larr; Previous</a></li>
-
-    <li class="active"><a href="../tag/ffpython.html">1</a></li>
-
-    <li class="next disabled"><a href="#">&rarr; Next</a></li>
-
+<li>A thread-safe function can be called simultaneously from multiple threads, even when the invocations use shared data, because all references to the shared data are serialized.
+    <code>一个线程安全的方法可以被多个线程同时调用，甚至每次调用都使用了共享数据因为所有对共享数据的引用是序列化（时间轴）</code>。</li>
+<li>
+<p>A reentrant function can also be called simultaneously from multiple threads, but only if each invocation uses its own data.
+    <code>一个可重入的方法也可以被多个线程同时调用，但是每次调用使用的都是自己内部数据，互不干扰。</code></p>
+<p><code>故，一个线程安全的方法总是可重入的，一个可重入的方法并不一定线程安全。</code>
++ By extension, a class is said to be reentrant if its member functions can be called safely from multiple threads, as long as each thread uses a different instance of the class. The class is thread-safe if its member functions can be called safely from multiple threads, even if all the threads use the same instance of the class.</p>
+<p><code>推而广之:</code>
+<code>如果它的成员函数可以安全地从多个线程调用，只要每个线程使用的类的不同实例， 这个类被认为是可重入的;</code>
+<code>如果它的成员函数可以安全地从多个线程调用，即使所有线程使用的类的同一个实例，这个类被认为是线程安全的.</code></p>
+</li>
 </ul>
-</div>
- 
-  
+<p>详情参见<a href="http://qt-project.org/doc/qt-5/threads-reentrancy.html">http://qt-project.org/doc/qt-5/threads-reentrancy.html</a></p></div>
+	
+        <hr>
+
+        <h2>Comments</h2>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'dragondjf'; 
+    var disqus_title = 'Qt--QThread之可重入和线程安全(Reentrancy and Thread-Safety)';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
         </div>
         
         <div class="span3">

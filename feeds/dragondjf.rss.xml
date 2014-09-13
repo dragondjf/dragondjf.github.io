@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>保持一颗激情的心</title><link>./</link><description></description><atom:link href="./feeds%5Cdragondjf.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 13 Sep 2014 20:27:00 +0800</lastBuildDate><item><title>python epoll 解读</title><link>./python/python%20epoll.html</link><description>&lt;h6&gt;1. 水平触发&lt;/h6&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>保持一颗激情的心</title><link>./</link><description></description><atom:link href="./feeds%5Cdragondjf.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 13 Sep 2014 20:53:00 +0800</lastBuildDate><item><title>Qt--QThread之可重入和线程安全(Reentrancy and Thread-Safety)</title><link>./qt/Qt--QThread.html</link><description>&lt;p&gt;1.概述
+    Reentrancy（可重入） and Thread-Safety（线程安全）这两个术语用于标识类和方法在多线程程序中如何使用。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A thread-safe function can be called simultaneously from multiple threads, even when the invocations use shared data, because all references to the shared data are serialized.
+    &lt;code&gt;一个线程安全的方法可以被多个线程同时调用，甚至每次调用都使用了共享数据因为所有对共享数据的引用是序列化（时间轴）&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;A reentrant function can also be called simultaneously from multiple threads, but only if each invocation uses its own data.
+    &lt;code&gt;一个可重入的方法也可以被多个线程同时调用，但是每次调用使用的都是自己内部数据，互不干扰。&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;故，一个线程安全的方法总是可重入的，一个可重入的方法并不一定线程安全。&lt;/code&gt;
++ By extension, a class is said to be reentrant if its member functions can be called safely from multiple threads, as long as each thread uses a different instance of the class. The class is thread-safe if its member functions can be called safely from multiple threads, even if all the threads use the same instance of the class.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;推而广之:&lt;/code&gt;
+&lt;code&gt;如果它的成员函数可以安全地从多个线程调用，只要每个线程使用的类的不同实例， 这个类被认为是可重入的;&lt;/code&gt;
+&lt;code&gt;如果它的成员函数可以安全地从多个线程调用，即使所有线程使用的类的同一个实例，这个类被认为是线程安全的.&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;详情参见&lt;a href="http://qt-project.org/doc/qt-5/threads-reentrancy.html"&gt;http://qt-project.org/doc/qt-5/threads-reentrancy.html&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">dragondjf</dc:creator><pubDate>Sat, 13 Sep 2014 20:53:00 +0800</pubDate><guid>tag:,2014-09-13:./qt/Qt--QThread.html</guid><category>Qt</category><category>QThread</category></item><item><title>python epoll 解读</title><link>./python/python%20epoll.html</link><description>&lt;h6&gt;1. 水平触发&lt;/h6&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;只要某个&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="err"&gt;处于&lt;/span&gt;&lt;span class="n"&gt;readable&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;writable&lt;/span&gt;&lt;span class="err"&gt;状态，无论什么时候进行&lt;/span&gt;&lt;span class="n"&gt;epoll_wait&lt;/span&gt;&lt;span class="err"&gt;都会返回该&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="err"&gt;；&lt;/span&gt;
     &lt;span class="err"&gt;对于&lt;/span&gt;&lt;span class="n"&gt;non&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;blocking&lt;/span&gt;&lt;span class="err"&gt;的&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="err"&gt;，正确的读写操作为&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
     &lt;span class="err"&gt;读：忽略掉&lt;/span&gt;&lt;span class="n"&gt;errno&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;EAGAIN&lt;/span&gt;&lt;span class="err"&gt;的错误，下次继续读&lt;/span&gt;
