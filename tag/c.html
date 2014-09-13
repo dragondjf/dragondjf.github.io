@@ -9,14 +9,14 @@
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
-    <script src="./theme/html5.js"></script>
+    <script src="../theme/html5.js"></script>
     <![endif]-->
-    <link rel="shortcut icon" href="./static/images/favicon.png">
+    <link rel="shortcut icon" href="../static/images/favicon.png">
     <!-- Le styles -->
-    <link href="./theme/bootstrap.min.css" rel="stylesheet">
-    <link href="./theme/bootstrap.min.responsive.css" rel="stylesheet">
-    <link href="./theme/local.css" rel="stylesheet">
-    <link href="./theme/pygments.css" rel="stylesheet">
+    <link href="../theme/bootstrap.min.css" rel="stylesheet">
+    <link href="../theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="../theme/local.css" rel="stylesheet">
+    <link href="../theme/pygments.css" rel="stylesheet">
 
 </head>
 
@@ -32,7 +32,7 @@
              <span class="icon-bar"></span>
          </a>
 
-        <a class="brand" href=".">保持一颗激情的心</a>
+        <a class="brand" href="..">保持一颗激情的心</a>
 
         <div class="nav-collapse">
         <ul class="nav">
@@ -40,7 +40,7 @@
             <li><a href="https://github.com/dragondjf/QMarkdowner">QMarkdowner</a></li>
             <li><a href="https://github.com/dragondjf/QSetuper">QSetuper</a></li>
             
-            <li><a href="./about.html">About</a></li>
+            <li><a href="../about.html">About</a></li>
         </ul>
         </div>
         
@@ -53,35 +53,58 @@
     <div class="row">
 
         <div class="span9">
+        
 
-<h1>Archives</h1>
-
-<table class="table">
-    <tbody>
-        <tr>
-        <td>2014-09-13 19:56:00</td>
-        <td><a href='./c/Inheritance（继承）.html'>c++之private、protect、public Inheritance（继承）</a></td>
-        </tr>
-        <tr>
-        <td>2014-09-13 19:56:00</td>
-        <td><a href='./pyqtpyside/PyQt/PySide.html'>PyQt/PySide 国际化实现</a></td>
-        </tr>
-        <tr>
-        <td>2014-09-10 16:20:00</td>
-        <td><a href='./javascript/classie.html'>javascript工具库之classie</a></td>
-        </tr>
-        <tr>
-        <td>2014-08-31 16:20:00</td>
-        <td><a href='./xue-xi-ji-hua/9.html'>2014 8月学习计划</a></td>
-        </tr>
-        <tr>
-        <td>2014-08-31 16:20:00</td>
-        <td><a href='./python/ioloop.html'>tornado 之 ioloop模块解读</a></td>
-        </tr>
-    </tbody>
-</table>
+        
 
 
+    <div class='article'>
+        <div class="content-title">
+            <a href="../c/Inheritance（继承）.html"><h1>c++之private、protect、public Inheritance（继承）</h1></a>
+2014-09-13 19:56:00
+
+by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
+ 
+
+
+ 
+        </div>
+        
+        <div><ul>
+<li>Protected and public members(data and function) of a base class are accessible from a derived class(for all three: public, protected and private inheritance). </li>
+</ul>
+<blockquote>
+<p>无论哪种继承，子类内部均可访问protect 和 public成员</p>
+</blockquote>
+<ul>
+<li>Objects of derived class with private and protected inheritance cannot access any data member of a base class.</li>
+</ul>
+<blockquote>
+<p>protect、private继承类的实例对象无法访问基类的任何数据</p>
+</blockquote>
+<ul>
+<li>Objects of derived class with public inheritance can access only public member of a base class.</li>
+</ul>
+<blockquote>
+<p>public继承类的实例对象自能访问基类的public数据</p>
+</blockquote>
+<p><img alt="Alt text" src="./static/c++/inheritance.png" /></p>
+<p>详情参见http://www.programiz.com/cpp-programming/public-protected-private-inheritance</p></div>
+        <hr />
+    </div>
+		
+<div class="pagination">
+<ul>
+    <li class="prev disabled"><a href="#">&larr; Previous</a></li>
+
+    <li class="active"><a href="../tag/c.html">1</a></li>
+
+    <li class="next disabled"><a href="#">&rarr; Next</a></li>
+
+</ul>
+</div>
+ 
+  
         </div>
         
         <div class="span3">
@@ -92,8 +115,8 @@
                 Site
                 </li>
             
-                <li><a href="./archives.html">Archives</a>
-                <li><a href="./tags.html">Tags</a>
+                <li><a href="../archives.html">Archives</a>
+                <li><a href="../tags.html">Tags</a>
                 <li><a href="./" rel="alternate">Atom feed</a></li>
             </ul>
             </div>
@@ -105,11 +128,11 @@
                 Categories
                 </li>
                 
-                <li><a href="./category/c.html">c++</a></li>
-                <li><a href="./category/javascript.html">javascript</a></li>
-                <li><a href="./category/pyqtpyside.html">PyQt/PySide</a></li>
-                <li><a href="./category/python.html">Python</a></li>
-                <li><a href="./category/xue-xi-ji-hua.html">学习计划</a></li>
+                <li><a href="../category/c.html">c++</a></li>
+                <li><a href="../category/javascript.html">javascript</a></li>
+                <li><a href="../category/pyqtpyside.html">PyQt/PySide</a></li>
+                <li><a href="../category/python.html">Python</a></li>
+                <li><a href="../category/xue-xi-ji-hua.html">学习计划</a></li>
                    
             </ul>
             </div>
@@ -146,7 +169,7 @@
     </div>     </div> 
 <footer>
 <br />
-<p><a href=".">保持一颗激情的心</a> &copy; dragondjf 2014</p>
+<p><a href="..">保持一颗激情的心</a> &copy; dragondjf 2014</p>
 </footer>
 
 </div> <!-- /container -->

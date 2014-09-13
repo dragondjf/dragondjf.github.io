@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>保持一颗激情的心</title><link>./</link><description></description><atom:link href="./feeds%5Cdragondjf.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 13 Sep 2014 19:56:00 +0800</lastBuildDate><item><title>PyQt/PySide 国际化实现</title><link>./pyqtpyside/PyQt/PySide.html</link><description>&lt;h3&gt;1.概述：&lt;/h3&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>保持一颗激情的心</title><link>./</link><description></description><atom:link href="./feeds%5Cdragondjf.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 13 Sep 2014 19:56:00 +0800</lastBuildDate><item><title>c++之private、protect、public Inheritance（继承）</title><link>./c/Inheritance%EF%BC%88%E7%BB%A7%E6%89%BF%EF%BC%89.html</link><description>&lt;ul&gt;
+&lt;li&gt;Protected and public members(data and function) of a base class are accessible from a derived class(for all three: public, protected and private inheritance). &lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;无论哪种继承，子类内部均可访问protect 和 public成员&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Objects of derived class with private and protected inheritance cannot access any data member of a base class.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;protect、private继承类的实例对象无法访问基类的任何数据&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Objects of derived class with public inheritance can access only public member of a base class.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;public继承类的实例对象自能访问基类的public数据&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img alt="Alt text" src="./static/c++/inheritance.png" /&gt;&lt;/p&gt;
+&lt;p&gt;详情参见http://www.programiz.com/cpp-programming/public-protected-private-inheritance&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">dragondjf</dc:creator><pubDate>Sat, 13 Sep 2014 19:56:00 +0800</pubDate><guid>tag:,2014-09-13:./c/Inheritance（继承）.html</guid><category>c++</category></item><item><title>PyQt/PySide 国际化实现</title><link>./pyqtpyside/PyQt/PySide.html</link><description>&lt;h3&gt;1.概述：&lt;/h3&gt;
 &lt;p&gt;在程序是使用&lt;strong&gt;self.tr&lt;/strong&gt;对需要进行翻译的字符串进行修饰,实质上这样做就是标定这些字符串是可以进行国际化操作的.&lt;/p&gt;
 &lt;h3&gt;2.步骤：&lt;/h3&gt;
 &lt;h6&gt;第一步：&lt;/h6&gt;
