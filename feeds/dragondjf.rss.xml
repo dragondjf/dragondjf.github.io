@@ -1,5 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>保持一颗激情的心</title><link>./</link><description></description><atom:link href="./feeds%5Cdragondjf.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 10 Sep 2014 16:20:00 +0800</lastBuildDate><item><title>javascript工具库之classie</title><link>./javascript/classie.html</link><description>&lt;blockquote&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>保持一颗激情的心</title><link>./</link><description></description><atom:link href="./feeds%5Cdragondjf.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 13 Sep 2014 20:53:00 +0800</lastBuildDate><item><title>Qt--QThread之可重入和线程安全(Reentrancy and Thread-Safety)</title><link>./qt/Qt--QThread.html</link><description>&lt;p&gt;1.概述
+    Reentrancy（可重入） and Thread-Safety（线程安全）这两个术语用于标识类和方法在多线程程序中如何使用。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A thread-safe function can be called simultaneously from multiple threads, even when the invocations use shared data, because all references to the shared data are serialized.
+    &lt;code&gt;一个线程安全的方法可以被多个线程同时调用，甚至每次调用都使用了共享数据因为所有对共享数据的引用是序列化（时间轴）&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;A reentrant function can also be called simultaneously from multiple threads, but only if each invocation uses its own data.
+    &lt;code&gt;一个可重入的方法也可以被多个线程同时调用，但是每次调用使用的都是自己内部数据，互不干扰。&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;故，一个线程安全的方法总是可重入的，一个可重入的方法并不一定线程安全。&lt;/code&gt;
++ By extension, a class is said to be reentrant if its member functions can be called safely from multiple threads, as long as each thread uses a different instance of the class. The class is thread-safe if its member functions can be called safely from multiple threads, even if all the threads use the same instance of the class.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;推而广之:&lt;/code&gt;
+&lt;code&gt;如果它的成员函数可以安全地从多个线程调用，只要每个线程使用的类的不同实例， 这个类被认为是可重入的;&lt;/code&gt;
+&lt;code&gt;如果它的成员函数可以安全地从多个线程调用，即使所有线程使用的类的同一个实例，这个类被认为是线程安全的.&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;详情参见&lt;a href="http://qt-project.org/doc/qt-5/threads-reentrancy.html"&gt;http://qt-project.org/doc/qt-5/threads-reentrancy.html&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">dragondjf</dc:creator><pubDate>Sat, 13 Sep 2014 20:53:00 +0800</pubDate><guid>tag:,2014-09-13:./qt/Qt--QThread.html</guid><category>Qt</category><category>QThread</category></item><item><title>python epoll 解读</title><link>./python/python%20epoll.html</link><description>&lt;h6&gt;1. 水平触发&lt;/h6&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;只要某个&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="err"&gt;处于&lt;/span&gt;&lt;span class="n"&gt;readable&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;writable&lt;/span&gt;&lt;span class="err"&gt;状态，无论什么时候进行&lt;/span&gt;&lt;span class="n"&gt;epoll_wait&lt;/span&gt;&lt;span class="err"&gt;都会返回该&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="err"&gt;；&lt;/span&gt;
+    &lt;span class="err"&gt;对于&lt;/span&gt;&lt;span class="n"&gt;non&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;blocking&lt;/span&gt;&lt;span class="err"&gt;的&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="err"&gt;，正确的读写操作为&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+    &lt;span class="err"&gt;读：忽略掉&lt;/span&gt;&lt;span class="n"&gt;errno&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;EAGAIN&lt;/span&gt;&lt;span class="err"&gt;的错误，下次继续读&lt;/span&gt;
+    &lt;span class="err"&gt;写：忽略掉&lt;/span&gt;&lt;span class="n"&gt;errno&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;EAGAIN&lt;/span&gt;&lt;span class="err"&gt;的错误，下次继续写&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h6&gt;2. 边缘触发&lt;/h6&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;只有某个&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="err"&gt;从&lt;/span&gt;&lt;span class="n"&gt;unreadable&lt;/span&gt;&lt;span class="err"&gt;变为&lt;/span&gt;&lt;span class="n"&gt;readable&lt;/span&gt;&lt;span class="err"&gt;或从&lt;/span&gt;&lt;span class="n"&gt;unwritable&lt;/span&gt;&lt;span class="err"&gt;变为&lt;/span&gt;&lt;span class="n"&gt;writable&lt;/span&gt;&lt;span class="err"&gt;时，&lt;/span&gt;&lt;span class="n"&gt;epoll_wait&lt;/span&gt;&lt;span class="err"&gt;才会返回该&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="err"&gt;；&lt;/span&gt;
+    &lt;span class="err"&gt;所以，在&lt;/span&gt;&lt;span class="n"&gt;epoll&lt;/span&gt;&lt;span class="err"&gt;的&lt;/span&gt;&lt;span class="n"&gt;ET&lt;/span&gt;&lt;span class="err"&gt;模式下，正确的读写方式为&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+    &lt;span class="err"&gt;读：只要可读，就一直读，直到返回&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="err"&gt;，或者&lt;/span&gt; &lt;span class="n"&gt;errno&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;EAGAIN&lt;/span&gt;
+    &lt;span class="err"&gt;写&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="err"&gt;只要可写，就一直写，直到数据发送完，或者&lt;/span&gt; &lt;span class="n"&gt;errno&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;EAGAIN&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;详情参见：http://fatezero.org/archives/&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">dragondjf</dc:creator><pubDate>Sat, 13 Sep 2014 20:27:00 +0800</pubDate><guid>tag:,2014-09-13:./python/python epoll.html</guid><category>python</category><category>epoll</category></item><item><title>c++之private、protect、public Inheritance（继承）</title><link>./c/Inheritance%EF%BC%88%E7%BB%A7%E6%89%BF%EF%BC%89.html</link><description>&lt;ul&gt;
+&lt;li&gt;Protected and public members(data and function) of a base class are accessible from a derived class(for all three: public, protected and private inheritance). &lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;无论哪种继承，子类内部均可访问protect 和 public成员&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Objects of derived class with private and protected inheritance cannot access any data member of a base class.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;protect、private继承类的实例对象无法访问基类的任何数据&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Objects of derived class with public inheritance can access only public member of a base class.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;public继承类的实例对象自能访问基类的public数据&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img alt="Alt text" src="../static/c++/inheritance.png" /&gt;&lt;/p&gt;
+&lt;p&gt;详情参见http://www.programiz.com/cpp-programming/public-protected-private-inheritance&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">dragondjf</dc:creator><pubDate>Sat, 13 Sep 2014 19:56:00 +0800</pubDate><guid>tag:,2014-09-13:./c/Inheritance（继承）.html</guid><category>c++</category></item><item><title>PyQt/PySide 国际化实现</title><link>./pyqtpyside/PyQt/PySide.html</link><description>&lt;h3&gt;1.概述：&lt;/h3&gt;
+&lt;p&gt;在程序是使用&lt;strong&gt;self.tr&lt;/strong&gt;对需要进行翻译的字符串进行修饰,实质上这样做就是标定这些字符串是可以进行国际化操作的.&lt;/p&gt;
+&lt;h3&gt;2.步骤：&lt;/h3&gt;
+&lt;h6&gt;第一步：&lt;/h6&gt;
+&lt;p&gt;新建&lt;strong&gt;main.pro&lt;/strong&gt;工程文件，文件格式如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;SOURCES&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+&lt;span class="n"&gt;SOURCES&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+&lt;span class="n"&gt;SOURCES&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+&lt;span class="n"&gt;SOURCES&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+&lt;span class="n"&gt;TRANSLATIONS&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ts&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h6&gt;第二步:&lt;/h6&gt;
+&lt;p&gt;利用pylupdate4(PyQt4)或者pyside-lupdate(PySide)进行翻译文件提取：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;PyQt4  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;pylupdate4&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pro&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;blockquote&gt;
+&lt;p&gt;PySide  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;pyside&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;lupdate&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pro&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;这样会在当前目录生成一个main.ts(main.pro中&lt;strong&gt;TRANSLATIONS&lt;/strong&gt;的值)&lt;/p&gt;
+&lt;h6&gt;第三步:&lt;/h6&gt;
+&lt;p&gt;利用PyQt4或者是PySide安装目录下的linguist.exe打开main.ts，逐项进行翻译&lt;/p&gt;
+&lt;h5&gt;第四步:&lt;/h5&gt;
+&lt;p&gt;利用PyQt4或者是PySide安装目录下的lrelease进行翻译
+    lrelease main.ts
+这样会在当前目录下生成一个main.qm的翻译文件&lt;/p&gt;
+&lt;h3&gt;第五步：&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;import&lt;/span&gt; &lt;span class="n"&gt;sys&lt;/span&gt;
+&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;QApplication&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;trans&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;QTranslator&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;trans&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;load&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;main.qm&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;installTranslator&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;trans&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;main&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;CenterWindow&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exec_&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;其中的   &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;trans&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;QTranslator&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;trans&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;load&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;main.qm&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;installTranslator&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;trans&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;就是将main.qm加载到程序当中去，这样即可实现程序国际化&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;h1&gt;PyQt/PySide 资源文件使用&lt;/h1&gt;
+&lt;h3&gt;步骤：&lt;/h3&gt;
+&lt;p&gt;第一步： 利用QtDesigner进行资源文件的创建或者是手动创建&lt;strong&gt;main.qrc&lt;/strong&gt;：  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="cp"&gt;&amp;lt;!DOCTYPE RCC&amp;gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;RCC&lt;/span&gt; &lt;span class="na"&gt;version=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;1.0&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;qresource&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;filenew.png&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;images/filenew.png&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;fileopen.png&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;images/fileopen.png&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;filesave.png&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;images/filesave.png&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;filesaveas.png&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;images/filesaveas.png&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;fileprint.png&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;images/fileprint.png&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;filequit.png&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;images/filequit.png&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;editinvert.png&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;images/editinvert.png&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;editswap.png&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;images/editswap.png&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;editzoom.png&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;images/editzoom.png&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;editmirror.png&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;images/editmirror.png&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;editunmirror.png&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;images/editunmirror.png&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;editmirrorhoriz.png&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;images/editmirrorhoriz.png&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;editmirrorvert.png&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;images/editmirrorvert.png&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;back.png&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;images/back.png&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;home.png&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;images/home.png&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;icon.png&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;images/icon.png&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/qresource&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;qresource&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&amp;gt;&lt;/span&gt;imagechanger.qm&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/qresource&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;qresource&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;editmenu.html&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;help/editmenu.html&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;filemenu.html&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;help/filemenu.html&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;index.html&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;help/index.html&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/qresource&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;qresource&lt;/span&gt; &lt;span class="na"&gt;lang=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;fr&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;editmenu.html&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;help/editmenu_fr.html&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;filemenu.html&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;help/filemenu_fr.html&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;file&lt;/span&gt; &lt;span class="na"&gt;alias=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;index.html&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;help/index_fr.html&lt;span class="nt"&gt;&amp;lt;/file&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/qresource&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/RCC&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;生成对应资源文件的xml数据结构。&lt;/p&gt;
+&lt;p&gt;第二步： 利用pyrcc4(PyQt4)或者是pyside-rcc(PySide)进行编译&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="n"&gt;pyrcc4&lt;/span&gt; &lt;span class="n"&gt;resources&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;qrc&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;o&lt;/span&gt; &lt;span class="n"&gt;qrc_resources&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;或者是  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="n"&gt;pysdie&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;rcc&lt;/span&gt; &lt;span class="n"&gt;resources&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;qrc&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;o&lt;/span&gt; &lt;span class="n"&gt;qrc_resources&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;这样即可生成一个&lt;strong&gt;qrc_resources.py&lt;/strong&gt;资源文件py库&lt;/p&gt;
+&lt;p&gt;第三步：在主程序中导入&lt;strong&gt;qrc_resources.py&lt;/strong&gt;库即可&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="n"&gt;import&lt;/span&gt; &lt;span class="n"&gt;qrc_resources&lt;/span&gt;
+    &lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;setWindowIcon&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;QIcon&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;:/icon.png&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;注意： 必须加上&lt;strong&gt;":/"&lt;/strong&gt;进行路径限定&lt;/p&gt;
+&lt;p&gt;利用好资源文件可以方便的对资源文件进行固化和程序发布。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">dragondjf</dc:creator><pubDate>Sat, 13 Sep 2014 19:56:00 +0800</pubDate><guid>tag:,2014-09-13:./pyqtpyside/PyQt/PySide.html</guid><category>PyQt</category><category>PySide</category><category>Qt</category><category>Python</category></item><item><title>javascript工具库之classie</title><link>./javascript/classie.html</link><description>&lt;blockquote&gt;
 &lt;p&gt;在html中引入&lt;code&gt;&amp;lt;script src="classie.js"&amp;gt;&amp;lt;/script&lt;/code&gt;即可在后续js中利用&lt;code&gt;classie&lt;/code&gt;对象为documentElement 判断是否包含、 增加 或 删除某个class。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cm"&gt;/*!&lt;/span&gt;

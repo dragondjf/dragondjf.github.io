@@ -16,7 +16,9 @@
     <link href="./theme/bootstrap.min.css" rel="stylesheet">
     <link href="./theme/bootstrap.min.responsive.css" rel="stylesheet">
     <link href="./theme/local.css" rel="stylesheet">
-    <link href="./theme/pygments.css" rel="stylesheet">
+    <!-- <link href="./theme/pygments.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/styles/default.min.css">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/highlight.min.js"></script>
 
 </head>
 
@@ -37,6 +39,8 @@
         <div class="nav-collapse">
         <ul class="nav">
             <li><a href="http://qt.qframer.com">QFramer</a></li>
+            <li><a href="https://github.com/dragondjf/QMarkdowner">QMarkdowner</a></li>
+            <li><a href="https://github.com/dragondjf/QSetuper">QSetuper</a></li>
             
             <li><a href="./about.html">About</a></li>
         </ul>
@@ -53,12 +57,18 @@
         <div class="span9">
 <ul>
     <li><a href="./tag/web.html">web</a></li>
-    <li><a href="./tag/ffpython.html">ffpython</a></li>
-    <li><a href="./tag/tornado.html">tornado</a></li>
+    <li><a href="./tag/c.html">c++</a></li>
+    <li><a href="./tag/qt.html">Qt</a></li>
+    <li><a href="./tag/pyside.html">PySide</a></li>
+    <li><a href="./tag/epoll.html">epoll</a></li>
+    <li><a href="./tag/python.html">Python</a></li>
     <li><a href="./tag/javascript.html">javascript</a></li>
-    <li><a href="./tag/python.html">python</a></li>
+    <li><a href="./tag/ffpython.html">ffpython</a></li>
+    <li><a href="./tag/pyqt.html">PyQt</a></li>
+    <li><a href="./tag/tornado.html">tornado</a></li>
     <li><a href="./tag/xue-xi.html">学习</a></li>
     <li><a href="./tag/plan.html">plan</a></li>
+    <li><a href="./tag/qthread.html">QThread</a></li>
 </ul>
         </div>
         
@@ -83,8 +93,11 @@
                 Categories
                 </li>
                 
+                <li><a href="./category/c.html">c++</a></li>
                 <li><a href="./category/javascript.html">javascript</a></li>
+                <li><a href="./category/pyqtpyside.html">PyQt/PySide</a></li>
                 <li><a href="./category/python.html">Python</a></li>
+                <li><a href="./category/qt.html">Qt</a></li>
                 <li><a href="./category/xue-xi-ji-hua.html">学习计划</a></li>
                    
             </ul>
@@ -117,6 +130,7 @@
                 <li><a href="http://tympanus.net/codrops/">codrops</a></li>
                 <li><a href="http://ui-cloud.com/">ui-cloud</a></li>
                 <li><a href="http://www.easyicon.net/">easyicon</a></li>
+                <li><a href="http://www.programiz.com/">programiz</a></li>
             </ul>
             </div>
             </div>
@@ -136,4 +150,11 @@
 </a>
  
 </body>
+<script>
+    $(document).ready(function() {
+      $('pre').each(function(i, block) {
+        hljs.highlightBlock(block);
+      });
+    });
+</script>
 </html>
