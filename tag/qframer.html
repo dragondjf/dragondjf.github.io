@@ -62,7 +62,7 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="../qt/Qt--QFramer.html"><h1>QFramer help</h1></a>
+            <a href="../qframer/Qt--QFramer.html"><h1>QFramer help</h1></a>
 2014-09-28 11:04:00
 
 by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
@@ -121,10 +121,11 @@ by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
 </pre></div>
 
 
-<p><code>mainwindow.cpp</code>
-        #include "mainwindow.h"
-        #include "centerwindow.h"</p>
-<div class="highlight"><pre>    <span class="n">MainWindow</span><span class="o">::</span><span class="n">MainWindow</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">parent</span><span class="p">)</span> <span class="o">:</span>
+<p><code>mainwindow.cpp</code></p>
+<div class="highlight"><pre>    <span class="err">#</span><span class="n">include</span> <span class="s">&quot;mainwindow.h&quot;</span>
+    <span class="err">#</span><span class="n">include</span> <span class="s">&quot;centerwindow.h&quot;</span>
+
+    <span class="n">MainWindow</span><span class="o">::</span><span class="n">MainWindow</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">parent</span><span class="p">)</span> <span class="o">:</span>
         <span class="n">FMainWindow</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="n">initUI</span><span class="p">();</span>
@@ -141,18 +142,16 @@ by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
 
 <ul>
 <li>
-<ol>
-<li>
 <p>custom your centerwindow inherited by <code>FCenterWindow</code></p>
-</li>
-<li>
 <p>custom your widgets like  <code>uiElements</code> <code>mathPlot</code> <code>aboutPage</code> <code>qssBuilder</code></p>
-</li>
-<li>
-<p>use the api  <code>addWidget</code> to add your custom widget in centerwindow
-    <code>addWidget(tr("Home"), tr("Home"), uiElements);</code></p>
-</li>
-</ol>
+<p>use the api  <code>addWidget</code> to add your custom widget in centerwindow  </p>
+<div class="highlight"><pre><span class="err">`</span><span class="n">addWidget</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;Home&quot;</span><span class="p">),</span> <span class="n">tr</span><span class="p">(</span><span class="s">&quot;Home&quot;</span><span class="p">),</span> <span class="n">uiElements</span><span class="p">);</span><span class="err">`</span>
+<span class="err">`</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;Home&quot;</span><span class="p">)</span> <span class="o">--</span> <span class="n">The</span> <span class="n">content</span> <span class="n">show</span> <span class="n">in</span> <span class="n">navgationbar</span><span class="err">`</span>
+<span class="err">`</span><span class="s">&quot;Home&quot;</span> <span class="o">--</span> <span class="n">The</span> <span class="n">objectName</span> <span class="n">of</span> <span class="n">uiElements</span><span class="err">`</span>
+<span class="err">`</span><span class="n">uiElements</span> <span class="o">--</span> <span class="n">your</span> <span class="n">custom</span> <span class="n">widget</span><span class="err">`</span>
+</pre></div>
+
+
 </li>
 </ul>
 <p><code>centerwindow.h</code></p>
@@ -206,11 +205,10 @@ by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
         <span class="n">aboutPage</span> <span class="o">=</span> <span class="n">new</span> <span class="n">AboutPage</span><span class="p">;</span>
         <span class="n">qssBuilder</span> <span class="o">=</span> <span class="n">new</span> <span class="n">QssBuilder</span><span class="p">;</span>
 
-        <span class="n">addWidget</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;Home&quot;</span><span class="p">),</span> <span class="n">tr</span><span class="p">(</span><span class="s">&quot;Home&quot;</span><span class="p">),</span> <span class="n">uiElements</span><span class="p">);</span>
-        <span class="n">addWidget</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;MathPlot&quot;</span><span class="p">),</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;MathPlot&quot;</span><span class="p">),</span> <span class="n">mathPlot</span><span class="p">);</span>
-
-        <span class="n">addWidget</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;QssBuilder&quot;</span><span class="p">),</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;QssBuilder&quot;</span><span class="p">),</span> <span class="n">qssBuilder</span><span class="p">);</span>
-        <span class="n">addWidget</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;About&quot;</span><span class="p">),</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;About&quot;</span><span class="p">),</span> <span class="n">aboutPage</span><span class="p">);</span>
+        <span class="n">addWidget</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;Home&quot;</span><span class="p">),</span> <span class="s">&quot;Home&quot;</span><span class="p">,</span> <span class="n">uiElements</span><span class="p">);</span>
+        <span class="n">addWidget</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;MathPlot&quot;</span><span class="p">),</span><span class="s">&quot;MathPlot&quot;</span><span class="p">,</span> <span class="n">mathPlot</span><span class="p">);</span>
+        <span class="n">addWidget</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;QssBuilder&quot;</span><span class="p">),</span><span class="s">&quot;QssBuilder&quot;</span><span class="p">,</span> <span class="n">qssBuilder</span><span class="p">);</span>
+        <span class="n">addWidget</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;About&quot;</span><span class="p">),</span><span class="s">&quot;About&quot;</span><span class="p">,</span> <span class="n">aboutPage</span><span class="p">);</span>
 
         <span class="n">setAlignment</span><span class="p">(</span><span class="n">TopCenter</span><span class="p">);</span>
     <span class="p">}</span>
@@ -260,6 +258,7 @@ by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
                 <li><a href="../category/javascript.html">javascript</a></li>
                 <li><a href="../category/pyqtpyside.html">PyQt/PySide</a></li>
                 <li><a href="../category/python.html">Python</a></li>
+                <li><a href="../category/qframer.html">QFramer</a></li>
                 <li><a href="../category/qt.html">Qt</a></li>
                 <li><a href="../category/xue-xi-ji-hua.html">学习计划</a></li>
                    
