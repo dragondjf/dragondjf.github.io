@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>保持一颗激情的心</title><link>./</link><description></description><atom:link href="./feeds%5Cdragondjf.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 28 Sep 2014 11:04:00 +0800</lastBuildDate><item><title>QFramer help</title><link>./qt/Qt--QFramer.html</link><description>&lt;h5&gt;1.How to use QFramer in your project?&lt;/h5&gt;
 &lt;ul&gt;
-&lt;li&gt;1.&lt;strong&gt;&lt;code&gt;New&lt;/code&gt;&lt;/strong&gt; a Qt project in your Qt Creater IDE;&lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;2.&lt;strong&gt;&lt;code&gt;Copy&lt;/code&gt;&lt;/strong&gt; directory &lt;strong&gt;【QFramer】&lt;/strong&gt; to your project folder, add &lt;code&gt;include(./QFramer/QFramer.pri)&lt;/code&gt; in your &lt;strong&gt;.pro&lt;/strong&gt; file&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;New&lt;/code&gt;&lt;/strong&gt; a Qt project in your Qt Creater IDE;   &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;Copy&lt;/code&gt;&lt;/strong&gt; directory &lt;strong&gt;【QFramer】&lt;/strong&gt; to your project folder&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;add &lt;code&gt;include(./QFramer/QFramer.pri)&lt;/code&gt; in your &lt;strong&gt;.pro&lt;/strong&gt; file&lt;/p&gt;
 &lt;p&gt;So you can use QFramer in your code like this:  &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#include &amp;quot;QFramer/fcenterwindow.h&amp;quot;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -14,10 +19,10 @@
 &lt;h5&gt;2. How to use QFramer in your code?&lt;/h5&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;ol&gt;
-&lt;li&gt;custom your mainwindow inherited by &lt;code&gt;FMainWindow&lt;/code&gt;
-     define an &lt;code&gt;centerwindow&lt;/code&gt; variable and &lt;strong&gt; &lt;code&gt;setCentralWidget(centerwindow)&lt;/code&gt;&lt;/strong&gt;  &lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;custom your mainwindow inherited by &lt;code&gt;FMainWindow&lt;/code&gt;    &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;define an &lt;code&gt;centerwindow&lt;/code&gt; variable and &lt;strong&gt; &lt;code&gt;setCentralWidget(centerwindow)&lt;/code&gt;&lt;/strong&gt;  &lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;code&gt;mainwindow.h&lt;/code&gt;&lt;/p&gt;
@@ -64,10 +69,16 @@
 &lt;ul&gt;
 &lt;li&gt;
 &lt;ol&gt;
-&lt;li&gt;custom your centerwindow inherited by &lt;code&gt;FCenterWindow&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;custom your widgets like  &lt;code&gt;uiElements&lt;/code&gt; &lt;code&gt;mathPlot&lt;/code&gt; &lt;code&gt;aboutPage&lt;/code&gt; &lt;code&gt;qssBuilder&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;use the api  &lt;code&gt;addWidget&lt;/code&gt; to add your custom widget in centerwindow
-    &lt;code&gt;addWidget(tr("Home"), tr("Home"), uiElements);&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;custom your centerwindow inherited by &lt;code&gt;FCenterWindow&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;custom your widgets like  &lt;code&gt;uiElements&lt;/code&gt; &lt;code&gt;mathPlot&lt;/code&gt; &lt;code&gt;aboutPage&lt;/code&gt; &lt;code&gt;qssBuilder&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;use the api  &lt;code&gt;addWidget&lt;/code&gt; to add your custom widget in centerwindow
+    &lt;code&gt;addWidget(tr("Home"), tr("Home"), uiElements);&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/li&gt;
 &lt;/ul&gt;

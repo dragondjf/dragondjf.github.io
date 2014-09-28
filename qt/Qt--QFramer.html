@@ -68,9 +68,14 @@ by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
 	
         <div><h5>1.How to use QFramer in your project?</h5>
 <ul>
-<li>1.<strong><code>New</code></strong> a Qt project in your Qt Creater IDE;</li>
 <li>
-<p>2.<strong><code>Copy</code></strong> directory <strong>【QFramer】</strong> to your project folder, add <code>include(./QFramer/QFramer.pri)</code> in your <strong>.pro</strong> file</p>
+<p><strong><code>New</code></strong> a Qt project in your Qt Creater IDE;   </p>
+</li>
+<li>
+<p><strong><code>Copy</code></strong> directory <strong>【QFramer】</strong> to your project folder</p>
+</li>
+<li>
+<p>add <code>include(./QFramer/QFramer.pri)</code> in your <strong>.pro</strong> file</p>
 <p>So you can use QFramer in your code like this:  </p>
 <div class="highlight"><pre><span class="c">#include &quot;QFramer/fcenterwindow.h&quot;</span>
 </pre></div>
@@ -81,10 +86,10 @@ by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
 <h5>2. How to use QFramer in your code?</h5>
 <ul>
 <li>
-<ol>
-<li>custom your mainwindow inherited by <code>FMainWindow</code>
-     define an <code>centerwindow</code> variable and <strong> <code>setCentralWidget(centerwindow)</code></strong>  </li>
-</ol>
+<p>custom your mainwindow inherited by <code>FMainWindow</code>    </p>
+</li>
+<li>
+<p>define an <code>centerwindow</code> variable and <strong> <code>setCentralWidget(centerwindow)</code></strong>  </p>
 </li>
 </ul>
 <p><code>mainwindow.h</code></p>
@@ -131,10 +136,16 @@ by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
 <ul>
 <li>
 <ol>
-<li>custom your centerwindow inherited by <code>FCenterWindow</code></li>
-<li>custom your widgets like  <code>uiElements</code> <code>mathPlot</code> <code>aboutPage</code> <code>qssBuilder</code></li>
-<li>use the api  <code>addWidget</code> to add your custom widget in centerwindow
-    <code>addWidget(tr("Home"), tr("Home"), uiElements);</code></li>
+<li>
+<p>custom your centerwindow inherited by <code>FCenterWindow</code></p>
+</li>
+<li>
+<p>custom your widgets like  <code>uiElements</code> <code>mathPlot</code> <code>aboutPage</code> <code>qssBuilder</code></p>
+</li>
+<li>
+<p>use the api  <code>addWidget</code> to add your custom widget in centerwindow
+    <code>addWidget(tr("Home"), tr("Home"), uiElements);</code></p>
+</li>
 </ol>
 </li>
 </ul>
