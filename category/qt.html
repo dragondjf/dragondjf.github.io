@@ -62,8 +62,8 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="../qt/Qt--QThread.html"><h1>Qt--QThread之可重入和线程安全(Reentrancy and Thread-Safety)</h1></a>
-2014-09-13 20:53:00
+            <a href="../qt/Qt--QFramer.html"><h1>QFramer help</h1></a>
+2014-09-28 11:04:00
 
 by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
  
@@ -72,25 +72,162 @@ by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
  
         </div>
         
-        <div><p>1.概述
-    Reentrancy（可重入） and Thread-Safety（线程安全）这两个术语用于标识类和方法在多线程程序中如何使用。</p>
+        <div><h5>1.How to use QFramer in your project?</h5>
 <ul>
-<li>A thread-safe function can be called simultaneously from multiple threads, even when the invocations use shared data, because all references to the shared data are serialized.
-    <code>一个线程安全的方法可以被多个线程同时调用，甚至每次调用都使用了共享数据因为所有对共享数据的引用是序列化（时间轴）</code>。</li>
+<li>1.<strong><code>New</code></strong> a Qt project in your Qt Creater IDE;</li>
 <li>
-<p>A reentrant function can also be called simultaneously from multiple threads, but only if each invocation uses its own data.
-    <code>一个可重入的方法也可以被多个线程同时调用，但是每次调用使用的都是自己内部数据，互不干扰。</code></p>
-<p><code>故，一个线程安全的方法总是可重入的，一个可重入的方法并不一定线程安全。</code>
-+ By extension, a class is said to be reentrant if its member functions can be called safely from multiple threads, as long as each thread uses a different instance of the class. The class is thread-safe if its member functions can be called safely from multiple threads, even if all the threads use the same instance of the class.</p>
-<p><code>推而广之:</code>
-<code>如果它的成员函数可以安全地从多个线程调用，只要每个线程使用的类的不同实例， 这个类被认为是可重入的;</code>
-<code>如果它的成员函数可以安全地从多个线程调用，即使所有线程使用的类的同一个实例，这个类被认为是线程安全的.</code></p>
+<p>2.<strong><code>Copy</code></strong> directory <strong>【QFramer】</strong> to your project folder, add <code>include(./QFramer/QFramer.pri)</code> in your <strong>.pro</strong> file</p>
+<p>So you can use QFramer in your code like this:  </p>
+<div class="highlight"><pre><span class="c">#include &quot;QFramer/fcenterwindow.h&quot;</span>
+</pre></div>
+
+
 </li>
 </ul>
-<p>详情参见<a href="http://qt-project.org/doc/qt-5/threads-reentrancy.html">http://qt-project.org/doc/qt-5/threads-reentrancy.html</a></p></div>
+<h5>2. How to use QFramer in your code?</h5>
+<ul>
+<li>
+<ol>
+<li>custom your mainwindow inherited by <code>FMainWindow</code>
+     define an <code>centerwindow</code> variable and <strong> <code>setCentralWidget(centerwindow)</code></strong>  </li>
+</ol>
+</li>
+</ul>
+<p><code>mainwindow.h</code></p>
+<div class="highlight"><pre>    <span class="err">#</span><span class="n">ifndef</span> <span class="n">MAINWINDOW_H</span>
+    <span class="err">#</span><span class="n">define</span> <span class="n">MAINWINDOW_H</span>
+
+    <span class="err">#</span><span class="n">include</span> <span class="s">&quot;QFramer/fmainwindow.h&quot;</span>
+    <span class="err">#</span><span class="n">include</span> <span class="s">&quot;centerwindow.h&quot;</span>
+
+    <span class="n">class</span> <span class="n">MainWindow</span> <span class="o">:</span> <span class="n">public</span> <span class="n">FMainWindow</span>
+    <span class="p">{</span>
+        <span class="n">Q_OBJECT</span>
+    <span class="nl">public:</span>
+        <span class="n">CenterWindow</span><span class="o">*</span> <span class="n">centerWindow</span><span class="p">;</span>
+    <span class="nl">public:</span>
+        <span class="n">explicit</span> <span class="nf">MainWindow</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">parent</span> <span class="o">=</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="kt">void</span> <span class="nf">initUI</span><span class="p">();</span>
+    <span class="nl">signals:</span>
+
+    <span class="n">public</span> <span class="n">slots</span><span class="o">:</span>
+
+    <span class="p">};</span>
+</pre></div>
+
+
+<p><code>mainwindow.cpp</code>
+        #include "mainwindow.h"
+        #include "centerwindow.h"</p>
+<div class="highlight"><pre>    <span class="n">MainWindow</span><span class="o">::</span><span class="n">MainWindow</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">parent</span><span class="p">)</span> <span class="o">:</span>
+        <span class="n">FMainWindow</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">initUI</span><span class="p">();</span>
+    <span class="p">}</span>
+
+
+    <span class="kt">void</span> <span class="n">MainWindow</span><span class="o">::</span><span class="n">initUI</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">centerWindow</span> <span class="o">=</span> <span class="n">new</span> <span class="n">CenterWindow</span><span class="p">;</span>
+        <span class="n">setCentralWidget</span><span class="p">(</span><span class="n">centerWindow</span><span class="p">);</span>
+    <span class="p">}</span>
+</pre></div>
+
+
+<ul>
+<li>
+<ol>
+<li>custom your centerwindow inherited by <code>FCenterWindow</code></li>
+<li>custom your widgets like  <code>uiElements</code> <code>mathPlot</code> <code>aboutPage</code> <code>qssBuilder</code></li>
+<li>use the api  <code>addWidget</code> to add your custom widget in centerwindow
+    <code>addWidget(tr("Home"), tr("Home"), uiElements);</code></li>
+</ol>
+</li>
+</ul>
+<p><code>centerwindow.h</code></p>
+<div class="highlight"><pre>    <span class="vi">#ifndef</span> <span class="nx">CENTERWINDOW_H</span>
+    <span class="vi">#define</span> <span class="nx">CENTERWINDOW_H</span>
+
+    <span class="vi">#include</span> <span class="s2">&quot;QFramer/fcenterwindow.h&quot;</span>
+    <span class="vi">#include</span> <span class="s2">&quot;functionpages/aboutpage.h&quot;</span>
+    <span class="vi">#include</span> <span class="s2">&quot;functionpages/mathplot.h&quot;</span>
+    <span class="vi">#include</span> <span class="s2">&quot;functionpages/uielement.h&quot;</span>
+    <span class="vi">#include</span> <span class="s2">&quot;functionpages/qssbuilder.h&quot;</span>
+    <span class="vi">#include</span> <span class="o">&lt;</span><span class="nx">QVBoxLayout</span><span class="o">&gt;</span>
+
+
+    <span class="nb">class</span> <span class="nx">CenterWindow</span> <span class="p">:</span> <span class="k">public</span> <span class="nf">FCenterWindow</span>
+    <span class="p">{</span>
+        <span class="nx">Q_OBJECT</span>
+
+    <span class="k">public</span><span class="p">:</span>
+        <span class="nx">UIElement</span><span class="o">*</span> <span class="nx">uiElements</span><span class="p">;</span>
+        <span class="nx">MathPlot</span><span class="o">*</span> <span class="nx">mathPlot</span><span class="p">;</span>
+        <span class="nx">AboutPage</span><span class="o">*</span> <span class="nx">aboutPage</span><span class="p">;</span>
+        <span class="nx">QssBuilder</span><span class="o">*</span> <span class="nx">qssBuilder</span><span class="p">;</span>
+
+    <span class="k">public</span><span class="p">:</span>
+        <span class="nx">explicit</span> <span class="nx">CenterWindow</span><span class="p">(</span><span class="nx">QWidget</span> <span class="o">*</span><span class="k">parent</span> <span class="o">=</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="bp">void</span> <span class="nx">initUI</span><span class="p">();</span>
+    <span class="nx">signals</span><span class="p">:</span>
+
+    <span class="k">public</span> <span class="nf">slots</span><span class="p">:</span>
+    <span class="p">};</span>
+
+    <span class="vi">#endif</span> <span class="c1">// CENTERWINDOW_H</span>
+</pre></div>
+
+
+<p><code>centerwindow.cpp</code></p>
+<div class="highlight"><pre>    <span class="err">#</span><span class="n">include</span> <span class="s">&quot;centerwindow.h&quot;</span>
+
+
+    <span class="n">CenterWindow</span><span class="o">::</span><span class="n">CenterWindow</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">parent</span><span class="p">)</span> <span class="o">:</span>
+        <span class="n">FCenterWindow</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">initUI</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">CenterWindow</span><span class="o">::</span><span class="n">initUI</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">uiElements</span> <span class="o">=</span> <span class="n">new</span> <span class="n">UIElement</span><span class="p">;</span>
+        <span class="n">mathPlot</span> <span class="o">=</span> <span class="n">new</span> <span class="n">MathPlot</span><span class="p">;</span>
+        <span class="n">aboutPage</span> <span class="o">=</span> <span class="n">new</span> <span class="n">AboutPage</span><span class="p">;</span>
+        <span class="n">qssBuilder</span> <span class="o">=</span> <span class="n">new</span> <span class="n">QssBuilder</span><span class="p">;</span>
+
+        <span class="n">addWidget</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;Home&quot;</span><span class="p">),</span> <span class="n">tr</span><span class="p">(</span><span class="s">&quot;Home&quot;</span><span class="p">),</span> <span class="n">uiElements</span><span class="p">);</span>
+        <span class="n">addWidget</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;MathPlot&quot;</span><span class="p">),</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;MathPlot&quot;</span><span class="p">),</span> <span class="n">mathPlot</span><span class="p">);</span>
+
+        <span class="n">addWidget</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;QssBuilder&quot;</span><span class="p">),</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;QssBuilder&quot;</span><span class="p">),</span> <span class="n">qssBuilder</span><span class="p">);</span>
+        <span class="n">addWidget</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;About&quot;</span><span class="p">),</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;About&quot;</span><span class="p">),</span> <span class="n">aboutPage</span><span class="p">);</span>
+
+        <span class="n">setAlignment</span><span class="p">(</span><span class="n">TopCenter</span><span class="p">);</span>
+    <span class="p">}</span>
+</pre></div>
+
+
+<p>So easy, this is the basic usage with QFramer, you can enjoy with it.If you want to go deep into it, you should read code seriously  in a moment.</p></div>
         <hr />
     </div>
 		
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../qt/Qt--QThread.html"><h2>Qt--QThread之可重入和线程安全(Reentrancy and Thread-Safety)</h2></a>
+        <div class= "well small"> 2014-09-13 20:53:00
+
+by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
+ 
+
+
+ </div>
+        <div class="summary"> <a class="btn btn-info xsmall" href="../qt/Qt--QThread.html">read more</a></div>
+    </div>	
+				
 <div class="pagination">
 <ul>
     <li class="prev disabled"><a href="#">&larr; Previous</a></li>

@@ -1,5 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>保持一颗激情的心</title><link href="./" rel="alternate"></link><link href="./feeds%5Cdragondjf.atom.xml" rel="self"></link><id>./</id><updated>2014-09-13T20:53:00+08:00</updated><entry><title>Qt--QThread之可重入和线程安全(Reentrancy and Thread-Safety)</title><link href="./qt/Qt--QThread.html" rel="alternate"></link><updated>2014-09-13T20:53:00+08:00</updated><author><name>dragondjf</name></author><id>tag:,2014-09-13:./qt/Qt--QThread.html</id><summary type="html">&lt;p&gt;1.概述
+<feed xmlns="http://www.w3.org/2005/Atom"><title>保持一颗激情的心</title><link href="./" rel="alternate"></link><link href="./feeds%5Cdragondjf.atom.xml" rel="self"></link><id>./</id><updated>2014-09-28T11:04:00+08:00</updated><entry><title>QFramer help</title><link href="./qt/Qt--QFramer.html" rel="alternate"></link><updated>2014-09-28T11:04:00+08:00</updated><author><name>dragondjf</name></author><id>tag:,2014-09-28:./qt/Qt--QFramer.html</id><summary type="html">&lt;h5&gt;1.How to use QFramer in your project?&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;1.&lt;strong&gt;&lt;code&gt;New&lt;/code&gt;&lt;/strong&gt; a Qt project in your Qt Creater IDE;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;2.&lt;strong&gt;&lt;code&gt;Copy&lt;/code&gt;&lt;/strong&gt; directory &lt;strong&gt;【QFramer】&lt;/strong&gt; to your project folder, add &lt;code&gt;include(./QFramer/QFramer.pri)&lt;/code&gt; in your &lt;strong&gt;.pro&lt;/strong&gt; file&lt;/p&gt;
+&lt;p&gt;So you can use QFramer in your code like this:  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#include &amp;quot;QFramer/fcenterwindow.h&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;2. How to use QFramer in your code?&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;custom your mainwindow inherited by &lt;code&gt;FMainWindow&lt;/code&gt;
+     define an &lt;code&gt;centerwindow&lt;/code&gt; variable and &lt;strong&gt; &lt;code&gt;setCentralWidget(centerwindow)&lt;/code&gt;&lt;/strong&gt;  &lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;mainwindow.h&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="n"&gt;ifndef&lt;/span&gt; &lt;span class="n"&gt;MAINWINDOW_H&lt;/span&gt;
+    &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="n"&gt;define&lt;/span&gt; &lt;span class="n"&gt;MAINWINDOW_H&lt;/span&gt;
+
+    &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="n"&gt;include&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;QFramer/fmainwindow.h&amp;quot;&lt;/span&gt;
+    &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="n"&gt;include&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;centerwindow.h&amp;quot;&lt;/span&gt;
+
+    &lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;MainWindow&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;FMainWindow&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;Q_OBJECT&lt;/span&gt;
+    &lt;span class="nl"&gt;public:&lt;/span&gt;
+        &lt;span class="n"&gt;CenterWindow&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;centerWindow&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="nl"&gt;public:&lt;/span&gt;
+        &lt;span class="n"&gt;explicit&lt;/span&gt; &lt;span class="nf"&gt;MainWindow&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;QWidget&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;parent&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;initUI&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="nl"&gt;signals:&lt;/span&gt;
+
+    &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;slots&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+
+    &lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;mainwindow.cpp&lt;/code&gt;
+        #include "mainwindow.h"
+        #include "centerwindow.h"&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="n"&gt;MainWindow&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;MainWindow&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;QWidget&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;parent&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;FMainWindow&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;parent&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;initUI&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+
+    &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;MainWindow&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;initUI&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;centerWindow&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;CenterWindow&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;setCentralWidget&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;centerWindow&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;custom your centerwindow inherited by &lt;code&gt;FCenterWindow&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;custom your widgets like  &lt;code&gt;uiElements&lt;/code&gt; &lt;code&gt;mathPlot&lt;/code&gt; &lt;code&gt;aboutPage&lt;/code&gt; &lt;code&gt;qssBuilder&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;use the api  &lt;code&gt;addWidget&lt;/code&gt; to add your custom widget in centerwindow
+    &lt;code&gt;addWidget(tr("Home"), tr("Home"), uiElements);&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;centerwindow.h&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="vi"&gt;#ifndef&lt;/span&gt; &lt;span class="nx"&gt;CENTERWINDOW_H&lt;/span&gt;
+    &lt;span class="vi"&gt;#define&lt;/span&gt; &lt;span class="nx"&gt;CENTERWINDOW_H&lt;/span&gt;
+
+    &lt;span class="vi"&gt;#include&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;QFramer/fcenterwindow.h&amp;quot;&lt;/span&gt;
+    &lt;span class="vi"&gt;#include&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;functionpages/aboutpage.h&amp;quot;&lt;/span&gt;
+    &lt;span class="vi"&gt;#include&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;functionpages/mathplot.h&amp;quot;&lt;/span&gt;
+    &lt;span class="vi"&gt;#include&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;functionpages/uielement.h&amp;quot;&lt;/span&gt;
+    &lt;span class="vi"&gt;#include&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;functionpages/qssbuilder.h&amp;quot;&lt;/span&gt;
+    &lt;span class="vi"&gt;#include&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;QVBoxLayout&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+
+
+    &lt;span class="nb"&gt;class&lt;/span&gt; &lt;span class="nx"&gt;CenterWindow&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="k"&gt;public&lt;/span&gt; &lt;span class="nf"&gt;FCenterWindow&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nx"&gt;Q_OBJECT&lt;/span&gt;
+
+    &lt;span class="k"&gt;public&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="nx"&gt;UIElement&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="nx"&gt;uiElements&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="nx"&gt;MathPlot&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="nx"&gt;mathPlot&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="nx"&gt;AboutPage&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="nx"&gt;aboutPage&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="nx"&gt;QssBuilder&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="nx"&gt;qssBuilder&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="k"&gt;public&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="nx"&gt;explicit&lt;/span&gt; &lt;span class="nx"&gt;CenterWindow&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;QWidget&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="k"&gt;parent&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="bp"&gt;void&lt;/span&gt; &lt;span class="nx"&gt;initUI&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="nx"&gt;signals&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+
+    &lt;span class="k"&gt;public&lt;/span&gt; &lt;span class="nf"&gt;slots&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="p"&gt;};&lt;/span&gt;
+
+    &lt;span class="vi"&gt;#endif&lt;/span&gt; &lt;span class="c1"&gt;// CENTERWINDOW_H&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;centerwindow.cpp&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="n"&gt;include&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;centerwindow.h&amp;quot;&lt;/span&gt;
+
+
+    &lt;span class="n"&gt;CenterWindow&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;CenterWindow&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;QWidget&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;parent&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;FCenterWindow&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;parent&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;initUI&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;CenterWindow&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;initUI&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;uiElements&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;UIElement&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;mathPlot&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;MathPlot&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;aboutPage&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;AboutPage&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;qssBuilder&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;QssBuilder&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+        &lt;span class="n"&gt;addWidget&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Home&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;tr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Home&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;uiElements&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;addWidget&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;MathPlot&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="n"&gt;tr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;MathPlot&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;mathPlot&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+        &lt;span class="n"&gt;addWidget&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;QssBuilder&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="n"&gt;tr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;QssBuilder&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;qssBuilder&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;addWidget&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;About&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="n"&gt;tr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;About&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;aboutPage&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+        &lt;span class="n"&gt;setAlignment&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TopCenter&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;So easy, this is the basic usage with QFramer, you can enjoy with it.If you want to go deep into it, you should read code seriously  in a moment.&lt;/p&gt;</summary><category term="Qt"></category><category term="QFramer"></category></entry><entry><title>Qt--QThread之可重入和线程安全(Reentrancy and Thread-Safety)</title><link href="./qt/Qt--QThread.html" rel="alternate"></link><updated>2014-09-13T20:53:00+08:00</updated><author><name>dragondjf</name></author><id>tag:,2014-09-13:./qt/Qt--QThread.html</id><summary type="html">&lt;p&gt;1.概述
     Reentrancy（可重入） and Thread-Safety（线程安全）这两个术语用于标识类和方法在多线程程序中如何使用。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;A thread-safe function can be called simultaneously from multiple threads, even when the invocations use shared data, because all references to the shared data are serialized.
