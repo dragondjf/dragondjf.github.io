@@ -40,7 +40,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;这两种写法没有本质区别，拓展原型对象前后一样。&lt;/p&gt;
+&lt;p&gt;这两种写法没有本质区别，拓展原型对象在生成实例前后一样。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Point.prototype 就是原型对象，javascript中所有函数都有prototype属性，它引用了一个对象，这个对象就是原型对象；&lt;/strong&gt;
 &lt;strong&gt;原型对象初始化时为空，但是当你在其中定义的任何属性和方法都会被构造函数所创建的实例对象继承。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;实际上， 原型对象也是构造函数的一个实例对象；与普通的实例对象没有本质区别，只是它比较特殊而已，&lt;/code&gt;
