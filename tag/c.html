@@ -190,25 +190,9 @@ by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
 </body>
 <script>
     $(document).ready(function() {
-        $('pre').each(function(i, block) {
-            hljs.highlightBlock(block);
-        });
-        var liElements = $("li.nav-header")
-        var category = $($("li.nav-header")[liElements.length - 3])
-        if (category.html().trim() == "Categories"){
-            var startPos = location.pathname.search("category");
-            var categoryID = location.pathname.slice(startPos)
-            console.log(categoryID);
-            var children = category.parent().children();
-            for (var i=0 ,length=children.length; i < length; i++ ){
-                var lihtml = children[i].innerHTML;
-                console.log(lihtml.search(categoryID))
-                if(lihtml.search(categoryID) > 0){
-                    var obj = $(children[i]).children()[0];
-                    obj.innerText = obj.innerText + "("+ $(".article").length.toString() + ")";
-                }
-            }
-        }
+      $('pre').each(function(i, block) {
+        hljs.highlightBlock(block);
+      });
     });
 </script>
 </html>
