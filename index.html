@@ -156,22 +156,40 @@ by <a class="url fn" href="./author/dragondjf.html">dragondjf</a>
 <ul>
 <li>构建对象  是构造函数；</li>
 <li>实例对象  是由构造函数使用new关键字构建的实例化对象；</li>
-<li>
-<p>原型对象  默认也是由构造函数构建的实例化对象，只是原型对象的所有属性和方法被构造函数的其他实例对象所共享；</p>
-<p>function Point(x, y, z){
-    this.x = x;
-    this.y = y;
-    this.z = z;
-}
-var p1 = new Point(1, 23);
-console.log(p1.constructor == Point); //true
-console.log(Point.prototype.constructor == Point); //true
-console.log(Point.prototype.isPrototypeOf(p1)); // true</p>
-</li>
-</ul></div>
+<li>原型对象  默认也是由构造函数构建的实例化对象，只是原型对象的所有属性和方法被构造函数的其他实例对象所共享；   </li>
+</ul>
+<p>demo:     </p>
+<div class="highlight"><pre><span class="kd">function</span> <span class="nx">Point</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">z</span><span class="p">){</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">z</span> <span class="o">=</span> <span class="nx">z</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">23</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">p1</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">==</span> <span class="nx">Point</span><span class="p">);</span> <span class="c1">//true</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Point</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">==</span> <span class="nx">Point</span><span class="p">);</span> <span class="c1">//true</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Point</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">isPrototypeOf</span><span class="p">(</span><span class="nx">p1</span><span class="p">));</span> <span class="c1">// true</span>
+</pre></div></div>
         <hr />
     </div>
 		
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="./javascript/javascript--object function.html"><h2>javascript 对象探索之 基本方法</h2></a>
+        <div class= "well small"> 2014-09-30 11:38:00
+
+by <a class="url fn" href="./author/dragondjf.html">dragondjf</a>
+ 
+
+
+ </div>
+        <div class="summary"> <a class="btn btn-info xsmall" href="./javascript/javascript--object function.html">read more</a></div>
+    </div>	
+				
 
  
         
@@ -242,24 +260,6 @@ by <a class="url fn" href="./author/dragondjf.html">dragondjf</a>
 
  </div>
         <div class="summary"> <a class="btn btn-info xsmall" href="./c/Inheritance（继承）.html">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="./pyqtpyside/PyQt/PySide.html"><h2>PyQt/PySide 国际化实现</h2></a>
-        <div class= "well small"> 2014-09-13 19:56:00
-
-by <a class="url fn" href="./author/dragondjf.html">dragondjf</a>
- 
-
-
- </div>
-        <div class="summary"> <a class="btn btn-info xsmall" href="./pyqtpyside/PyQt/PySide.html">read more</a></div>
     </div>	
 				
 <div class="pagination">
