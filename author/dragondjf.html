@@ -62,8 +62,8 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="../qframer/Qt--QFramer.html"><h1>QFramer help</h1></a>
-2014-09-28 11:04:00
+            <a href="../javascript/javascript--object.html"><h1>javascript 对象探索之 构造对象、原型对象 和 实例对象</h1></a>
+2014-09-30 11:38:00
 
 by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
  
@@ -72,153 +72,111 @@ by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
  
         </div>
         
-        <div><h5>1.How to use QFramer in your project?</h5>
-<ul>
-<li>
-<p><strong><code>New</code></strong> a Qt project in your Qt Creater IDE;   </p>
-</li>
-<li>
-<p><strong><code>Copy</code></strong> directory <strong>【QFramer】</strong> to your project folder</p>
-</li>
-<li>
-<p>add <code>include(./QFramer/QFramer.pri)</code> in your <strong>.pro</strong> file</p>
-<p>So you can use QFramer in your code like this:  </p>
-<div class="highlight"><pre><span class="c">#include &quot;QFramer/fcenterwindow.h&quot;</span>
-</pre></div>
-
-
-</li>
-</ul>
-<h5>2. How to use QFramer in your code?</h5>
-<ul>
-<li>
-<p>custom your mainwindow inherited by <code>FMainWindow</code>    </p>
-</li>
-<li>
-<p>define an <code>centerwindow</code> variable and <strong> <code>setCentralWidget(centerwindow)</code></strong>  </p>
-</li>
-</ul>
-<p><code>mainwindow.h</code></p>
-<div class="highlight"><pre>    <span class="err">#</span><span class="n">ifndef</span> <span class="n">MAINWINDOW_H</span>
-    <span class="err">#</span><span class="n">define</span> <span class="n">MAINWINDOW_H</span>
-
-    <span class="err">#</span><span class="n">include</span> <span class="s">&quot;QFramer/fmainwindow.h&quot;</span>
-    <span class="err">#</span><span class="n">include</span> <span class="s">&quot;centerwindow.h&quot;</span>
-
-    <span class="n">class</span> <span class="n">MainWindow</span> <span class="o">:</span> <span class="n">public</span> <span class="n">FMainWindow</span>
-    <span class="p">{</span>
-        <span class="n">Q_OBJECT</span>
-    <span class="nl">public:</span>
-        <span class="n">CenterWindow</span><span class="o">*</span> <span class="n">centerWindow</span><span class="p">;</span>
-    <span class="nl">public:</span>
-        <span class="n">explicit</span> <span class="nf">MainWindow</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">parent</span> <span class="o">=</span> <span class="mi">0</span><span class="p">);</span>
-        <span class="kt">void</span> <span class="nf">initUI</span><span class="p">();</span>
-    <span class="nl">signals:</span>
-
-    <span class="n">public</span> <span class="n">slots</span><span class="o">:</span>
-
-    <span class="p">};</span>
-</pre></div>
-
-
-<p><code>mainwindow.cpp</code></p>
-<div class="highlight"><pre>    <span class="err">#</span><span class="n">include</span> <span class="s">&quot;mainwindow.h&quot;</span>
-    <span class="err">#</span><span class="n">include</span> <span class="s">&quot;centerwindow.h&quot;</span>
-
-    <span class="n">MainWindow</span><span class="o">::</span><span class="n">MainWindow</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">parent</span><span class="p">)</span> <span class="o">:</span>
-        <span class="n">FMainWindow</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">initUI</span><span class="p">();</span>
-    <span class="p">}</span>
-
-
-    <span class="kt">void</span> <span class="n">MainWindow</span><span class="o">::</span><span class="n">initUI</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="n">centerWindow</span> <span class="o">=</span> <span class="n">new</span> <span class="n">CenterWindow</span><span class="p">;</span>
-        <span class="n">setCentralWidget</span><span class="p">(</span><span class="n">centerWindow</span><span class="p">);</span>
+        <div><h4>1.什么是构造对象？</h4>
+<div class="highlight"><pre>    <span class="kd">function</span> <span class="nx">Point</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">z</span><span class="p">){</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">z</span> <span class="o">=</span> <span class="nx">z</span><span class="p">;</span>
     <span class="p">}</span>
 </pre></div>
 
 
-<ul>
-<li>
-<p>custom your centerwindow inherited by <code>FCenterWindow</code></p>
-<p>custom your widgets like  <code>uiElements</code> <code>mathPlot</code> <code>aboutPage</code> <code>qssBuilder</code></p>
-<p>use the api  <code>addWidget</code> to add your custom widget in centerwindow  </p>
-<div class="highlight"><pre><span class="err">`</span><span class="n">addWidget</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;Home&quot;</span><span class="p">),</span> <span class="n">tr</span><span class="p">(</span><span class="s">&quot;Home&quot;</span><span class="p">),</span> <span class="n">uiElements</span><span class="p">);</span><span class="err">`</span>
-<span class="err">`</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;Home&quot;</span><span class="p">)</span> <span class="o">--</span> <span class="n">The</span> <span class="n">content</span> <span class="n">show</span> <span class="n">in</span> <span class="n">navgationbar</span><span class="err">`</span>
-<span class="err">`</span><span class="s">&quot;Home&quot;</span> <span class="o">--</span> <span class="n">The</span> <span class="n">objectName</span> <span class="n">of</span> <span class="n">uiElements</span><span class="err">`</span>
-<span class="err">`</span><span class="n">uiElements</span> <span class="o">--</span> <span class="n">your</span> <span class="n">custom</span> <span class="n">widget</span><span class="err">`</span>
+<p>这样【<code>Point</code>】就是一个构造对象， <code>可以实例化</code>；</p>
+<p><strong>构造对象实际上就是构造函数， 构造函数与普通函数没有本质区别，但是构造函数拥有this关键字，并且只能够使用new运算符来调用函数。</strong></p>
+<p><strong>从本质上来讲，构造对象就是类；</strong></p>
+<p>构造对象同样拥有属性和方法，他们都是全局变量，只能被构造对象本身调用，无法被实例对象调用。</p>
+<h4>2. 什么是实例对象？</h4>
+<div class="highlight"><pre>    <span class="n">var</span> <span class="n">p1</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">23</span><span class="p">);</span>
+    <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">p1</span><span class="p">.</span><span class="n">constructor</span> <span class="o">==</span> <span class="n">Point</span><span class="p">)</span> <span class="c1">// true</span>
 </pre></div>
 
 
-</li>
-</ul>
-<p><code>centerwindow.h</code></p>
-<div class="highlight"><pre>    <span class="vi">#ifndef</span> <span class="nx">CENTERWINDOW_H</span>
-    <span class="vi">#define</span> <span class="nx">CENTERWINDOW_H</span>
-
-    <span class="vi">#include</span> <span class="s2">&quot;QFramer/fcenterwindow.h&quot;</span>
-    <span class="vi">#include</span> <span class="s2">&quot;functionpages/aboutpage.h&quot;</span>
-    <span class="vi">#include</span> <span class="s2">&quot;functionpages/mathplot.h&quot;</span>
-    <span class="vi">#include</span> <span class="s2">&quot;functionpages/uielement.h&quot;</span>
-    <span class="vi">#include</span> <span class="s2">&quot;functionpages/qssbuilder.h&quot;</span>
-    <span class="vi">#include</span> <span class="o">&lt;</span><span class="nx">QVBoxLayout</span><span class="o">&gt;</span>
-
-
-    <span class="nb">class</span> <span class="nx">CenterWindow</span> <span class="p">:</span> <span class="k">public</span> <span class="nf">FCenterWindow</span>
-    <span class="p">{</span>
-        <span class="nx">Q_OBJECT</span>
-
-    <span class="k">public</span><span class="p">:</span>
-        <span class="nx">UIElement</span><span class="o">*</span> <span class="nx">uiElements</span><span class="p">;</span>
-        <span class="nx">MathPlot</span><span class="o">*</span> <span class="nx">mathPlot</span><span class="p">;</span>
-        <span class="nx">AboutPage</span><span class="o">*</span> <span class="nx">aboutPage</span><span class="p">;</span>
-        <span class="nx">QssBuilder</span><span class="o">*</span> <span class="nx">qssBuilder</span><span class="p">;</span>
-
-    <span class="k">public</span><span class="p">:</span>
-        <span class="nx">explicit</span> <span class="nx">CenterWindow</span><span class="p">(</span><span class="nx">QWidget</span> <span class="o">*</span><span class="k">parent</span> <span class="o">=</span> <span class="mi">0</span><span class="p">);</span>
-        <span class="bp">void</span> <span class="nx">initUI</span><span class="p">();</span>
-    <span class="nx">signals</span><span class="p">:</span>
-
-    <span class="k">public</span> <span class="nf">slots</span><span class="p">:</span>
-    <span class="p">};</span>
-
-    <span class="vi">#endif</span> <span class="c1">// CENTERWINDOW_H</span>
-</pre></div>
-
-
-<p><code>centerwindow.cpp</code></p>
-<div class="highlight"><pre>    <span class="err">#</span><span class="n">include</span> <span class="s">&quot;centerwindow.h&quot;</span>
-
-
-    <span class="n">CenterWindow</span><span class="o">::</span><span class="n">CenterWindow</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">parent</span><span class="p">)</span> <span class="o">:</span>
-        <span class="n">FCenterWindow</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">initUI</span><span class="p">();</span>
-    <span class="p">}</span>
-
-    <span class="kt">void</span> <span class="n">CenterWindow</span><span class="o">::</span><span class="n">initUI</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="n">uiElements</span> <span class="o">=</span> <span class="n">new</span> <span class="n">UIElement</span><span class="p">;</span>
-        <span class="n">mathPlot</span> <span class="o">=</span> <span class="n">new</span> <span class="n">MathPlot</span><span class="p">;</span>
-        <span class="n">aboutPage</span> <span class="o">=</span> <span class="n">new</span> <span class="n">AboutPage</span><span class="p">;</span>
-        <span class="n">qssBuilder</span> <span class="o">=</span> <span class="n">new</span> <span class="n">QssBuilder</span><span class="p">;</span>
-
-        <span class="n">addWidget</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;Home&quot;</span><span class="p">),</span> <span class="s">&quot;Home&quot;</span><span class="p">,</span> <span class="n">uiElements</span><span class="p">);</span>
-        <span class="n">addWidget</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;MathPlot&quot;</span><span class="p">),</span><span class="s">&quot;MathPlot&quot;</span><span class="p">,</span> <span class="n">mathPlot</span><span class="p">);</span>
-        <span class="n">addWidget</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;QssBuilder&quot;</span><span class="p">),</span><span class="s">&quot;QssBuilder&quot;</span><span class="p">,</span> <span class="n">qssBuilder</span><span class="p">);</span>
-        <span class="n">addWidget</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;About&quot;</span><span class="p">),</span><span class="s">&quot;About&quot;</span><span class="p">,</span> <span class="n">aboutPage</span><span class="p">);</span>
-
-        <span class="n">setAlignment</span><span class="p">(</span><span class="n">TopCenter</span><span class="p">);</span>
+<p>这样【<code>p1</code>】就是Point类的实例化对象， <code>实例化对象不能继续实例化</code></p>
+<p>实例对象是通过构造函数创建的。</p>
+<p><strong>当使用构造函数创建实例对象之后，每个对象之间都是独立的个体，就不再与构造对象保持关系。</strong></p>
+<h4>3. 什么是原型对象?</h4>
+<p>拓展原型对象的两种写法：</p>
+<div class="highlight"><pre>    <span class="kd">var</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">23</span><span class="p">);</span>
+    <span class="nx">Point</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s2">&quot;dsdsds&quot;</span>
+    <span class="nx">Point</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">sum</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
     <span class="p">}</span>
 </pre></div>
 
 
-<p>So easy, this is the basic usage with QFramer, you can enjoy with it.If you want to go deep into it, you should read code seriously  in a moment.</p></div>
+<p>或者是   </p>
+<div class="highlight"><pre>    <span class="nx">Point</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s2">&quot;dsdsds&quot;</span>
+    <span class="nx">Point</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">sum</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
+    <span class="p">}</span>
+     <span class="kd">var</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">23</span><span class="p">);</span>
+</pre></div>
+
+
+<p>这两种写法没有本质区别，拓展原型对象前后一样。</p>
+<p><strong>Point.prototype 就是原型对象，javascript中所有函数都有prototype属性，它引用了一个对象，这个对象就是原型对象；</strong>
+<strong>原型对象初始化时为空，但是当你在其中定义的任何属性和方法都会被构造函数所创建的实例对象继承。</strong></p>
+<p><code>实际上， 原型对象也是构造函数的一个实例对象；与普通的实例对象没有本质区别，只是它比较特殊而已，</code>
+<code>原型对象的所有属性和方法能够为构造函数的所有实例共享，这就是其他语言的类继承，在javascript中简称【原型继承】</code></p>
+<div class="highlight"><pre>  <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">p1</span><span class="p">.</span><span class="n">constructor</span> <span class="o">==</span> <span class="n">Point</span><span class="p">)</span> <span class="c1">//ture</span>
+  <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">Point</span><span class="p">.</span><span class="n">prototype</span><span class="p">.</span><span class="n">constructor</span> <span class="o">==</span> <span class="n">Point</span><span class="p">)</span> <span class="c1">//true</span>
+</pre></div>
+
+
+<p>说明原型对象与实例对象都是通过同一个构造函数实例化的一个对象</p>
+<p>重写原型对象：  </p>
+<div class="highlight"><pre>    <span class="nx">Point</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">name</span> <span class="o">:</span> <span class="s2">&quot;yuanxiangduixiang&quot;</span><span class="p">,</span>
+        <span class="nx">sum</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">23</span><span class="p">);</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Point</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">==</span> <span class="nx">Point</span><span class="p">)</span> <span class="c1">// false</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Point</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">==</span> <span class="nb">Object</span><span class="p">)</span> <span class="c1">// true</span>
+</pre></div>
+
+
+<p>这种写法表示重写了Point.prototype原型对象，这样原型对象不再由Point构建，而是由Object构建</p>
+<p>下面这种写法是错误的：</p>
+<div class="highlight"><pre>    <span class="kd">var</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">23</span><span class="p">);</span>
+    <span class="nx">Point</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="nx">name</span> <span class="o">:</span> <span class="s2">&quot;yuanxiangduixiang&quot;</span><span class="p">,</span>
+            <span class="nx">sum</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+            <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">p1</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span> <span class="c1">//报错</span>
+</pre></div>
+
+
+<h4>4. 总结</h4>
+<p>构建对象  是构造函数；
+实例对象  是由构造函数使用new关键字构建的实例化对象；
+原型对象  默认也是由构造函数构建的实例化对象，只是原型对象的所有属性和方法被构造函数的其他实例对象所共享；</p></div>
         <hr />
     </div>
 		
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../qframer/Qt--QFramer.html"><h2>QFramer help</h2></a>
+        <div class= "well small"> 2014-09-28 11:04:00
+
+by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
+ 
+
+
+ </div>
+        <div class="summary"> <a class="btn btn-info xsmall" href="../qframer/Qt--QFramer.html">read more</a></div>
+    </div>	
+				
 
  
         
@@ -289,24 +247,6 @@ by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
 
  </div>
         <div class="summary"> <a class="btn btn-info xsmall" href="../pyqtpyside/PyQt/PySide.html">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../javascript/classie.html"><h2>javascript工具库之classie</h2></a>
-        <div class= "well small"> 2014-09-10 16:20:00
-
-by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
- 
-
-
- </div>
-        <div class="summary"> <a class="btn btn-info xsmall" href="../javascript/classie.html">read more</a></div>
     </div>	
 				
 <div class="pagination">

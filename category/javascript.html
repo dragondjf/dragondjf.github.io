@@ -62,8 +62,8 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="../javascript/classie.html"><h1>javascript工具库之classie</h1></a>
-2014-09-10 16:20:00
+            <a href="../javascript/javascript--object.html"><h1>javascript 对象探索之 构造对象、原型对象 和 实例对象</h1></a>
+2014-09-30 11:38:00
 
 by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
  
@@ -72,93 +72,111 @@ by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
  
         </div>
         
-        <div><blockquote>
-<p>在html中引入<code>&lt;script src="classie.js"&gt;&lt;/script</code>即可在后续js中利用<code>classie</code>对象为documentElement 判断是否包含、 增加 或 删除某个class。</p>
-</blockquote>
-<div class="highlight"><pre><span class="cm">/*!</span>
-<span class="cm"> * classie - class helper functions</span>
-<span class="cm"> * from bonzo https://github.com/ded/bonzo</span>
-<span class="cm"> * </span>
-<span class="cm"> * classie.has( elem, &#39;my-class&#39; ) -&gt; true/false</span>
-<span class="cm"> * classie.add( elem, &#39;my-new-class&#39; )</span>
-<span class="cm"> * classie.remove( elem, &#39;my-unwanted-class&#39; )</span>
-<span class="cm"> * classie.toggle( elem, &#39;my-class&#39; )</span>
-<span class="cm"> */</span>
-
-<span class="cm">/*jshint browser: true, strict: true, undef: true */</span>
-<span class="cm">/*global define: false */</span>
-
-<span class="p">(</span> <span class="k">function</span><span class="p">(</span> <span class="n">window</span> <span class="p">)</span> <span class="p">{</span>
-
-<span class="p">&#39;</span><span class="k">use</span> <span class="n">strict</span><span class="p">&#39;;</span>
-
-<span class="c1">// class helper functions from bonzo https://github.com/ded/bonzo</span>
-
-<span class="k">function</span> <span class="n">classReg</span><span class="p">(</span> <span class="n">className</span> <span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="k">new</span> <span class="n">RegExp</span><span class="p">(</span><span class="s">&quot;(^|</span><span class="se">\\</span><span class="s">s+)&quot;</span> <span class="o">+</span> <span class="n">className</span> <span class="o">+</span> <span class="s">&quot;(</span><span class="se">\\</span><span class="s">s+|$)&quot;</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="c1">// classList support for class management</span>
-<span class="c1">// altho to be fair, the api sucks because it won&#39;t accept multiple classes at once</span>
-<span class="k">var</span> <span class="n">hasClass</span><span class="p">,</span> <span class="n">addClass</span><span class="p">,</span> <span class="n">removeClass</span><span class="p">;</span>
-
-<span class="k">if</span> <span class="p">(</span> <span class="p">&#39;</span><span class="n">classList</span><span class="p">&#39;</span> <span class="n">in</span> <span class="n">document</span><span class="p">.</span><span class="n">documentElement</span> <span class="p">)</span> <span class="p">{</span>
-  <span class="n">hasClass</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span> <span class="n">elem</span><span class="p">,</span> <span class="n">c</span> <span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">elem</span><span class="p">.</span><span class="n">classList</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span> <span class="n">c</span> <span class="p">);</span>
-  <span class="p">};</span>
-  <span class="n">addClass</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span> <span class="n">elem</span><span class="p">,</span> <span class="n">c</span> <span class="p">)</span> <span class="p">{</span>
-    <span class="n">elem</span><span class="p">.</span><span class="n">classList</span><span class="p">.</span><span class="n">add</span><span class="p">(</span> <span class="n">c</span> <span class="p">);</span>
-  <span class="p">};</span>
-  <span class="n">removeClass</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span> <span class="n">elem</span><span class="p">,</span> <span class="n">c</span> <span class="p">)</span> <span class="p">{</span>
-    <span class="n">elem</span><span class="p">.</span><span class="n">classList</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span> <span class="n">c</span> <span class="p">);</span>
-  <span class="p">};</span>
-<span class="p">}</span>
-<span class="k">else</span> <span class="p">{</span>
-  <span class="n">hasClass</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span> <span class="n">elem</span><span class="p">,</span> <span class="n">c</span> <span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">classReg</span><span class="p">(</span> <span class="n">c</span> <span class="p">).</span><span class="n">test</span><span class="p">(</span> <span class="n">elem</span><span class="p">.</span><span class="n">className</span> <span class="p">);</span>
-  <span class="p">};</span>
-  <span class="n">addClass</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span> <span class="n">elem</span><span class="p">,</span> <span class="n">c</span> <span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">hasClass</span><span class="p">(</span> <span class="n">elem</span><span class="p">,</span> <span class="n">c</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
-      <span class="n">elem</span><span class="p">.</span><span class="n">className</span> <span class="o">=</span> <span class="n">elem</span><span class="p">.</span><span class="n">className</span> <span class="o">+</span> <span class="sc">&#39; &#39;</span> <span class="o">+</span> <span class="n">c</span><span class="p">;</span>
+        <div><h4>1.什么是构造对象？</h4>
+<div class="highlight"><pre>    <span class="kd">function</span> <span class="nx">Point</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">z</span><span class="p">){</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">z</span> <span class="o">=</span> <span class="nx">z</span><span class="p">;</span>
     <span class="p">}</span>
-  <span class="p">};</span>
-  <span class="n">removeClass</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span> <span class="n">elem</span><span class="p">,</span> <span class="n">c</span> <span class="p">)</span> <span class="p">{</span>
-    <span class="n">elem</span><span class="p">.</span><span class="n">className</span> <span class="o">=</span> <span class="n">elem</span><span class="p">.</span><span class="n">className</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span> <span class="n">classReg</span><span class="p">(</span> <span class="n">c</span> <span class="p">),</span> <span class="sc">&#39; &#39;</span> <span class="p">);</span>
-  <span class="p">};</span>
-<span class="p">}</span>
+</pre></div>
 
-<span class="k">function</span> <span class="n">toggleClass</span><span class="p">(</span> <span class="n">elem</span><span class="p">,</span> <span class="n">c</span> <span class="p">)</span> <span class="p">{</span>
-  <span class="k">var</span> <span class="n">fn</span> <span class="o">=</span> <span class="n">hasClass</span><span class="p">(</span> <span class="n">elem</span><span class="p">,</span> <span class="n">c</span> <span class="p">)</span> <span class="o">?</span> <span class="n">removeClass</span> <span class="o">:</span> <span class="n">addClass</span><span class="p">;</span>
-  <span class="n">fn</span><span class="p">(</span> <span class="n">elem</span><span class="p">,</span> <span class="n">c</span> <span class="p">);</span>
-<span class="p">}</span>
 
-<span class="k">var</span> <span class="n">classie</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="c1">// full names</span>
-  <span class="nl">hasClass:</span> <span class="n">hasClass</span><span class="p">,</span>
-  <span class="nl">addClass:</span> <span class="n">addClass</span><span class="p">,</span>
-  <span class="nl">removeClass:</span> <span class="n">removeClass</span><span class="p">,</span>
-  <span class="nl">toggleClass:</span> <span class="n">toggleClass</span><span class="p">,</span>
-  <span class="c1">// short names</span>
-  <span class="nl">has:</span> <span class="n">hasClass</span><span class="p">,</span>
-  <span class="nl">add:</span> <span class="n">addClass</span><span class="p">,</span>
-  <span class="nl">remove:</span> <span class="n">removeClass</span><span class="p">,</span>
-  <span class="nl">toggle:</span> <span class="n">toggleClass</span>
-<span class="p">};</span>
+<p>这样【<code>Point</code>】就是一个构造对象， <code>可以实例化</code>；</p>
+<p><strong>构造对象实际上就是构造函数， 构造函数与普通函数没有本质区别，但是构造函数拥有this关键字，并且只能够使用new运算符来调用函数。</strong></p>
+<p><strong>从本质上来讲，构造对象就是类；</strong></p>
+<p>构造对象同样拥有属性和方法，他们都是全局变量，只能被构造对象本身调用，无法被实例对象调用。</p>
+<h4>2. 什么是实例对象？</h4>
+<div class="highlight"><pre>    <span class="n">var</span> <span class="n">p1</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">23</span><span class="p">);</span>
+    <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">p1</span><span class="p">.</span><span class="n">constructor</span> <span class="o">==</span> <span class="n">Point</span><span class="p">)</span> <span class="c1">// true</span>
+</pre></div>
 
-<span class="c1">// transport</span>
-<span class="k">if</span> <span class="p">(</span> <span class="n">typeof</span> <span class="n">define</span> <span class="o">===</span> <span class="p">&#39;</span><span class="k">function</span><span class="p">&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">define</span><span class="p">.</span><span class="n">amd</span> <span class="p">)</span> <span class="p">{</span>
-  <span class="c1">// AMD</span>
-  <span class="n">define</span><span class="p">(</span> <span class="n">classie</span> <span class="p">);</span>
-<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-  <span class="c1">// browser global</span>
-  <span class="n">window</span><span class="p">.</span><span class="n">classie</span> <span class="o">=</span> <span class="n">classie</span><span class="p">;</span>
-<span class="p">}</span>
 
-<span class="p">})(</span> <span class="n">window</span> <span class="p">);</span>
-</pre></div></div>
+<p>这样【<code>p1</code>】就是Point类的实例化对象， <code>实例化对象不能继续实例化</code></p>
+<p>实例对象是通过构造函数创建的。</p>
+<p><strong>当使用构造函数创建实例对象之后，每个对象之间都是独立的个体，就不再与构造对象保持关系。</strong></p>
+<h4>3. 什么是原型对象?</h4>
+<p>拓展原型对象的两种写法：</p>
+<div class="highlight"><pre>    <span class="kd">var</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">23</span><span class="p">);</span>
+    <span class="nx">Point</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s2">&quot;dsdsds&quot;</span>
+    <span class="nx">Point</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">sum</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
+    <span class="p">}</span>
+</pre></div>
+
+
+<p>或者是   </p>
+<div class="highlight"><pre>    <span class="nx">Point</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s2">&quot;dsdsds&quot;</span>
+    <span class="nx">Point</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">sum</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
+    <span class="p">}</span>
+     <span class="kd">var</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">23</span><span class="p">);</span>
+</pre></div>
+
+
+<p>这两种写法没有本质区别，拓展原型对象前后一样。</p>
+<p><strong>Point.prototype 就是原型对象，javascript中所有函数都有prototype属性，它引用了一个对象，这个对象就是原型对象；</strong>
+<strong>原型对象初始化时为空，但是当你在其中定义的任何属性和方法都会被构造函数所创建的实例对象继承。</strong></p>
+<p><code>实际上， 原型对象也是构造函数的一个实例对象；与普通的实例对象没有本质区别，只是它比较特殊而已，</code>
+<code>原型对象的所有属性和方法能够为构造函数的所有实例共享，这就是其他语言的类继承，在javascript中简称【原型继承】</code></p>
+<div class="highlight"><pre>  <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">p1</span><span class="p">.</span><span class="n">constructor</span> <span class="o">==</span> <span class="n">Point</span><span class="p">)</span> <span class="c1">//ture</span>
+  <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">Point</span><span class="p">.</span><span class="n">prototype</span><span class="p">.</span><span class="n">constructor</span> <span class="o">==</span> <span class="n">Point</span><span class="p">)</span> <span class="c1">//true</span>
+</pre></div>
+
+
+<p>说明原型对象与实例对象都是通过同一个构造函数实例化的一个对象</p>
+<p>重写原型对象：  </p>
+<div class="highlight"><pre>    <span class="nx">Point</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">name</span> <span class="o">:</span> <span class="s2">&quot;yuanxiangduixiang&quot;</span><span class="p">,</span>
+        <span class="nx">sum</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">23</span><span class="p">);</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Point</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">==</span> <span class="nx">Point</span><span class="p">)</span> <span class="c1">// false</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Point</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">==</span> <span class="nb">Object</span><span class="p">)</span> <span class="c1">// true</span>
+</pre></div>
+
+
+<p>这种写法表示重写了Point.prototype原型对象，这样原型对象不再由Point构建，而是由Object构建</p>
+<p>下面这种写法是错误的：</p>
+<div class="highlight"><pre>    <span class="kd">var</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">23</span><span class="p">);</span>
+    <span class="nx">Point</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="nx">name</span> <span class="o">:</span> <span class="s2">&quot;yuanxiangduixiang&quot;</span><span class="p">,</span>
+            <span class="nx">sum</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+            <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">p1</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span> <span class="c1">//报错</span>
+</pre></div>
+
+
+<h4>4. 总结</h4>
+<p>构建对象  是构造函数；
+实例对象  是由构造函数使用new关键字构建的实例化对象；
+原型对象  默认也是由构造函数构建的实例化对象，只是原型对象的所有属性和方法被构造函数的其他实例对象所共享；</p></div>
         <hr />
     </div>
 		
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../javascript/classie.html"><h2>javascript工具库之classie</h2></a>
+        <div class= "well small"> 2014-09-10 16:20:00
+
+by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
+ 
+
+
+ </div>
+        <div class="summary"> <a class="btn btn-info xsmall" href="../javascript/classie.html">read more</a></div>
+    </div>	
+				
 <div class="pagination">
 <ul>
     <li class="prev disabled"><a href="#">&larr; Previous</a></li>
