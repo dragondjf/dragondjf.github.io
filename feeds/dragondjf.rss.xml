@@ -81,9 +81,9 @@
 
 &lt;h4&gt;4. 总结&lt;/h4&gt;
 &lt;ul&gt;
-&lt;li&gt;构建对象  是构造函数；&lt;/li&gt;
-&lt;li&gt;实例对象  是由构造函数使用new关键字构建的实例化对象；&lt;/li&gt;
-&lt;li&gt;原型对象  默认也是由构造函数构建的实例化对象，只是原型对象的所有属性和方法被构造函数的其他实例对象所共享；   &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;构建对象&lt;/strong&gt;  是&lt;strong&gt;构造函数&lt;/strong&gt;；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;实例对象&lt;/strong&gt;  是由构造函数使用&lt;strong&gt;new&lt;/strong&gt;关键字构建的实例化对象；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;原型对象&lt;/strong&gt;  默认也是由构造函数构建的实例化对象，&lt;strong&gt;只是原型对象的所有属性和方法被构造函数的其他实例对象所共享&lt;/strong&gt;；   &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;demo:     &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;Point&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;z&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
