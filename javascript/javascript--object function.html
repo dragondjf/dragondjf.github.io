@@ -66,7 +66,90 @@ by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
 
         </div>
 	
-        <div></div>
+        <div><h4>1. toString()</h4>
+<p>toString() 方法能够返回一个对象的字符串表示，但是返回的字符串比较灵活，可以是一个具体的值，也可能是一个对象的类型表示。</p>
+<p>举个例子：
+    由于toString()返回的内容比较简单，可以对其近扩展，让对象实例返回构造函数的源代码：</p>
+<div class="highlight"><pre>    <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">toString</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="kd">function</span> <span class="nx">Point</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">z</span><span class="p">){</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">z</span> <span class="o">=</span> <span class="nx">z</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kd">var</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">p1</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span> <span class="c1">// 返回函数Point的源码</span>
+</pre></div>
+
+
+<h4>2.valueOf()</h4>
+<div class="highlight"><pre><span class="n">Objectd</span><span class="err">对象的默认</span><span class="n">valueOf</span><span class="p">()</span><span class="err">返回结果与</span><span class="n">toString</span><span class="p">()</span><span class="err">返回结果一样。</span>
+<span class="err">对于</span><span class="n">String</span><span class="err">、</span> <span class="n">Number</span> <span class="err">、</span> <span class="n">Boolean</span><span class="err">对象具有明显原始值时，它们的</span><span class="n">valueOf</span><span class="p">()</span><span class="err">返回适合的原始值。</span>
+</pre></div>
+
+
+<h4>3. hasOwnProperty()</h4>
+<p>对象的属性分为两大类：私有属性 和 继承属性
+hasOwnProperty()只能判断指定名称的属性或者对象 是否 为该实例对象的私有属性；无法判断是否为继承属性。</p>
+<div class="highlight"><pre>    <span class="kd">function</span> <span class="nx">Point</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">z</span><span class="p">){</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">z</span> <span class="o">=</span> <span class="nx">z</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kd">var</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+
+
+    <span class="nx">Point</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">a</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="nx">Point</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">b</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+    <span class="nx">Point</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">c</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">p1</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">))</span> <span class="c1">// true</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">p1</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">))</span> <span class="c1">// false</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Point</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">))</span> <span class="c1">// false</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Point</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">))</span> <span class="c1">// true</span>
+</pre></div>
+
+
+<h4>4.propertyIsEnumerable()</h4>
+<p>对于javascript对象而言， 我们可以枚举它的属性。但并不是对象的所有属性都可以枚举，只有满足以下两个条件的属性才可以：
++ 1.属性名是由一个字符串参数指定的，即对象的所有私有属性和原型属性。但是javascript又规定，只有对象直接定义的属性才可以枚举，继承属性不可以；即便用for/in循环可以枚举原型属性。
++ 2.属性可以使用for/in循环进行遍历读写。但是javascript核心对象的默认属性一般都是不允许枚举的。</p>
+<div class="highlight"><pre>    <span class="kd">function</span> <span class="nx">Point</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">z</span><span class="p">){</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">z</span> <span class="o">=</span> <span class="nx">z</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kd">var</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+
+
+    <span class="nx">Point</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">a</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="nx">Point</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">b</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+    <span class="nx">Point</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">c</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">p1</span><span class="p">.</span><span class="nx">propertyIsEnumerable</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">))</span> <span class="c1">// true</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">p1</span><span class="p">.</span><span class="nx">propertyIsEnumerable</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">))</span> <span class="c1">// false</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Point</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">propertyIsEnumerable</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">))</span> <span class="c1">// false</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Point</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">propertyIsEnumerable</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">))</span> <span class="c1">// true</span>
+</pre></div>
+
+
+<h4>5. isPrototypeOf()</h4>
+<p>可以通过这个方法检测某一个对象是否为另外一个对象的原型对象</p>
+<div class="highlight"><pre>    <span class="kd">function</span> <span class="nx">Point</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">z</span><span class="p">){</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">z</span> <span class="o">=</span> <span class="nx">z</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kd">var</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+
+
+    <span class="nx">Point</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">a</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="nx">Point</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">b</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+    <span class="nx">Point</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">c</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Point</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">isPrototypeOf</span><span class="p">(</span><span class="nx">p1</span><span class="p">))</span> <span class="c1">// true</span>
+</pre></div></div>
 	
         <hr>
 
