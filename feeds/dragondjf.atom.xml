@@ -370,8 +370,7 @@ hasOwnProperty()只能判断指定名称的属性或者对象 是否 为该实�
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;So easy, this is the basic usage with QFramer, you can enjoy with it.If you want to go deep into it, you should read code seriously  in a moment.&lt;/p&gt;</summary><category term="Qt"></category><category term="QFramer"></category></entry><entry><title>QSetuper introduction</title><link href="./qsetuper/Qt--QSetuper.html" rel="alternate"></link><updated>2014-09-28T11:04:00+08:00</updated><author><name>dragondjf</name></author><id>tag:,2014-09-28:./qsetuper/Qt--QSetuper.html</id><summary type="html">&lt;p&gt;======&lt;/p&gt;
-&lt;h4&gt;1.Introduction&lt;/h4&gt;
+&lt;p&gt;So easy, this is the basic usage with QFramer, you can enjoy with it.If you want to go deep into it, you should read code seriously  in a moment.&lt;/p&gt;</summary><category term="Qt"></category><category term="QFramer"></category></entry><entry><title>QSetuper introduction</title><link href="./qsetuper/Qt--QSetuper.html" rel="alternate"></link><updated>2014-09-28T11:04:00+08:00</updated><author><name>dragondjf</name></author><id>tag:,2014-09-28:./qsetuper/Qt--QSetuper.html</id><summary type="html">&lt;h4&gt;1.Introduction&lt;/h4&gt;
 &lt;p&gt;QSetuper is an tool  application like  nsis or inno setup,  but this is an c++ application based in Qt. With this tool, you can make your custom installer by yourself.&lt;/p&gt;
 &lt;h4&gt;2.Feature&lt;/h4&gt;
 &lt;ul&gt;
