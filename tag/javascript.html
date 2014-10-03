@@ -62,8 +62,8 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="../javascript/javascript--object define.html"><h1>javascript 对象定义模式</h1></a>
-2014-09-30 15:38:00
+            <a href="../node-webkit/javascript--node-webkit.html"><h1>Node webkit</h1></a>
+2014-10-03 15:38:00
 
 by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
  
@@ -72,51 +72,36 @@ by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
  
         </div>
         
-        <div><h4>1.构造函数原型模式</h4>
-<div class="highlight"><pre>    <span class="kd">function</span> <span class="nx">Book</span><span class="p">(</span><span class="nx">title</span><span class="p">,</span> <span class="nx">pages</span><span class="p">){</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">title</span> <span class="o">=</span> <span class="nx">title</span><span class="p">;</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">pages</span> <span class="o">=</span> <span class="nx">pages</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="nx">Book</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">what</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">title</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">pages</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="kd">var</span> <span class="nx">book1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Book</span><span class="p">(</span><span class="s2">&quot;javscript 高级编程&quot;</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
-    <span class="kd">var</span> <span class="nx">book2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Book</span><span class="p">(</span><span class="s2">&quot;Qt 高级编程&quot;</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
-
-    <span class="nx">book1</span><span class="p">.</span><span class="nx">what</span><span class="p">();</span>
-    <span class="nx">book2</span><span class="p">.</span><span class="nx">what</span><span class="p">();</span>
-</pre></div>
-
-
-<p><strong>这种模式是ECMAScript 定义类的标准模式，使用最为广泛。</strong></p>
-<h4>2. 动态原型模式</h4>
-<div class="highlight"><pre>    <span class="kd">function</span> <span class="nx">Book</span><span class="p">(</span><span class="nx">title</span><span class="p">,</span> <span class="nx">pages</span><span class="p">){</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">title</span> <span class="o">=</span> <span class="nx">title</span><span class="p">;</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">pages</span> <span class="o">=</span> <span class="nx">pages</span><span class="p">;</span>
-
-        <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">Book</span><span class="p">.</span><span class="nx">isLock</span> <span class="o">==</span> <span class="s2">&quot;undefined&quot;</span><span class="p">){</span>
-            <span class="nx">Book</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">what</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">title</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">pages</span><span class="p">);</span>
-            <span class="p">};</span>
-            <span class="nx">Book</span><span class="p">.</span><span class="nx">isLock</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-        <span class="p">}</span>
-
-    <span class="p">}</span>
-
-    <span class="kd">var</span> <span class="nx">book1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Book</span><span class="p">(</span><span class="s2">&quot;javscript 高级编程&quot;</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
-    <span class="kd">var</span> <span class="nx">book2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Book</span><span class="p">(</span><span class="s2">&quot;Qt 高级编程&quot;</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
-
-    <span class="nx">book1</span><span class="p">.</span><span class="nx">what</span><span class="p">();</span>
-    <span class="nx">book2</span><span class="p">.</span><span class="nx">what</span><span class="p">();</span>
-</pre></div>
-
-
-<p><strong>动态原型模式封装性更好，性能上与构造函数原型模式一样</strong></p></div>
+        <div><h4>1.node-webkit 是什么？</h4>
+<p>基于node.js和chromium的应用程序实时运行环境，可运行通过HTML(5)、CSS(3)、Javascript来编写的本地应用程序。nodejs和webkit的结合体，webkit提供DOM操作，nodejs提供本地化操作；且将二者的context完全整合，可在HTML代码中直接使用nodejs的API。</p>
+<h4>2. node-webkit的成功例子：</h4>
+<p><a href="https://fengche.co/">风车，一款跨平台移动客户端支持的团队协作工具</a>
+<img src="https://dn-pragmaticly.qbox.me/assets/home/app-snapshot-24075c346d47297fac2049f38e8785f0.png"></p>
+<h4>3. node-webkit 打包工具Web2Executable</h4>
+<p><a href="https://github.com/jyapayne/Web2Executable">Web2Executable</a>
+这是一款基于pyside的用于打包node-webkit的打包工具，支持选择不同版本的的node-webkit进行打包，自定义你的node-webkit的package.json设置，跨平台，简单方便实用。</p>
+<h1><a href="https://github.com/rogerwang/node-webkit">node-webkit</a></h1></div>
         <hr />
     </div>
 		
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../javascript/javascript--object define.html"><h2>javascript 对象定义模式</h2></a>
+        <div class= "well small"> 2014-09-30 15:38:00
+
+by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
+ 
+
+
+ </div>
+        <div class="summary"> <a class="btn btn-info xsmall" href="../javascript/javascript--object define.html">read more</a></div>
+    </div>	
+				
 
  
         
@@ -208,6 +193,7 @@ by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
                 
                 <li><a href="../category/c.html">c++(1)</a></li>
                 <li><a href="../category/javascript.html">javascript(4)</a></li>
+                <li><a href="../category/node-webkit.html">node-webkit(1)</a></li>
                 <li><a href="../category/pyqtpyside.html">PyQt/PySide(1)</a></li>
                 <li><a href="../category/python.html">Python(2)</a></li>
                 <li><a href="../category/qframer.html">QFramer(1)</a></li>
