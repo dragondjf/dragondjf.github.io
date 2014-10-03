@@ -62,8 +62,8 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="../qframer/Qt--QFramer.html"><h1>QFramer help</h1></a>
-2014-09-28 11:04:00
+            <a href="../qsetuper/Qt--QSetuper.html"><h1>QSetuper introduction</h1></a>
+2014-09-28 14:04:00
 
 by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
  
@@ -72,150 +72,31 @@ by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
  
         </div>
         
-        <div><h5>1.How to use QFramer in your project?</h5>
+        <div><h4>1.Introduction</h4>
+<p>QSetuper is an tool  application like  nsis or inno setup,  but this is an c++ application based in Qt. With this tool, you can make your custom installer by yourself.</p>
+<h4>2.Feature</h4>
 <ul>
-<li>
-<p><strong><code>New</code></strong> a Qt project in your Qt Creater IDE;   </p>
-</li>
-<li>
-<p><strong><code>Copy</code></strong> directory <strong>【QFramer】</strong> to your project folder</p>
-</li>
-<li>
-<p>add <code>include(./QFramer/QFramer.pri)</code> in your <strong>.pro</strong> file</p>
-<p>So you can use QFramer in your code like this:  </p>
-<div class="highlight"><pre><span class="c">#include &quot;QFramer/fcenterwindow.h&quot;</span>
-</pre></div>
-
-
-</li>
+<li>custom ppt show</li>
+<li>custom output directory</li>
+<li>custom progress bar</li>
+<li>open application when finished</li>
+<li>create desktop link</li>
+<li>....</li>
 </ul>
-<h5>2. How to use QFramer in your code?</h5>
+<h4>3.Build</h4>
+<p>It should build under Qt4.8.6 or Qt5.3.0 static release</p>
+<h4>4.Screenshot</h4>
+<p><img alt="6" src="../static/images/QSetuper.png" /></p>
+<h4>5 Download</h4>
 <ul>
-<li>
-<p>custom your mainwindow inherited by <code>FMainWindow</code>    </p>
-</li>
-<li>
-<p>define an <code>centerwindow</code> variable and <strong> <code>setCentralWidget(centerwindow)</code></strong>  </p>
-</li>
+<li><code>source:</code> <a href="https://github.com/dragondjf/QSetuper/archive/">https://github.com/dragondjf/QSetuper/archive/master.zip</a></li>
 </ul>
-<p><code>mainwindow.h</code></p>
-<div class="highlight"><pre>    <span class="err">#</span><span class="n">ifndef</span> <span class="n">MAINWINDOW_H</span>
-    <span class="err">#</span><span class="n">define</span> <span class="n">MAINWINDOW_H</span>
-
-    <span class="err">#</span><span class="n">include</span> <span class="s">&quot;QFramer/fmainwindow.h&quot;</span>
-    <span class="err">#</span><span class="n">include</span> <span class="s">&quot;centerwindow.h&quot;</span>
-
-    <span class="n">class</span> <span class="n">MainWindow</span> <span class="o">:</span> <span class="n">public</span> <span class="n">FMainWindow</span>
-    <span class="p">{</span>
-        <span class="n">Q_OBJECT</span>
-    <span class="nl">public:</span>
-        <span class="n">CenterWindow</span><span class="o">*</span> <span class="n">centerWindow</span><span class="p">;</span>
-    <span class="nl">public:</span>
-        <span class="n">explicit</span> <span class="nf">MainWindow</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">parent</span> <span class="o">=</span> <span class="mi">0</span><span class="p">);</span>
-        <span class="kt">void</span> <span class="nf">initUI</span><span class="p">();</span>
-    <span class="nl">signals:</span>
-
-    <span class="n">public</span> <span class="n">slots</span><span class="o">:</span>
-
-    <span class="p">};</span>
-</pre></div>
-
-
-<p><code>mainwindow.cpp</code></p>
-<div class="highlight"><pre>    <span class="err">#</span><span class="n">include</span> <span class="s">&quot;mainwindow.h&quot;</span>
-    <span class="err">#</span><span class="n">include</span> <span class="s">&quot;centerwindow.h&quot;</span>
-
-    <span class="n">MainWindow</span><span class="o">::</span><span class="n">MainWindow</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">parent</span><span class="p">)</span> <span class="o">:</span>
-        <span class="n">FMainWindow</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">initUI</span><span class="p">();</span>
-    <span class="p">}</span>
-
-
-    <span class="kt">void</span> <span class="n">MainWindow</span><span class="o">::</span><span class="n">initUI</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="n">centerWindow</span> <span class="o">=</span> <span class="n">new</span> <span class="n">CenterWindow</span><span class="p">;</span>
-        <span class="n">setCentralWidget</span><span class="p">(</span><span class="n">centerWindow</span><span class="p">);</span>
-    <span class="p">}</span>
-</pre></div>
-
-
-<ul>
-<li>
-<p>custom your centerwindow inherited by <code>FCenterWindow</code></p>
-<p>custom your widgets like  <code>uiElements</code> <code>mathPlot</code> <code>aboutPage</code> <code>qssBuilder</code></p>
-<p>use the api  <code>addWidget</code> to add your custom widget in centerwindow  </p>
-<div class="highlight"><pre><span class="err">`</span><span class="n">addWidget</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;Home&quot;</span><span class="p">),</span> <span class="n">tr</span><span class="p">(</span><span class="s">&quot;Home&quot;</span><span class="p">),</span> <span class="n">uiElements</span><span class="p">);</span><span class="err">`</span>
-<span class="err">`</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;Home&quot;</span><span class="p">)</span> <span class="o">--</span> <span class="n">The</span> <span class="n">content</span> <span class="n">show</span> <span class="n">in</span> <span class="n">navgationbar</span><span class="err">`</span>
-<span class="err">`</span><span class="s">&quot;Home&quot;</span> <span class="o">--</span> <span class="n">The</span> <span class="n">objectName</span> <span class="n">of</span> <span class="n">uiElements</span><span class="err">`</span>
-<span class="err">`</span><span class="n">uiElements</span> <span class="o">--</span> <span class="n">your</span> <span class="n">custom</span> <span class="n">widget</span><span class="err">`</span>
-</pre></div>
-
-
-</li>
-</ul>
-<p><code>centerwindow.h</code></p>
-<div class="highlight"><pre>    <span class="vi">#ifndef</span> <span class="nx">CENTERWINDOW_H</span>
-    <span class="vi">#define</span> <span class="nx">CENTERWINDOW_H</span>
-
-    <span class="vi">#include</span> <span class="s2">&quot;QFramer/fcenterwindow.h&quot;</span>
-    <span class="vi">#include</span> <span class="s2">&quot;functionpages/aboutpage.h&quot;</span>
-    <span class="vi">#include</span> <span class="s2">&quot;functionpages/mathplot.h&quot;</span>
-    <span class="vi">#include</span> <span class="s2">&quot;functionpages/uielement.h&quot;</span>
-    <span class="vi">#include</span> <span class="s2">&quot;functionpages/qssbuilder.h&quot;</span>
-    <span class="vi">#include</span> <span class="o">&lt;</span><span class="nx">QVBoxLayout</span><span class="o">&gt;</span>
-
-
-    <span class="nb">class</span> <span class="nx">CenterWindow</span> <span class="p">:</span> <span class="k">public</span> <span class="nf">FCenterWindow</span>
-    <span class="p">{</span>
-        <span class="nx">Q_OBJECT</span>
-
-    <span class="k">public</span><span class="p">:</span>
-        <span class="nx">UIElement</span><span class="o">*</span> <span class="nx">uiElements</span><span class="p">;</span>
-        <span class="nx">MathPlot</span><span class="o">*</span> <span class="nx">mathPlot</span><span class="p">;</span>
-        <span class="nx">AboutPage</span><span class="o">*</span> <span class="nx">aboutPage</span><span class="p">;</span>
-        <span class="nx">QssBuilder</span><span class="o">*</span> <span class="nx">qssBuilder</span><span class="p">;</span>
-
-    <span class="k">public</span><span class="p">:</span>
-        <span class="nx">explicit</span> <span class="nx">CenterWindow</span><span class="p">(</span><span class="nx">QWidget</span> <span class="o">*</span><span class="k">parent</span> <span class="o">=</span> <span class="mi">0</span><span class="p">);</span>
-        <span class="bp">void</span> <span class="nx">initUI</span><span class="p">();</span>
-    <span class="nx">signals</span><span class="p">:</span>
-
-    <span class="k">public</span> <span class="nf">slots</span><span class="p">:</span>
-    <span class="p">};</span>
-
-    <span class="vi">#endif</span> <span class="c1">// CENTERWINDOW_H</span>
-</pre></div>
-
-
-<p><code>centerwindow.cpp</code></p>
-<div class="highlight"><pre>    <span class="err">#</span><span class="n">include</span> <span class="s">&quot;centerwindow.h&quot;</span>
-
-
-    <span class="n">CenterWindow</span><span class="o">::</span><span class="n">CenterWindow</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">parent</span><span class="p">)</span> <span class="o">:</span>
-        <span class="n">FCenterWindow</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">initUI</span><span class="p">();</span>
-    <span class="p">}</span>
-
-    <span class="kt">void</span> <span class="n">CenterWindow</span><span class="o">::</span><span class="n">initUI</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="n">uiElements</span> <span class="o">=</span> <span class="n">new</span> <span class="n">UIElement</span><span class="p">;</span>
-        <span class="n">mathPlot</span> <span class="o">=</span> <span class="n">new</span> <span class="n">MathPlot</span><span class="p">;</span>
-        <span class="n">aboutPage</span> <span class="o">=</span> <span class="n">new</span> <span class="n">AboutPage</span><span class="p">;</span>
-        <span class="n">qssBuilder</span> <span class="o">=</span> <span class="n">new</span> <span class="n">QssBuilder</span><span class="p">;</span>
-
-        <span class="n">addWidget</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;Home&quot;</span><span class="p">),</span> <span class="s">&quot;Home&quot;</span><span class="p">,</span> <span class="n">uiElements</span><span class="p">);</span>
-        <span class="n">addWidget</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;MathPlot&quot;</span><span class="p">),</span><span class="s">&quot;MathPlot&quot;</span><span class="p">,</span> <span class="n">mathPlot</span><span class="p">);</span>
-        <span class="n">addWidget</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;QssBuilder&quot;</span><span class="p">),</span><span class="s">&quot;QssBuilder&quot;</span><span class="p">,</span> <span class="n">qssBuilder</span><span class="p">);</span>
-        <span class="n">addWidget</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;About&quot;</span><span class="p">),</span><span class="s">&quot;About&quot;</span><span class="p">,</span> <span class="n">aboutPage</span><span class="p">);</span>
-
-        <span class="n">setAlignment</span><span class="p">(</span><span class="n">TopCenter</span><span class="p">);</span>
-    <span class="p">}</span>
-</pre></div>
-
-
-<p>So easy, this is the basic usage with QFramer, you can enjoy with it.If you want to go deep into it, you should read code seriously  in a moment.</p></div>
+<h4>6.How</h4>
+<ol>
+<li>move you application to example directory</li>
+<li>python 7z-rcc.py</li>
+<li>open QSetup.pro with Qt Creater, <strong>you should work with Qt static release version</strong>, Just do it as you know.</li>
+</ol></div>
         <hr />
     </div>
 		
@@ -226,7 +107,7 @@ by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
  
 
     <div class='article'>
-        <a href="../qsetuper/Qt--QSetuper.html"><h2>QSetuper introduction</h2></a>
+        <a href="../qframer/Qt--QFramer.html"><h2>QFramer help</h2></a>
         <div class= "well small"> 2014-09-28 11:04:00
 
 by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
@@ -234,7 +115,7 @@ by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
 
 
  </div>
-        <div class="summary"> <a class="btn btn-info xsmall" href="../qsetuper/Qt--QSetuper.html">read more</a></div>
+        <div class="summary"> <a class="btn btn-info xsmall" href="../qframer/Qt--QFramer.html">read more</a></div>
     </div>	
 				
 
