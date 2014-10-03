@@ -370,7 +370,42 @@ hasOwnProperty()只能判断指定名称的属性或者对象 是否 为该实�
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;So easy, this is the basic usage with QFramer, you can enjoy with it.If you want to go deep into it, you should read code seriously  in a moment.&lt;/p&gt;</summary><category term="Qt"></category><category term="QFramer"></category></entry><entry><title>Qt--QThread之可重入和线程安全(Reentrancy and Thread-Safety)</title><link href="./qt/Qt--QThread.html" rel="alternate"></link><updated>2014-09-13T20:53:00+08:00</updated><author><name>dragondjf</name></author><id>tag:,2014-09-13:./qt/Qt--QThread.html</id><summary type="html">&lt;p&gt;1.概述
+&lt;p&gt;So easy, this is the basic usage with QFramer, you can enjoy with it.If you want to go deep into it, you should read code seriously  in a moment.&lt;/p&gt;</summary><category term="Qt"></category><category term="QFramer"></category></entry><entry><title>QFramer introduction</title><link href="./qframer/Qt-QFramer-introduction.html" rel="alternate"></link><updated>2014-09-28T10:04:00+08:00</updated><author><name>dragondjf</name></author><id>tag:,2014-09-28:./qframer/Qt-QFramer-introduction.html</id><summary type="html">&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://qt.qframer.com"&gt;Why QFramer?&lt;/a&gt;  &lt;/li&gt;
+&lt;li&gt;&lt;a href="http://dragondjf.github.io/qframer/Qt--QFramer.html"&gt;How to use QFramer?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;1.Introduction&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;It's a frame based on Qt5.3, you will be more efficient with it. As an Qter,Qt give us a nice coding experience.With  user interactive experience(UE) become more and more important in modern software, deveployers should consider business and UE.So, QFramer is born. QFramer's goal is to be a mature solution which you only need to be focus on your business but UE for all Qters.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4&gt;2. Support Qt version：&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;support&lt;/span&gt; &lt;span class="n"&gt;Qt4&lt;/span&gt;&lt;span class="mf"&gt;.8&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="mf"&gt;5.3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;It&lt;/span&gt; &lt;span class="n"&gt;works&lt;/span&gt; &lt;span class="n"&gt;well&lt;/span&gt; &lt;span class="n"&gt;with&lt;/span&gt; &lt;span class="n"&gt;Qt4&lt;/span&gt;&lt;span class="mf"&gt;.8.6&lt;/span&gt;&lt;span class="err"&gt;、&lt;/span&gt;&lt;span class="n"&gt;Qt5&lt;/span&gt;&lt;span class="mf"&gt;.3.0&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;Qt5&lt;/span&gt;&lt;span class="mf"&gt;.3.1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;3. Feature&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;custom titleBar&lt;/code&gt;: support logo, title setiings, skin, lock, maximumed, maximumed, close custom definition.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;custom navgationBar&lt;/code&gt;:  support add custom navagation tab.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;custom systemTray&lt;/code&gt;: support add custom SystemTray and add context menu to SystemTray&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;custom fly window&lt;/code&gt;: support add fly window on desktop and add context menu to fly window&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;custom leftside bar&lt;/code&gt;: support leftside navagtion for custom widget&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;custom about page&lt;/code&gt;: support custom define about page&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;custom skin&lt;/code&gt;: support custom ui skin by qss&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;......&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;4 Download&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;source:&lt;/code&gt; https://github.com/dragondjf/QCFramer/archive/develop.zip&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Realease&lt;/code&gt;: http://pan.baidu.com/s/1qWI2lXi&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;5: Snapshot&lt;/h4&gt;
+&lt;p&gt;&lt;img alt="1" src="static/images/QCframer.png" /&gt;&lt;/p&gt;
+&lt;h4&gt;6.Contact&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Email:&lt;/code&gt; ding465398889@163.com or dragondjf@gmail.com or 465398889@qq.com&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Github:&lt;/code&gt; https://github.com/dragondjf/QCFramer&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="Qt"></category><category term="QFramer"></category></entry><entry><title>Qt--QThread之可重入和线程安全(Reentrancy and Thread-Safety)</title><link href="./qt/Qt--QThread.html" rel="alternate"></link><updated>2014-09-13T20:53:00+08:00</updated><author><name>dragondjf</name></author><id>tag:,2014-09-13:./qt/Qt--QThread.html</id><summary type="html">&lt;p&gt;1.概述
     Reentrancy（可重入） and Thread-Safety（线程安全）这两个术语用于标识类和方法在多线程程序中如何使用。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;A thread-safe function can be called simultaneously from multiple threads, even when the invocations use shared data, because all references to the shared data are serialized.
