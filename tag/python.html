@@ -62,8 +62,8 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="../python/python epoll.html"><h1>python epoll 解读</h1></a>
-2014-09-13 20:27:00
+            <a href="../cloudsetuper/Cloud Setuper.html"><h1>Cloud Setuper</h1></a>
+2014-10-12 17:30:00
 
 by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
  
@@ -72,26 +72,34 @@ by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
  
         </div>
         
-        <div><h6>1. 水平触发</h6>
-<div class="highlight"><pre><span class="err">只要某个</span><span class="n">socket</span><span class="err">处于</span><span class="n">readable</span><span class="o">/</span><span class="n">writable</span><span class="err">状态，无论什么时候进行</span><span class="n">epoll_wait</span><span class="err">都会返回该</span><span class="n">socket</span><span class="err">；</span>
-    <span class="err">对于</span><span class="n">non</span><span class="o">-</span><span class="n">blocking</span><span class="err">的</span><span class="n">socket</span><span class="err">，正确的读写操作为</span><span class="o">:</span>
-    <span class="err">读：忽略掉</span><span class="n">errno</span> <span class="o">=</span> <span class="n">EAGAIN</span><span class="err">的错误，下次继续读</span>
-    <span class="err">写：忽略掉</span><span class="n">errno</span> <span class="o">=</span> <span class="n">EAGAIN</span><span class="err">的错误，下次继续写</span>
-</pre></div>
-
-
-<h6>2. 边缘触发</h6>
-<div class="highlight"><pre><span class="err">只有某个</span><span class="n">socket</span><span class="err">从</span><span class="n">unreadable</span><span class="err">变为</span><span class="n">readable</span><span class="err">或从</span><span class="n">unwritable</span><span class="err">变为</span><span class="n">writable</span><span class="err">时，</span><span class="n">epoll_wait</span><span class="err">才会返回该</span><span class="n">socket</span><span class="err">；</span>
-    <span class="err">所以，在</span><span class="n">epoll</span><span class="err">的</span><span class="n">ET</span><span class="err">模式下，正确的读写方式为</span><span class="o">:</span>
-    <span class="err">读：只要可读，就一直读，直到返回</span><span class="mi">0</span><span class="err">，或者</span> <span class="n">errno</span> <span class="o">=</span> <span class="n">EAGAIN</span>
-    <span class="err">写</span><span class="o">:</span><span class="err">只要可写，就一直写，直到数据发送完，或者</span> <span class="n">errno</span> <span class="o">=</span> <span class="n">EAGAIN</span>
-</pre></div>
-
-
-<p>详情参见：http://fatezero.org/archives/</p></div>
+        <div><h3>1.项目须知：</h3>
+<ul>
+<li>1.代码管理工具：github</li>
+<li>2.项目协作工具：风车</li>
+<li>3.项目技术需求：c++, python , javsscript, html, linux, git, web</li>
+<li>4.团队成员：杨晋斌 丁江锋 许会</li>
+</ul></div>
         <hr />
     </div>
 		
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../python/python epoll.html"><h2>python epoll 解读</h2></a>
+        <div class= "well small"> 2014-09-13 20:27:00
+
+by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
+ 
+
+
+ </div>
+        <div class="summary"> <a class="btn btn-info xsmall" href="../python/python epoll.html">read more</a></div>
+    </div>	
+				
 
  
         
@@ -164,6 +172,7 @@ by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
                 </li>
                 
                 <li><a href="../category/c.html">c++(1)</a></li>
+                <li><a href="../category/cloudsetuper.html">cloudsetuper(1)</a></li>
                 <li><a href="../category/javascript.html">javascript(4)</a></li>
                 <li><a href="../category/node-webkit.html">node-webkit(1)</a></li>
                 <li><a href="../category/pyqtpyside.html">PyQt/PySide(1)</a></li>

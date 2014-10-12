@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>保持一颗激情的心</title><link href="./" rel="alternate"></link><link href="./feeds%5Cdragondjf.atom.xml" rel="self"></link><id>./</id><updated>2014-10-03T15:38:00+08:00</updated><entry><title>Node webkit</title><link href="./node-webkit/javascript--node-webkit.html" rel="alternate"></link><updated>2014-10-03T15:38:00+08:00</updated><author><name>dragondjf</name></author><id>tag:,2014-10-03:./node-webkit/javascript--node-webkit.html</id><summary type="html">&lt;h4&gt;1.node-webkit 是什么？&lt;/h4&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>保持一颗激情的心</title><link href="./" rel="alternate"></link><link href="./feeds%5Cdragondjf.atom.xml" rel="self"></link><id>./</id><updated>2014-10-12T17:30:00+08:00</updated><entry><title>Cloud Setuper</title><link href="./cloudsetuper/Cloud%20Setuper.html" rel="alternate"></link><updated>2014-10-12T17:30:00+08:00</updated><author><name>dragondjf</name></author><id>tag:,2014-10-12:./cloudsetuper/Cloud Setuper.html</id><summary type="html">&lt;h3&gt;1.项目须知：&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;1.代码管理工具：github&lt;/li&gt;
+&lt;li&gt;2.项目协作工具：风车&lt;/li&gt;
+&lt;li&gt;3.项目技术需求：c++, python , javsscript, html, linux, git, web&lt;/li&gt;
+&lt;li&gt;4.团队成员：杨晋斌 丁江锋 许会&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="Cloud Setuper"></category><category term="c++"></category><category term="python"></category><category term="javascript"></category></entry><entry><title>Node webkit</title><link href="./node-webkit/javascript--node-webkit.html" rel="alternate"></link><updated>2014-10-03T15:38:00+08:00</updated><author><name>dragondjf</name></author><id>tag:,2014-10-03:./node-webkit/javascript--node-webkit.html</id><summary type="html">&lt;h4&gt;1.node-webkit 是什么？&lt;/h4&gt;
 &lt;p&gt;基于node.js和chromium的应用程序实时运行环境，可运行通过HTML(5)、CSS(3)、Javascript来编写的本地应用程序。nodejs和webkit的结合体，webkit提供DOM操作，nodejs提供本地化操作；且将二者的context完全整合，可在HTML代码中直接使用nodejs的API。&lt;/p&gt;
 &lt;h4&gt;2. node-webkit的成功例子：&lt;/h4&gt;
 &lt;p&gt;&lt;a href="https://fengche.co/"&gt;风车，一款跨平台移动客户端支持的团队协作工具&lt;/a&gt;
