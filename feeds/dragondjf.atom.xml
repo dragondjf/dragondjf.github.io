@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>保持一颗激情的心</title><link href="./" rel="alternate"></link><link href="./feeds%5Cdragondjf.atom.xml" rel="self"></link><id>./</id><updated>2014-10-12T17:30:00+08:00</updated><entry><title>Cloud Setuper</title><link href="./cloudsetuper/Cloud%20Setuper.html" rel="alternate"></link><updated>2014-10-12T17:30:00+08:00</updated><author><name>dragondjf</name></author><id>tag:,2014-10-12:./cloudsetuper/Cloud Setuper.html</id><summary type="html">&lt;h3&gt;1.项目须知：&lt;/h3&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>保持一颗激情的心</title><link href="./" rel="alternate"></link><link href="./feeds%5Cdragondjf.atom.xml" rel="self"></link><id>./</id><updated>2014-10-12T21:32:00+08:00</updated><entry><title>国人应该学习的aauto</title><link href="./aauto/aauto.html" rel="alternate"></link><updated>2014-10-12T21:32:00+08:00</updated><author><name>dragondjf</name></author><id>tag:,2014-10-12:./aauto/aauto.html</id><summary type="html">&lt;h4&gt;1.aauto快手简介&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;快手（&lt;/span&gt; &lt;span class="n"&gt;AAuto&lt;/span&gt;&lt;span class="err"&gt;开发环境&lt;/span&gt; &lt;span class="err"&gt;）专用于桌面软件快速开发，下载压缩包仅&lt;/span&gt; &lt;span class="mf"&gt;6.&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="n"&gt;MB&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="err"&gt;绿色软件解压即用&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="err"&gt;开发本软件的主要目的为作者自用自娱自乐、当然也欢迎大家自由自愿免费使用，&lt;/span&gt; &lt;span class="err"&gt;无论个人或企业都可以免费使用本软件，使用&lt;/span&gt;&lt;span class="n"&gt;AAuto&lt;/span&gt;&lt;span class="err"&gt;制作的软件产品不需要声明使用&lt;/span&gt;&lt;span class="n"&gt;AAuto&lt;/span&gt;&lt;span class="err"&gt;开发，免费使用无任何附加条件。&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;这是引自快手官网上的一段介绍，的确，稍微看一下快手，懂行的人应该明白这个玩意能做什么，我相信在桌面小工具或者是命令行小工具上快手是把好手，值得学习一下。&lt;/p&gt;
+&lt;h4&gt;2.快手论坛&lt;/h4&gt;
+&lt;p&gt;【&lt;a href="http://bbs.aau.cn/"&gt;aauto地址&lt;/a&gt;】&lt;/p&gt;</summary><category term="脚本，快速开发"></category></entry><entry><title>Cloud Setuper</title><link href="./cloudsetuper/Cloud%20Setuper.html" rel="alternate"></link><updated>2014-10-12T17:30:00+08:00</updated><author><name>dragondjf</name></author><id>tag:,2014-10-12:./cloudsetuper/Cloud Setuper.html</id><summary type="html">&lt;h3&gt;1.项目须知：&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;1.代码管理工具：github&lt;/li&gt;
 &lt;li&gt;2.项目协作工具：风车&lt;/li&gt;
