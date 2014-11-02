@@ -1,18 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>保持一颗激情的心</title><link>./</link><description></description><atom:link href="./feeds%5Cdragondjf.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 12 Oct 2014 21:32:00 +0800</lastBuildDate><item><title>国人应该学习的aauto</title><link>./aauto/aauto.html</link><description>&lt;h4&gt;1.aauto快手简介&lt;/h4&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;快手（&lt;/span&gt; &lt;span class="n"&gt;AAuto&lt;/span&gt;&lt;span class="err"&gt;开发环境&lt;/span&gt; &lt;span class="err"&gt;）专用于桌面软件快速开发，下载压缩包仅&lt;/span&gt; &lt;span class="mf"&gt;6.&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="n"&gt;MB&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="err"&gt;绿色软件解压即用&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="err"&gt;开发本软件的主要目的为作者自用自娱自乐、当然也欢迎大家自由自愿免费使用，&lt;/span&gt; &lt;span class="err"&gt;无论个人或企业都可以免费使用本软件，使用&lt;/span&gt;&lt;span class="n"&gt;AAuto&lt;/span&gt;&lt;span class="err"&gt;制作的软件产品不需要声明使用&lt;/span&gt;&lt;span class="n"&gt;AAuto&lt;/span&gt;&lt;span class="err"&gt;开发，免费使用无任何附加条件。&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;这是引自快手官网上的一段介绍，的确，稍微看一下快手，懂行的人应该明白这个玩意能做什么，我相信在桌面小工具或者是命令行小工具上快手是把好手，值得学习一下。&lt;/p&gt;
-&lt;h4&gt;2.快手论坛&lt;/h4&gt;
-&lt;p&gt;【&lt;a href="http://bbs.aau.cn/"&gt;aauto地址&lt;/a&gt;】&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">dragondjf</dc:creator><pubDate>Sun, 12 Oct 2014 21:32:00 +0800</pubDate><guid>tag:,2014-10-12:./aauto/aauto.html</guid><category>脚本，快速开发</category></item><item><title>Cloud Setuper</title><link>./cloudsetuper/Cloud%20Setuper.html</link><description>&lt;h3&gt;1.项目须知：&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;1.代码管理工具：github&lt;/li&gt;
-&lt;li&gt;2.项目协作工具：风车&lt;/li&gt;
-&lt;li&gt;3.项目技术需求：c++, python , javsscript, html, linux, git, web&lt;/li&gt;
-&lt;li&gt;4.团队成员：杨晋斌 丁江锋 许会&lt;/li&gt;
-&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">dragondjf</dc:creator><pubDate>Sun, 12 Oct 2014 17:30:00 +0800</pubDate><guid>tag:,2014-10-12:./cloudsetuper/Cloud Setuper.html</guid><category>Cloud Setuper</category><category>c++</category><category>python</category><category>javascript</category></item><item><title>linux 备忘</title><link>./linux/linux.html</link><description>&lt;h4&gt;1. mongodb安装及自启动&lt;/h4&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>保持一颗激情的心</title><link>./</link><description></description><atom:link href="./feeds%5Cdragondjf.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 12 Nov 2014 17:30:00 +0800</lastBuildDate><item><title>linux 备忘</title><link>./linux/linux.html</link><description>&lt;h4&gt;1. mongodb安装及自启动&lt;/h4&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;下载&lt;/span&gt;&lt;span class="n"&gt;mongodb&lt;/span&gt;
 &lt;span class="n"&gt;curl&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//fastdl.mongodb.org/linux/mongodb-linux-i686-2.6.5.tgz?_ga=1.127915085.1772090675.1413895499 &amp;gt; mongodb.tgz&lt;/span&gt;
 &lt;span class="n"&gt;tar&lt;/span&gt; &lt;span class="n"&gt;xzf&lt;/span&gt; &lt;span class="n"&gt;mongodb&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tgz&lt;/span&gt;
@@ -31,12 +18,11 @@
 
 &lt;h4&gt;2. 设置sublime text在终端启动&lt;/h4&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;ln&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;opt&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sublime_text&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sublime_text&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sublime&lt;/span&gt;
-
-&lt;span class="err"&gt;在&lt;/span&gt;&lt;span class="n"&gt;sublime&lt;/span&gt; &lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="err"&gt;中安装&lt;/span&gt;&lt;span class="n"&gt;terminal&lt;/span&gt;&lt;span class="err"&gt;插件&lt;/span&gt;
-&lt;span class="err"&gt;然后在&lt;/span&gt;&lt;span class="n"&gt;Settings&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Default&lt;/span&gt;&lt;span class="err"&gt;中设置&lt;/span&gt;&lt;span class="n"&gt;terminal&lt;/span&gt;&lt;span class="err"&gt;字段，填写你所使用终端的路径即可&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
+&lt;p&gt;在sublime text中安装terminal插件
+然后在Settings-Default中设置terminal字段，填写你所使用终端的路径即可&lt;/p&gt;
 &lt;h5&gt;3. 为sublime text 创建桌面快捷方式&lt;/h5&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;sublime&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;share&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;applications&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sublime&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;desktop&lt;/span&gt;
 
@@ -69,7 +55,20 @@
 
 
 &lt;p&gt;替换文件中所有gedit.desktop为sublime.desktop，这样在打开文本文档的时候,直接双击就可以使用sublime打开。&lt;/p&gt;
-&lt;p&gt;如果你不愿意所有的文本文件都用它打开，就不要修改关联列表，对相应的文本文件（如cpp, py) 点击右键后选择打开方式，用sublime text打开即可～&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">dragondjf</dc:creator><pubDate>Sun, 12 Oct 2014 17:30:00 +0800</pubDate><guid>tag:,2014-10-12:./linux/linux.html</guid><category>linux</category><category>mongodb</category></item><item><title>Node webkit</title><link>./node-webkit/javascript--node-webkit.html</link><description>&lt;h4&gt;1.node-webkit 是什么？&lt;/h4&gt;
+&lt;p&gt;如果你不愿意所有的文本文件都用它打开，就不要修改关联列表，对相应的文本文件（如cpp, py) 点击右键后选择打开方式，用sublime text打开即可～&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">dragondjf</dc:creator><pubDate>Wed, 12 Nov 2014 17:30:00 +0800</pubDate><guid>tag:,2014-11-12:./linux/linux.html</guid><category>linux</category><category>mongodb</category></item><item><title>国人应该学习的aauto</title><link>./aauto/aauto.html</link><description>&lt;h4&gt;1.aauto快手简介&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;快手（&lt;/span&gt; &lt;span class="n"&gt;AAuto&lt;/span&gt;&lt;span class="err"&gt;开发环境&lt;/span&gt; &lt;span class="err"&gt;）专用于桌面软件快速开发，下载压缩包仅&lt;/span&gt; &lt;span class="mf"&gt;6.&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="n"&gt;MB&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="err"&gt;绿色软件解压即用&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="err"&gt;开发本软件的主要目的为作者自用自娱自乐、当然也欢迎大家自由自愿免费使用，&lt;/span&gt; &lt;span class="err"&gt;无论个人或企业都可以免费使用本软件，使用&lt;/span&gt;&lt;span class="n"&gt;AAuto&lt;/span&gt;&lt;span class="err"&gt;制作的软件产品不需要声明使用&lt;/span&gt;&lt;span class="n"&gt;AAuto&lt;/span&gt;&lt;span class="err"&gt;开发，免费使用无任何附加条件。&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;这是引自快手官网上的一段介绍，的确，稍微看一下快手，懂行的人应该明白这个玩意能做什么，我相信在桌面小工具或者是命令行小工具上快手是把好手，值得学习一下。&lt;/p&gt;
+&lt;h4&gt;2.快手论坛&lt;/h4&gt;
+&lt;p&gt;【&lt;a href="http://bbs.aau.cn/"&gt;aauto地址&lt;/a&gt;】&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">dragondjf</dc:creator><pubDate>Sun, 12 Oct 2014 21:32:00 +0800</pubDate><guid>tag:,2014-10-12:./aauto/aauto.html</guid><category>脚本，快速开发</category></item><item><title>Cloud Setuper</title><link>./cloudsetuper/Cloud%20Setuper.html</link><description>&lt;h3&gt;1.项目须知：&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;1.代码管理工具：github&lt;/li&gt;
+&lt;li&gt;2.项目协作工具：风车&lt;/li&gt;
+&lt;li&gt;3.项目技术需求：c++, python , javsscript, html, linux, git, web&lt;/li&gt;
+&lt;li&gt;4.团队成员：杨晋斌 丁江锋 许会&lt;/li&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">dragondjf</dc:creator><pubDate>Sun, 12 Oct 2014 17:30:00 +0800</pubDate><guid>tag:,2014-10-12:./cloudsetuper/Cloud Setuper.html</guid><category>Cloud Setuper</category><category>c++</category><category>python</category><category>javascript</category></item><item><title>Node webkit</title><link>./node-webkit/javascript--node-webkit.html</link><description>&lt;h4&gt;1.node-webkit 是什么？&lt;/h4&gt;
 &lt;p&gt;基于node.js和chromium的应用程序实时运行环境，可运行通过HTML(5)、CSS(3)、Javascript来编写的本地应用程序。nodejs和webkit的结合体，webkit提供DOM操作，nodejs提供本地化操作；且将二者的context完全整合，可在HTML代码中直接使用nodejs的API。&lt;/p&gt;
 &lt;h4&gt;2. node-webkit的成功例子：&lt;/h4&gt;
 &lt;p&gt;&lt;a href="https://fengche.co/"&gt;风车，一款跨平台移动客户端支持的团队协作工具&lt;/a&gt;

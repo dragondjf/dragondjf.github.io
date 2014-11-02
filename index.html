@@ -62,8 +62,8 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="./aauto/aauto.html"><h1>国人应该学习的aauto</h1></a>
-2014-10-12 21:32:00
+            <a href="./linux/linux.html"><h1>linux 备忘</h1></a>
+2014-11-12 17:30:00
 
 by <a class="url fn" href="./author/dragondjf.html">dragondjf</a>
  
@@ -72,17 +72,84 @@ by <a class="url fn" href="./author/dragondjf.html">dragondjf</a>
  
         </div>
         
-        <div><h4>1.aauto快手简介</h4>
-<div class="highlight"><pre><span class="err">快手（</span> <span class="n">AAuto</span><span class="err">开发环境</span> <span class="err">）专用于桌面软件快速开发，下载压缩包仅</span> <span class="mf">6.</span><span class="n">x</span> <span class="n">MB</span><span class="p">,</span> <span class="err">绿色软件解压即用</span> <span class="o">-</span> <span class="err">开发本软件的主要目的为作者自用自娱自乐、当然也欢迎大家自由自愿免费使用，</span> <span class="err">无论个人或企业都可以免费使用本软件，使用</span><span class="n">AAuto</span><span class="err">制作的软件产品不需要声明使用</span><span class="n">AAuto</span><span class="err">开发，免费使用无任何附加条件。</span>
+        <div><h4>1. mongodb安装及自启动</h4>
+<div class="highlight"><pre><span class="err">下载</span><span class="n">mongodb</span>
+<span class="n">curl</span> <span class="n">https</span><span class="o">:</span><span class="c1">//fastdl.mongodb.org/linux/mongodb-linux-i686-2.6.5.tgz?_ga=1.127915085.1772090675.1413895499 &gt; mongodb.tgz</span>
+<span class="n">tar</span> <span class="n">xzf</span> <span class="n">mongodb</span><span class="p">.</span><span class="n">tgz</span>
+<span class="n">mv</span> <span class="n">mongodb</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">i686</span><span class="o">-</span><span class="mf">2.6.5</span> <span class="o">/</span><span class="n">use</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">mongodb</span>
+
+<span class="err">创建数据库文件存放目录和</span><span class="n">log</span>
+<span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">mongodb</span><span class="o">/</span><span class="n">mongodb_data</span>
+<span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">mongodb</span><span class="o">/</span><span class="n">mongodb_log</span>
+<span class="n">sudo</span> <span class="n">sublime</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">mongodb</span><span class="o">/</span><span class="n">mongodb_log</span><span class="o">/</span><span class="n">work</span><span class="p">.</span><span class="n">log</span>
+
+<span class="n">sublime</span><span class="o">/</span><span class="n">gedit</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">rc</span><span class="p">.</span><span class="n">loacl</span>
+<span class="err">在末尾增加命令，这样即可实现开机自启动</span>
+<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">mongodb</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">mongod</span> <span class="o">-</span><span class="n">dbpath</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">mongodb</span><span class="o">/</span><span class="n">mongodb_data</span> <span class="o">--</span><span class="n">logpath</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">mongodb</span><span class="o">/</span><span class="n">mongodb_log</span><span class="o">/</span><span class="n">work</span><span class="p">.</span><span class="n">log</span> <span class="o">--</span><span class="n">logappend</span> <span class="o">--</span><span class="n">journal</span>
 </pre></div>
 
 
-<p>这是引自快手官网上的一段介绍，的确，稍微看一下快手，懂行的人应该明白这个玩意能做什么，我相信在桌面小工具或者是命令行小工具上快手是把好手，值得学习一下。</p>
-<h4>2.快手论坛</h4>
-<p>【<a href="http://bbs.aau.cn/">aauto地址</a>】</p></div>
+<h4>2. 设置sublime text在终端启动</h4>
+<div class="highlight"><pre><span class="n">sudo</span> <span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">sublime_text</span><span class="o">/</span><span class="n">sublime_text</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">sublime</span>
+</pre></div>
+
+
+<p>在sublime text中安装terminal插件
+然后在Settings-Default中设置terminal字段，填写你所使用终端的路径即可</p>
+<h5>3. 为sublime text 创建桌面快捷方式</h5>
+<div class="highlight"><pre><span class="n">sudo</span> <span class="n">sublime</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">applications</span><span class="o">/</span><span class="n">sublime</span><span class="p">.</span><span class="n">desktop</span>
+
+<span class="p">[</span><span class="n">Desktop</span> <span class="n">Entry</span><span class="p">]</span>
+<span class="n">Version</span><span class="o">=</span><span class="mf">1.0</span>
+<span class="n">Type</span><span class="o">=</span><span class="n">Application</span>
+<span class="n">Name</span><span class="o">=</span><span class="n">Sublime</span> <span class="n">Text</span>
+<span class="n">GenericName</span><span class="o">=</span><span class="n">Text</span> <span class="n">Editor</span>
+<span class="n">Comment</span><span class="o">=</span><span class="n">Sophisticated</span> <span class="n">text</span> <span class="n">editor</span> <span class="k">for</span> <span class="n">code</span><span class="p">,</span> <span class="n">markup</span> <span class="n">and</span> <span class="n">prose</span>
+<span class="n">Exec</span><span class="o">=/</span><span class="n">opt</span><span class="o">/</span><span class="n">sublime_text</span><span class="o">/</span><span class="n">sublime_text</span> <span class="o">%</span><span class="n">F</span>
+<span class="n">Terminal</span><span class="o">=</span><span class="nb">false</span>
+<span class="n">MimeType</span><span class="o">=</span><span class="n">text</span><span class="o">/</span><span class="n">plain</span><span class="p">;</span>
+<span class="n">Icon</span><span class="o">=</span><span class="n">sublime</span><span class="o">-</span><span class="n">text</span>
+<span class="n">Categories</span><span class="o">=</span><span class="n">TextEditor</span><span class="p">;</span><span class="n">Development</span><span class="p">;</span>
+<span class="n">StartupNotify</span><span class="o">=</span><span class="nb">true</span>
+<span class="n">Actions</span><span class="o">=</span><span class="n">Window</span><span class="p">;</span><span class="n">Document</span><span class="p">;</span>
+<span class="p">[</span><span class="n">Desktop</span> <span class="n">Action</span> <span class="n">Window</span><span class="p">]</span>
+<span class="n">Name</span><span class="o">=</span><span class="n">New</span> <span class="n">Window</span>
+<span class="n">Exec</span><span class="o">=/</span><span class="n">opt</span><span class="o">/</span><span class="n">sublime_text</span><span class="o">/</span><span class="n">sublime_text</span> <span class="o">-</span><span class="n">n</span>
+<span class="n">OnlyShowIn</span><span class="o">=</span><span class="n">Unity</span><span class="p">;</span>
+<span class="p">[</span><span class="n">Desktop</span> <span class="n">Action</span> <span class="n">Document</span><span class="p">]</span>
+<span class="n">Name</span><span class="o">=</span><span class="n">New</span> <span class="n">File</span>
+<span class="n">Exec</span><span class="o">=/</span><span class="n">opt</span><span class="o">/</span><span class="n">sublime_text</span><span class="o">/</span><span class="n">sublime_text</span> <span class="o">--</span><span class="n">command</span> <span class="n">new_file</span>
+<span class="n">OnlyShowIn</span><span class="o">=</span><span class="n">Unity</span><span class="p">;</span>
+
+<span class="err">如果希望里面</span><span class="n">sublime</span> <span class="err">替换默认的</span><span class="n">gedit</span><span class="err">作为编辑器</span>
+
+<span class="n">sudo</span> <span class="n">sublime</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">applications</span><span class="o">/</span><span class="n">defaults</span><span class="p">.</span><span class="n">list</span>
+</pre></div>
+
+
+<p>替换文件中所有gedit.desktop为sublime.desktop，这样在打开文本文档的时候,直接双击就可以使用sublime打开。</p>
+<p>如果你不愿意所有的文本文件都用它打开，就不要修改关联列表，对相应的文本文件（如cpp, py) 点击右键后选择打开方式，用sublime text打开即可～</p></div>
         <hr />
     </div>
 		
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="./aauto/aauto.html"><h2>国人应该学习的aauto</h2></a>
+        <div class= "well small"> 2014-10-12 21:32:00
+
+by <a class="url fn" href="./author/dragondjf.html">dragondjf</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>快手( AAuto Quicker ) 简介</p> <a class="btn btn-info xsmall" href="./aauto/aauto.html">read more</a></div>
+    </div>	
+				
 
  
         
@@ -99,24 +166,6 @@ by <a class="url fn" href="./author/dragondjf.html">dragondjf</a>
 
  </div>
         <div class="summary"><p>做好cloud setuper</p> <a class="btn btn-info xsmall" href="./cloudsetuper/Cloud Setuper.html">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="./linux/linux.html"><h2>linux 备忘</h2></a>
-        <div class= "well small"> 2014-10-12 17:30:00
-
-by <a class="url fn" href="./author/dragondjf.html">dragondjf</a>
- 
-
-
- </div>
-        <div class="summary"> <a class="btn btn-info xsmall" href="./linux/linux.html">read more</a></div>
     </div>	
 				
 
