@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>./index.html</loc>
-<lastmod>2014-10-17T14:50:01-00:00</lastmod>
+<lastmod>2014-11-02T16:06:22-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>./archives.html</loc>
-<lastmod>2014-10-17T14:50:01-00:00</lastmod>
+<lastmod>2014-11-02T16:06:22-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>./tags.html</loc>
-<lastmod>2014-10-17T14:50:01-00:00</lastmod>
+<lastmod>2014-11-02T16:06:22-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>./categories.html</loc>
-<lastmod>2014-10-17T14:50:01-00:00</lastmod>
+<lastmod>2014-11-02T16:06:22-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -47,6 +47,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>./cloudsetuper/Cloud Setuper.html</loc>
+<lastmod>2014-10-12T17:30:00-00:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+
+<url>
+<loc>./linux/linux.html</loc>
 <lastmod>2014-10-12T17:30:00-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
@@ -179,6 +186,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>./category/linux.html</loc>
+<lastmod>2014-10-12T17:30:00:%s</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>./category/node-webkit.html</loc>
 <lastmod>2014-10-03T15:38:00:%s</lastmod>
 <changefreq>daily</changefreq>
@@ -249,6 +263,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>./tag/linux.html</loc>
+<lastmod>2014-10-12T17:30:00:%s</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>./tag/ji-ben-fang-fa.html</loc>
 <lastmod>2014-09-30T14:38:00:%s</lastmod>
 <changefreq>daily</changefreq>
@@ -286,6 +307,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>./tag/tornado.html</loc>
 <lastmod>2014-08-31T16:20:00:%s</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>./tag/mongodb.html</loc>
+<lastmod>2014-10-12T17:30:00:%s</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

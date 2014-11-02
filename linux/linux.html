@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+    <meta charset="utf-8">
+    <title>保持一颗激情的心</title>
+    <meta name="description" content="">
+    <meta name="author" content="dragondjf">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="../theme/html5.js"></script>
+    <![endif]-->
+    <link rel="shortcut icon" href="../static/images/favicon.png">
+    <!-- Le styles -->
+    <link href="../theme/bootstrap.min.css" rel="stylesheet">
+    <link href="../theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="../theme/local.css" rel="stylesheet">
+    <!-- <link href="../theme/pygments.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/styles/default.min.css">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/highlight.min.js"></script>
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="navbar-inner">
+    <div class="container">
+
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
+
+        <a class="brand" href="..">保持一颗激情的心</a>
+
+        <div class="nav-collapse">
+        <ul class="nav">
+            <li><a href="http://qt.qframer.com">QFramer</a></li>
+            <li><a href="https://github.com/dragondjf/QMarkdowner">QMarkdowner</a></li>
+            <li><a href="https://github.com/dragondjf/QSetuper">QSetuper</a></li>
+            
+            <li><a href="../about.html">About</a></li>
+        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
+
+<div class="container" id="CenterContainer">
+    <div class="content">
+    <div class="row">
+
+        <div class="span9">
+    <div class='article'>
+        <div class="content-title">
+            <h1>linux 备忘</h1>
+2014-10-12 17:30:00
+
+by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
+ 
+
+
+        </div>
+	
+        <div><h4>1. mongodb安装及自启动</h4>
+<div class="highlight"><pre><span class="err">下载</span><span class="n">mongodb</span>
+<span class="n">curl</span> <span class="n">https</span><span class="o">:</span><span class="c1">//fastdl.mongodb.org/linux/mongodb-linux-i686-2.6.5.tgz?_ga=1.127915085.1772090675.1413895499 &gt; mongodb.tgz</span>
+<span class="n">tar</span> <span class="n">xzf</span> <span class="n">mongodb</span><span class="p">.</span><span class="n">tgz</span>
+<span class="n">mv</span> <span class="n">mongodb</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">i686</span><span class="o">-</span><span class="mf">2.6.5</span> <span class="o">/</span><span class="n">use</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">mongodb</span>
+
+<span class="err">创建数据库文件存放目录和</span><span class="n">log</span>
+<span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">mongodb</span><span class="o">/</span><span class="n">mongodb_data</span>
+<span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">mongodb</span><span class="o">/</span><span class="n">mongodb_log</span>
+<span class="n">sudo</span> <span class="n">sublime</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">mongodb</span><span class="o">/</span><span class="n">mongodb_log</span><span class="o">/</span><span class="n">work</span><span class="p">.</span><span class="n">log</span>
+
+<span class="n">sublime</span><span class="o">/</span><span class="n">gedit</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">rc</span><span class="p">.</span><span class="n">loacl</span>
+<span class="err">在末尾增加命令，这样即可实现开机自启动</span>
+<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">mongodb</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">mongod</span> <span class="o">-</span><span class="n">dbpath</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">mongodb</span><span class="o">/</span><span class="n">mongodb_data</span> <span class="o">--</span><span class="n">logpath</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">mongodb</span><span class="o">/</span><span class="n">mongodb_log</span><span class="o">/</span><span class="n">work</span><span class="p">.</span><span class="n">log</span> <span class="o">--</span><span class="n">logappend</span> <span class="o">--</span><span class="n">journal</span>
+</pre></div>
+
+
+<h4>2. 设置sublime text在终端启动</h4>
+<div class="highlight"><pre><span class="n">sudo</span> <span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">sublime_text</span><span class="o">/</span><span class="n">sublime_text</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">sublime</span>
+
+<span class="err">在</span><span class="n">sublime</span> <span class="n">text</span><span class="err">中安装</span><span class="n">terminal</span><span class="err">插件</span>
+<span class="err">然后在</span><span class="n">Settings</span><span class="o">-</span><span class="n">Default</span><span class="err">中设置</span><span class="n">terminal</span><span class="err">字段，填写你所使用终端的路径即可</span>
+</pre></div>
+
+
+<h5>3. 为sublime text 创建桌面快捷方式</h5>
+<div class="highlight"><pre><span class="n">sudo</span> <span class="n">sublime</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">applications</span><span class="o">/</span><span class="n">sublime</span><span class="p">.</span><span class="n">desktop</span>
+
+<span class="p">[</span><span class="n">Desktop</span> <span class="n">Entry</span><span class="p">]</span>
+<span class="n">Version</span><span class="o">=</span><span class="mf">1.0</span>
+<span class="n">Type</span><span class="o">=</span><span class="n">Application</span>
+<span class="n">Name</span><span class="o">=</span><span class="n">Sublime</span> <span class="n">Text</span>
+<span class="n">GenericName</span><span class="o">=</span><span class="n">Text</span> <span class="n">Editor</span>
+<span class="n">Comment</span><span class="o">=</span><span class="n">Sophisticated</span> <span class="n">text</span> <span class="n">editor</span> <span class="k">for</span> <span class="n">code</span><span class="p">,</span> <span class="n">markup</span> <span class="n">and</span> <span class="n">prose</span>
+<span class="n">Exec</span><span class="o">=/</span><span class="n">opt</span><span class="o">/</span><span class="n">sublime_text</span><span class="o">/</span><span class="n">sublime_text</span> <span class="o">%</span><span class="n">F</span>
+<span class="n">Terminal</span><span class="o">=</span><span class="nb">false</span>
+<span class="n">MimeType</span><span class="o">=</span><span class="n">text</span><span class="o">/</span><span class="n">plain</span><span class="p">;</span>
+<span class="n">Icon</span><span class="o">=</span><span class="n">sublime</span><span class="o">-</span><span class="n">text</span>
+<span class="n">Categories</span><span class="o">=</span><span class="n">TextEditor</span><span class="p">;</span><span class="n">Development</span><span class="p">;</span>
+<span class="n">StartupNotify</span><span class="o">=</span><span class="nb">true</span>
+<span class="n">Actions</span><span class="o">=</span><span class="n">Window</span><span class="p">;</span><span class="n">Document</span><span class="p">;</span>
+<span class="p">[</span><span class="n">Desktop</span> <span class="n">Action</span> <span class="n">Window</span><span class="p">]</span>
+<span class="n">Name</span><span class="o">=</span><span class="n">New</span> <span class="n">Window</span>
+<span class="n">Exec</span><span class="o">=/</span><span class="n">opt</span><span class="o">/</span><span class="n">sublime_text</span><span class="o">/</span><span class="n">sublime_text</span> <span class="o">-</span><span class="n">n</span>
+<span class="n">OnlyShowIn</span><span class="o">=</span><span class="n">Unity</span><span class="p">;</span>
+<span class="p">[</span><span class="n">Desktop</span> <span class="n">Action</span> <span class="n">Document</span><span class="p">]</span>
+<span class="n">Name</span><span class="o">=</span><span class="n">New</span> <span class="n">File</span>
+<span class="n">Exec</span><span class="o">=/</span><span class="n">opt</span><span class="o">/</span><span class="n">sublime_text</span><span class="o">/</span><span class="n">sublime_text</span> <span class="o">--</span><span class="n">command</span> <span class="n">new_file</span>
+<span class="n">OnlyShowIn</span><span class="o">=</span><span class="n">Unity</span><span class="p">;</span>
+
+<span class="err">如果希望里面</span><span class="n">sublime</span> <span class="err">替换默认的</span><span class="n">gedit</span><span class="err">作为编辑器</span>
+
+<span class="n">sudo</span> <span class="n">sublime</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">applications</span><span class="o">/</span><span class="n">defaults</span><span class="p">.</span><span class="n">list</span>
+</pre></div>
+
+
+<p>替换文件中所有gedit.desktop为sublime.desktop，这样在打开文本文档的时候,直接双击就可以使用sublime打开。</p>
+<p>如果你不愿意所有的文本文件都用它打开，就不要修改关联列表，对相应的文本文件（如cpp, py) 点击右键后选择打开方式，用sublime text打开即可～</p></div>
+	
+        <hr>
+
+        <h2>Comments</h2>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'dragondjf'; 
+    var disqus_title = 'linux 备忘';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="../archives.html">Archives</a>
+                <li><a href="../tags.html">Tags</a>
+                <li><a href="./" rel="alternate">Atom feed</a></li>
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                <li><a href="../category/aauto.html">aauto(1)</a></li>
+                <li><a href="../category/c.html">c++(1)</a></li>
+                <li><a href="../category/cloudsetuper.html">cloudsetuper(1)</a></li>
+                <li><a href="../category/javascript.html">javascript(4)</a></li>
+                <li><a href="../category/linux.html">linux(1)</a></li>
+                <li><a href="../category/node-webkit.html">node-webkit(1)</a></li>
+                <li><a href="../category/pyqtpyside.html">PyQt/PySide(1)</a></li>
+                <li><a href="../category/python.html">Python(2)</a></li>
+                <li><a href="../category/qframer.html">QFramer(2)</a></li>
+                <li><a href="../category/qsetuper.html">QSetuper(1)</a></li>
+                <li><a href="../category/qt.html">Qt(1)</a></li>
+                <li><a href="../category/xue-xi-ji-hua.html">学习计划(1)</a></li></ul>
+            </div> <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Links
+                </li>
+            
+                <li><a href="https://github.com/dragondjf">Github</a></li>
+                <li><a href="http://www.ruanyifeng.com/blog/">阮一峰</a></li>
+                <li><a href="http://www.bogotobogo.com/">K Hong</a></li>
+                <li><a href="http://www.zouyesheng.com/">邹业盛</a></li>
+            </ul>
+            </div>
+
+
+            <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                <li><a href="http://wen.lu/">Google</a></li>
+                <li><a href="http://fex.baidu.com/">百度FEX</a></li>
+                <li><a href="http://www.alloyteam.com/">腾讯AlloyTeam</a></li>
+                <li><a href="http://tympanus.net/codrops/">codrops</a></li>
+                <li><a href="http://ui-cloud.com/">ui-cloud</a></li>
+                <li><a href="http://www.easyicon.net/">easyicon</a></li>
+                <li><a href="http://www.programiz.com/">programiz</a></li>
+                <li><a href="http://javascript.ruanyifeng.com/">JavaScript 标准参考教程</a></li>
+            </ul>
+            </div>
+            </div>
+
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href="..">保持一颗激情的心</a> &copy; dragondjf 2014</p>
+</footer>
+
+</div> <!-- /container -->
+<script src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<a href="https://github.com/dragondjf">
+<img style="position: absolute; top: 0; right: 0; border: 0;" src="https://github-camo.global.ssl.fastly.net/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" />
+</a>
+ 
+</body>
+<script>
+    $(document).ready(function() {
+      $('pre').each(function(i, block) {
+        hljs.highlightBlock(block);
+      });
+    });
+</script>
+</html>
