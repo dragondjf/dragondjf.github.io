@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>./index.html</loc>
-<lastmod>2014-11-02T19:06:33-00:00</lastmod>
+<lastmod>2014-11-11T14:45:55-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>./archives.html</loc>
-<lastmod>2014-11-02T19:06:33-00:00</lastmod>
+<lastmod>2014-11-11T14:45:55-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>./tags.html</loc>
-<lastmod>2014-11-02T19:06:33-00:00</lastmod>
+<lastmod>2014-11-11T14:45:55-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>./categories.html</loc>
-<lastmod>2014-11-02T19:06:33-00:00</lastmod>
+<lastmod>2014-11-11T14:45:55-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -41,6 +41,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>./linux/linux.html</loc>
 <lastmod>2014-11-12T17:30:00-00:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+
+<url>
+<loc>./qt/Qt5_dll.html</loc>
+<lastmod>2014-11-11T13:56:00-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
@@ -229,7 +236,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>./category/qt.html</loc>
-<lastmod>2014-09-13T20:53:00:%s</lastmod>
+<lastmod>2014-11-11T13:56:00:%s</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -237,6 +244,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>./category/xue-xi-ji-hua.html</loc>
 <lastmod>2014-08-31T16:20:00:%s</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>./tag/.html</loc>
+<lastmod>2014-11-11T13:56:00:%s</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -328,6 +342,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>./tag/ding-yi-mo-shi.html</loc>
 <lastmod>2014-09-30T15:38:00:%s</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>./tag/qt5.html</loc>
+<lastmod>2014-11-11T13:56:00:%s</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

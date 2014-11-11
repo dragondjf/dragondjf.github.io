@@ -63,8 +63,8 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="../qt/Qt--QThread.html"><h1>Qt--QThread之可重入和线程安全(Reentrancy and Thread-Safety)</h1></a>
-2014-09-13 20:53:00
+            <a href="../qt/Qt5_dll.html"><h1>Qt5程序依赖解读</h1></a>
+2014-11-11 13:56:00
 
 by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
  
@@ -73,25 +73,97 @@ by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
  
         </div>
         
-        <div><p>1.概述
-    Reentrancy（可重入） and Thread-Safety（线程安全）这两个术语用于标识类和方法在多线程程序中如何使用。</p>
-<ul>
-<li>A thread-safe function can be called simultaneously from multiple threads, even when the invocations use shared data, because all references to the shared data are serialized.
-    <code>一个线程安全的方法可以被多个线程同时调用，甚至每次调用都使用了共享数据因为所有对共享数据的引用是序列化（时间轴）</code>。</li>
-<li>
-<p>A reentrant function can also be called simultaneously from multiple threads, but only if each invocation uses its own data.
-    <code>一个可重入的方法也可以被多个线程同时调用，但是每次调用使用的都是自己内部数据，互不干扰。</code></p>
-<p><code>故，一个线程安全的方法总是可重入的，一个可重入的方法并不一定线程安全。</code>
-+ By extension, a class is said to be reentrant if its member functions can be called safely from multiple threads, as long as each thread uses a different instance of the class. The class is thread-safe if its member functions can be called safely from multiple threads, even if all the threads use the same instance of the class.</p>
-<p><code>推而广之:</code>
-<code>如果它的成员函数可以安全地从多个线程调用，只要每个线程使用的类的不同实例， 这个类被认为是可重入的;</code>
-<code>如果它的成员函数可以安全地从多个线程调用，即使所有线程使用的类的同一个实例，这个类被认为是线程安全的.</code></p>
-</li>
-</ul>
-<p>详情参见<a href="http://qt-project.org/doc/qt-5/threads-reentrancy.html">http://qt-project.org/doc/qt-5/threads-reentrancy.html</a></p></div>
+        <div><h5>一、依赖库一览</h5>
+<h6></h6>
+<p>1.QT模块库</p>
+<div class="highlight"><pre><span class="n">Qt5Core</span><span class="p">.</span><span class="n">dll</span>      <span class="err">#</span><span class="n">QT</span><span class="err">核心库</span>
+<span class="n">Qt5Gui</span><span class="p">.</span><span class="n">dll</span>       <span class="err">#</span><span class="n">QT</span> <span class="n">Gui</span><span class="err">库</span>
+<span class="n">Qt5Widgets</span><span class="p">.</span><span class="n">dll</span>   <span class="err">#</span><span class="n">QT</span> <span class="n">Widgets</span><span class="err">库，</span><span class="n">QT</span> <span class="mi">5</span><span class="err">中</span><span class="n">GUI</span><span class="err">程序基本都需要此</span><span class="n">dll</span>
+<span class="err">还有其他程序用到的</span><span class="n">Qt5XXX</span><span class="p">.</span><span class="n">dll</span>
+</pre></div>
+
+
+<h6></h6>
+<p>2.ICU（International Component for Unicode，Unicode工具）依赖库</p>
+<div class="highlight"><pre><span class="n">icudt49</span><span class="p">.</span><span class="n">dll</span>      
+<span class="n">icuin49</span><span class="p">.</span><span class="n">dll</span>     
+<span class="n">icuuc49</span><span class="p">.</span><span class="n">dll</span>
+</pre></div>
+
+
+<h6></h6>
+<p>3.QT插件库,Qt新增，有点坑爹，路径必须正确
+根据不同的程序，需要不同的插件库
+例如 QT_DIR/plugins/<em>/</em>.dll
+需要将 platforms/<em>.dll,accessible/</em>.dll的文件结构保留
+放在你所编译的程序所在目录
+    plugins/platforms/qwindows.dll
+    plugins/accessible/qtaccessiblewidgets.dll</p>
+<h6></h6>
+<p>4.EGL依赖库，为OpenGL,OpenGL es提供接口
+    libEGL.dll
+    libGLESv2.dll</p>
+<h6></h6>
+<p>5.mingw依赖库(msvc编译则无需这些库)
+    libgcc_s_sjlj-1.dll
+    libstdc++-6.dll
+    libwinpthread-1.dll</p>
+<h6></h6>
+<p>6.VC运行库（mingw编译则无需这些库)</p>
+<div class="highlight"><pre><span class="n">msvcr110</span><span class="p">.</span><span class="n">dll</span><span class="p">(</span><span class="err">对应</span><span class="n">VS2012</span><span class="err">）</span>
+<span class="n">msvcp110</span><span class="p">.</span><span class="n">dll</span>
+</pre></div>
+
+
+<h5>二、文件结构</h5>
+<div class="highlight"><pre><span class="o">--</span><span class="n">platforms</span>
+       <span class="o">--</span><span class="n">qwindows</span><span class="p">.</span><span class="n">dll</span>
+       <span class="o">--*</span><span class="p">.</span><span class="n">dll</span>
+<span class="o">--</span><span class="n">accessible</span>
+       <span class="o">--</span><span class="n">qtaccessiblewidgets</span><span class="p">.</span><span class="n">dll</span>
+       <span class="o">--*</span><span class="p">.</span><span class="n">dll</span>
+<span class="o">--</span><span class="p">(</span><span class="n">other</span> <span class="n">plugin</span> <span class="n">folder</span><span class="p">)</span>
+       <span class="o">--*</span><span class="p">.</span><span class="n">dll</span>
+<span class="o">--</span><span class="n">yourApp</span><span class="p">.</span><span class="n">exe</span>
+<span class="o">--</span><span class="n">Qt5Core</span><span class="p">.</span><span class="n">dll</span> 
+<span class="o">--</span><span class="n">Qt5Gui</span><span class="p">.</span><span class="n">dll</span>      
+<span class="o">--</span><span class="n">Qt5Widgets</span><span class="p">.</span><span class="n">dll</span> 
+<span class="o">--</span><span class="n">icudt49</span><span class="p">.</span><span class="n">dll</span>      
+<span class="o">--</span><span class="n">icuin49</span><span class="p">.</span><span class="n">dll</span>     
+<span class="o">--</span><span class="n">icuuc49</span><span class="p">.</span><span class="n">dll</span> 
+<span class="o">--</span><span class="n">libEGL</span><span class="p">.</span><span class="n">dll</span>
+<span class="o">--</span><span class="n">libGLESv2</span><span class="p">.</span><span class="n">dll</span>
+<span class="o">--</span><span class="n">libgcc_s_sjlj</span><span class="o">-</span><span class="mf">1.</span><span class="n">dll</span><span class="p">(</span><span class="n">mingw</span><span class="p">)</span>
+<span class="o">--</span><span class="n">libstdc</span><span class="o">++-</span><span class="mf">6.</span><span class="n">dll</span><span class="p">(</span><span class="n">mingw</span><span class="p">)</span>
+<span class="o">--</span><span class="n">libwinpthread</span><span class="o">-</span><span class="mf">1.</span><span class="n">dll</span><span class="p">(</span><span class="n">mingw</span><span class="p">)</span>
+<span class="o">--</span><span class="n">msvcr110</span><span class="p">.</span><span class="n">dll</span><span class="p">(</span><span class="n">msvc</span><span class="p">)</span>
+<span class="o">--</span><span class="n">msvcp110</span><span class="p">.</span><span class="n">dll</span><span class="p">(</span><span class="n">msvc</span><span class="p">)</span>
+</pre></div>
+
+
+<h5>三、总结</h5>
+<p>说实话，QT 5虽然有了ICU，Open GL的支持，还有c++11的支持，但是由于依赖的DLL实在是太多，着实有点不太方便。一个mingw编译的qt gui程序，光是依赖dll就有30-50M的依赖库，确实很不爽啊。不过7z压缩后有10M左右，还可以接受</p></div>
         <hr />
     </div>
 		
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../qt/Qt--QThread.html"><h2>Qt--QThread之可重入和线程安全(Reentrancy and Thread-Safety)</h2></a>
+        <div class= "well small"> 2014-09-13 20:53:00
+
+by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
+ 
+
+
+ </div>
+        <div class="summary"> <a class="btn btn-info xsmall" href="../qt/Qt--QThread.html">read more</a></div>
+    </div>	
+				
 <div class="pagination">
 <ul>
     <li class="prev disabled"><a href="#">&larr; Previous</a></li>
@@ -137,7 +209,7 @@ by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
                 <li><a href="../category/python.html">Python(2)</a></li>
                 <li><a href="../category/qframer.html">QFramer(2)</a></li>
                 <li><a href="../category/qsetuper.html">QSetuper(1)</a></li>
-                <li><a href="../category/qt.html">Qt(1)</a></li>
+                <li><a href="../category/qt.html">Qt(2)</a></li>
                 <li><a href="../category/xue-xi-ji-hua.html">学习计划(1)</a></li></ul>
             </div> <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
             <ul class="nav nav-list">

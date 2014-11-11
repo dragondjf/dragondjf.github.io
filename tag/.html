@@ -56,43 +56,108 @@
     <div class="row">
 
         <div class="span9">
+        
+
+        
+
+
     <div class='article'>
         <div class="content-title">
-            <h1>Node webkit</h1>
-2014-10-03 15:38:00
+            <a href="../qt/Qt5_dll.html"><h1>Qt5程序依赖解读</h1></a>
+2014-11-11 13:56:00
 
 by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
  
 
 
+ 
         </div>
-	
-        <div><h4>1.node-webkit 是什么？</h4>
-<p>基于node.js和chromium的应用程序实时运行环境，可运行通过HTML(5)、CSS(3)、Javascript来编写的本地应用程序。nodejs和webkit的结合体，webkit提供DOM操作，nodejs提供本地化操作；且将二者的context完全整合，可在HTML代码中直接使用nodejs的API。</p>
-<h4>2. node-webkit的成功例子：</h4>
-<p><a href="https://fengche.co/">风车，一款跨平台移动客户端支持的团队协作工具</a>
-<img src="https://dn-pragmaticly.qbox.me/assets/home/app-snapshot-24075c346d47297fac2049f38e8785f0.png"></p>
-<h4>3. node-webkit 打包工具Web2Executable</h4>
-<p><a href="https://github.com/jyapayne/Web2Executable">Web2Executable</a>
-这是一款基于pyside的用于打包node-webkit的打包工具，支持选择不同版本的的node-webkit进行打包，自定义你的node-webkit的package.json设置，跨平台，简单方便实用。</p>
-<h3><a href="https://github.com/rogerwang/node-webkit">node-webkit</a></h3></div>
-	
-        <hr>
+        
+        <div><h5>一、依赖库一览</h5>
+<h6></h6>
+<p>1.QT模块库</p>
+<div class="highlight"><pre><span class="n">Qt5Core</span><span class="p">.</span><span class="n">dll</span>      <span class="err">#</span><span class="n">QT</span><span class="err">核心库</span>
+<span class="n">Qt5Gui</span><span class="p">.</span><span class="n">dll</span>       <span class="err">#</span><span class="n">QT</span> <span class="n">Gui</span><span class="err">库</span>
+<span class="n">Qt5Widgets</span><span class="p">.</span><span class="n">dll</span>   <span class="err">#</span><span class="n">QT</span> <span class="n">Widgets</span><span class="err">库，</span><span class="n">QT</span> <span class="mi">5</span><span class="err">中</span><span class="n">GUI</span><span class="err">程序基本都需要此</span><span class="n">dll</span>
+<span class="err">还有其他程序用到的</span><span class="n">Qt5XXX</span><span class="p">.</span><span class="n">dll</span>
+</pre></div>
 
-        <h2>Comments</h2>
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-    var disqus_shortname = 'dragondjf'; 
-    var disqus_title = 'Node webkit';
 
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<h6></h6>
+<p>2.ICU（International Component for Unicode，Unicode工具）依赖库</p>
+<div class="highlight"><pre><span class="n">icudt49</span><span class="p">.</span><span class="n">dll</span>      
+<span class="n">icuin49</span><span class="p">.</span><span class="n">dll</span>     
+<span class="n">icuuc49</span><span class="p">.</span><span class="n">dll</span>
+</pre></div>
+
+
+<h6></h6>
+<p>3.QT插件库,Qt新增，有点坑爹，路径必须正确
+根据不同的程序，需要不同的插件库
+例如 QT_DIR/plugins/<em>/</em>.dll
+需要将 platforms/<em>.dll,accessible/</em>.dll的文件结构保留
+放在你所编译的程序所在目录
+    plugins/platforms/qwindows.dll
+    plugins/accessible/qtaccessiblewidgets.dll</p>
+<h6></h6>
+<p>4.EGL依赖库，为OpenGL,OpenGL es提供接口
+    libEGL.dll
+    libGLESv2.dll</p>
+<h6></h6>
+<p>5.mingw依赖库(msvc编译则无需这些库)
+    libgcc_s_sjlj-1.dll
+    libstdc++-6.dll
+    libwinpthread-1.dll</p>
+<h6></h6>
+<p>6.VC运行库（mingw编译则无需这些库)</p>
+<div class="highlight"><pre><span class="n">msvcr110</span><span class="p">.</span><span class="n">dll</span><span class="p">(</span><span class="err">对应</span><span class="n">VS2012</span><span class="err">）</span>
+<span class="n">msvcp110</span><span class="p">.</span><span class="n">dll</span>
+</pre></div>
+
+
+<h5>二、文件结构</h5>
+<div class="highlight"><pre><span class="o">--</span><span class="n">platforms</span>
+       <span class="o">--</span><span class="n">qwindows</span><span class="p">.</span><span class="n">dll</span>
+       <span class="o">--*</span><span class="p">.</span><span class="n">dll</span>
+<span class="o">--</span><span class="n">accessible</span>
+       <span class="o">--</span><span class="n">qtaccessiblewidgets</span><span class="p">.</span><span class="n">dll</span>
+       <span class="o">--*</span><span class="p">.</span><span class="n">dll</span>
+<span class="o">--</span><span class="p">(</span><span class="n">other</span> <span class="n">plugin</span> <span class="n">folder</span><span class="p">)</span>
+       <span class="o">--*</span><span class="p">.</span><span class="n">dll</span>
+<span class="o">--</span><span class="n">yourApp</span><span class="p">.</span><span class="n">exe</span>
+<span class="o">--</span><span class="n">Qt5Core</span><span class="p">.</span><span class="n">dll</span> 
+<span class="o">--</span><span class="n">Qt5Gui</span><span class="p">.</span><span class="n">dll</span>      
+<span class="o">--</span><span class="n">Qt5Widgets</span><span class="p">.</span><span class="n">dll</span> 
+<span class="o">--</span><span class="n">icudt49</span><span class="p">.</span><span class="n">dll</span>      
+<span class="o">--</span><span class="n">icuin49</span><span class="p">.</span><span class="n">dll</span>     
+<span class="o">--</span><span class="n">icuuc49</span><span class="p">.</span><span class="n">dll</span> 
+<span class="o">--</span><span class="n">libEGL</span><span class="p">.</span><span class="n">dll</span>
+<span class="o">--</span><span class="n">libGLESv2</span><span class="p">.</span><span class="n">dll</span>
+<span class="o">--</span><span class="n">libgcc_s_sjlj</span><span class="o">-</span><span class="mf">1.</span><span class="n">dll</span><span class="p">(</span><span class="n">mingw</span><span class="p">)</span>
+<span class="o">--</span><span class="n">libstdc</span><span class="o">++-</span><span class="mf">6.</span><span class="n">dll</span><span class="p">(</span><span class="n">mingw</span><span class="p">)</span>
+<span class="o">--</span><span class="n">libwinpthread</span><span class="o">-</span><span class="mf">1.</span><span class="n">dll</span><span class="p">(</span><span class="n">mingw</span><span class="p">)</span>
+<span class="o">--</span><span class="n">msvcr110</span><span class="p">.</span><span class="n">dll</span><span class="p">(</span><span class="n">msvc</span><span class="p">)</span>
+<span class="o">--</span><span class="n">msvcp110</span><span class="p">.</span><span class="n">dll</span><span class="p">(</span><span class="n">msvc</span><span class="p">)</span>
+</pre></div>
+
+
+<h5>三、总结</h5>
+<p>说实话，QT 5虽然有了ICU，Open GL的支持，还有c++11的支持，但是由于依赖的DLL实在是太多，着实有点不太方便。一个mingw编译的qt gui程序，光是依赖dll就有30-50M的依赖库，确实很不爽啊。不过7z压缩后有10M左右，还可以接受</p></div>
+        <hr />
     </div>
+		
+<div class="pagination">
+<ul>
+    <li class="prev disabled"><a href="#">&larr; Previous</a></li>
+
+    <li class="active"><a href="../tag/.html">1</a></li>
+
+    <li class="next disabled"><a href="#">&rarr; Next</a></li>
+
+</ul>
+</div>
+ 
+  
         </div>
         
         <div class="span3">

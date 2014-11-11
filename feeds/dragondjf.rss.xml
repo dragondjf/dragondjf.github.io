@@ -55,7 +55,76 @@
 
 
 &lt;p&gt;替换文件中所有gedit.desktop为sublime.desktop，这样在打开文本文档的时候,直接双击就可以使用sublime打开。&lt;/p&gt;
-&lt;p&gt;如果你不愿意所有的文本文件都用它打开，就不要修改关联列表，对相应的文本文件（如cpp, py) 点击右键后选择打开方式，用sublime text打开即可～&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">dragondjf</dc:creator><pubDate>Wed, 12 Nov 2014 17:30:00 +0800</pubDate><guid>tag:,2014-11-12:./linux/linux.html</guid><category>linux</category><category>mongodb</category></item><item><title>国人应该学习的aauto</title><link>./aauto/aauto.html</link><description>&lt;h4&gt;1.aauto快手简介&lt;/h4&gt;
+&lt;p&gt;如果你不愿意所有的文本文件都用它打开，就不要修改关联列表，对相应的文本文件（如cpp, py) 点击右键后选择打开方式，用sublime text打开即可～&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">dragondjf</dc:creator><pubDate>Wed, 12 Nov 2014 17:30:00 +0800</pubDate><guid>tag:,2014-11-12:./linux/linux.html</guid><category>linux</category><category>mongodb</category></item><item><title>Qt5程序依赖解读</title><link>./qt/Qt5_dll.html</link><description>&lt;h5&gt;一、依赖库一览&lt;/h5&gt;
+&lt;h6&gt;&lt;/h6&gt;
+&lt;p&gt;1.QT模块库&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Qt5Core&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dll&lt;/span&gt;      &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="n"&gt;QT&lt;/span&gt;&lt;span class="err"&gt;核心库&lt;/span&gt;
+&lt;span class="n"&gt;Qt5Gui&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dll&lt;/span&gt;       &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="n"&gt;QT&lt;/span&gt; &lt;span class="n"&gt;Gui&lt;/span&gt;&lt;span class="err"&gt;库&lt;/span&gt;
+&lt;span class="n"&gt;Qt5Widgets&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dll&lt;/span&gt;   &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="n"&gt;QT&lt;/span&gt; &lt;span class="n"&gt;Widgets&lt;/span&gt;&lt;span class="err"&gt;库，&lt;/span&gt;&lt;span class="n"&gt;QT&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="err"&gt;中&lt;/span&gt;&lt;span class="n"&gt;GUI&lt;/span&gt;&lt;span class="err"&gt;程序基本都需要此&lt;/span&gt;&lt;span class="n"&gt;dll&lt;/span&gt;
+&lt;span class="err"&gt;还有其他程序用到的&lt;/span&gt;&lt;span class="n"&gt;Qt5XXX&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dll&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h6&gt;&lt;/h6&gt;
+&lt;p&gt;2.ICU（International Component for Unicode，Unicode工具）依赖库&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;icudt49&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dll&lt;/span&gt;      
+&lt;span class="n"&gt;icuin49&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dll&lt;/span&gt;     
+&lt;span class="n"&gt;icuuc49&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dll&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h6&gt;&lt;/h6&gt;
+&lt;p&gt;3.QT插件库,Qt新增，有点坑爹，路径必须正确
+根据不同的程序，需要不同的插件库
+例如 QT_DIR/plugins/&lt;em&gt;/&lt;/em&gt;.dll
+需要将 platforms/&lt;em&gt;.dll,accessible/&lt;/em&gt;.dll的文件结构保留
+放在你所编译的程序所在目录
+    plugins/platforms/qwindows.dll
+    plugins/accessible/qtaccessiblewidgets.dll&lt;/p&gt;
+&lt;h6&gt;&lt;/h6&gt;
+&lt;p&gt;4.EGL依赖库，为OpenGL,OpenGL es提供接口
+    libEGL.dll
+    libGLESv2.dll&lt;/p&gt;
+&lt;h6&gt;&lt;/h6&gt;
+&lt;p&gt;5.mingw依赖库(msvc编译则无需这些库)
+    libgcc_s_sjlj-1.dll
+    libstdc++-6.dll
+    libwinpthread-1.dll&lt;/p&gt;
+&lt;h6&gt;&lt;/h6&gt;
+&lt;p&gt;6.VC运行库（mingw编译则无需这些库)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;msvcr110&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dll&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;对应&lt;/span&gt;&lt;span class="n"&gt;VS2012&lt;/span&gt;&lt;span class="err"&gt;）&lt;/span&gt;
+&lt;span class="n"&gt;msvcp110&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dll&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;二、文件结构&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;platforms&lt;/span&gt;
+       &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;qwindows&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dll&lt;/span&gt;
+       &lt;span class="o"&gt;--*&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dll&lt;/span&gt;
+&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;accessible&lt;/span&gt;
+       &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;qtaccessiblewidgets&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dll&lt;/span&gt;
+       &lt;span class="o"&gt;--*&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dll&lt;/span&gt;
+&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;other&lt;/span&gt; &lt;span class="n"&gt;plugin&lt;/span&gt; &lt;span class="n"&gt;folder&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="o"&gt;--*&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dll&lt;/span&gt;
+&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;yourApp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exe&lt;/span&gt;
+&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;Qt5Core&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dll&lt;/span&gt; 
+&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;Qt5Gui&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dll&lt;/span&gt;      
+&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;Qt5Widgets&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dll&lt;/span&gt; 
+&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;icudt49&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dll&lt;/span&gt;      
+&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;icuin49&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dll&lt;/span&gt;     
+&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;icuuc49&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dll&lt;/span&gt; 
+&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;libEGL&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dll&lt;/span&gt;
+&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;libGLESv2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dll&lt;/span&gt;
+&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;libgcc_s_sjlj&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;1.&lt;/span&gt;&lt;span class="n"&gt;dll&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mingw&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;libstdc&lt;/span&gt;&lt;span class="o"&gt;++-&lt;/span&gt;&lt;span class="mf"&gt;6.&lt;/span&gt;&lt;span class="n"&gt;dll&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mingw&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;libwinpthread&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;1.&lt;/span&gt;&lt;span class="n"&gt;dll&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mingw&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;msvcr110&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dll&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;msvc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;msvcp110&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dll&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;msvc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;三、总结&lt;/h5&gt;
+&lt;p&gt;说实话，QT 5虽然有了ICU，Open GL的支持，还有c++11的支持，但是由于依赖的DLL实在是太多，着实有点不太方便。一个mingw编译的qt gui程序，光是依赖dll就有30-50M的依赖库，确实很不爽啊。不过7z压缩后有10M左右，还可以接受&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">dragondjf</dc:creator><pubDate>Tue, 11 Nov 2014 13:56:00 +0800</pubDate><guid>tag:,2014-11-11:./qt/Qt5_dll.html</guid><category>Qt5</category><category></category></item><item><title>国人应该学习的aauto</title><link>./aauto/aauto.html</link><description>&lt;h4&gt;1.aauto快手简介&lt;/h4&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;快手（&lt;/span&gt; &lt;span class="n"&gt;AAuto&lt;/span&gt;&lt;span class="err"&gt;开发环境&lt;/span&gt; &lt;span class="err"&gt;）专用于桌面软件快速开发，下载压缩包仅&lt;/span&gt; &lt;span class="mf"&gt;6.&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="n"&gt;MB&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="err"&gt;绿色软件解压即用&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="err"&gt;开发本软件的主要目的为作者自用自娱自乐、当然也欢迎大家自由自愿免费使用，&lt;/span&gt; &lt;span class="err"&gt;无论个人或企业都可以免费使用本软件，使用&lt;/span&gt;&lt;span class="n"&gt;AAuto&lt;/span&gt;&lt;span class="err"&gt;制作的软件产品不需要声明使用&lt;/span&gt;&lt;span class="n"&gt;AAuto&lt;/span&gt;&lt;span class="err"&gt;开发，免费使用无任何附加条件。&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
