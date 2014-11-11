@@ -90,10 +90,13 @@
     libEGL.dll
     libGLESv2.dll&lt;/p&gt;
 &lt;h6&gt;&lt;/h6&gt;
-&lt;p&gt;5.mingw依赖库(msvc编译则无需这些库)
-    libgcc_s_sjlj-1.dll
-    libstdc++-6.dll
-    libwinpthread-1.dll&lt;/p&gt;
+&lt;p&gt;5.mingw依赖库(msvc编译则无需这些库)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;libgcc_s_sjlj&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;1.&lt;/span&gt;&lt;span class="n"&gt;dll&lt;/span&gt;
+&lt;span class="n"&gt;libstdc&lt;/span&gt;&lt;span class="o"&gt;++-&lt;/span&gt;&lt;span class="mf"&gt;6.&lt;/span&gt;&lt;span class="n"&gt;dll&lt;/span&gt;
+&lt;span class="n"&gt;libwinpthread&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;1.&lt;/span&gt;&lt;span class="n"&gt;dll&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;h6&gt;&lt;/h6&gt;
 &lt;p&gt;6.VC运行库（mingw编译则无需这些库)&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;msvcr110&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dll&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;对应&lt;/span&gt;&lt;span class="n"&gt;VS2012&lt;/span&gt;&lt;span class="err"&gt;）&lt;/span&gt;
@@ -273,7 +276,11 @@ hasOwnProperty()只能判断指定名称的属性或者对象 是否 为该实�
     &lt;span class="nx"&gt;Point&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 
     &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;Point&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;isPrototypeOf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;p1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="c1"&gt;// true&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="javascript"></category><category term="基本方法"></category></entry><entry><title>javascript 对象探索之 构造对象、原型对象 和 实例对象</title><link href="./javascript/javascript--object.html" rel="alternate"></link><updated>2014-09-30T13:38:00+08:00</updated><author><name>dragondjf</name></author><id>tag:,2014-09-30:./javascript/javascript--object.html</id><summary type="html">&lt;h4&gt;1.什么是构造对象？&lt;/h4&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;6. javascript常用面试题&lt;/h4&gt;
+&lt;p&gt;&lt;a href="http://dramin.duapp.com/#masthead"&gt;javascript常用面试题&lt;/a&gt;&amp;gt;&lt;/p&gt;</summary><category term="javascript"></category><category term="基本方法"></category></entry><entry><title>javascript 对象探索之 构造对象、原型对象 和 实例对象</title><link href="./javascript/javascript--object.html" rel="alternate"></link><updated>2014-09-30T13:38:00+08:00</updated><author><name>dragondjf</name></author><id>tag:,2014-09-30:./javascript/javascript--object.html</id><summary type="html">&lt;h4&gt;1.什么是构造对象？&lt;/h4&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;Point&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;z&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
         &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
         &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;y&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
