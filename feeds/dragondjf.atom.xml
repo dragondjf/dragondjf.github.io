@@ -74,13 +74,17 @@
 
 
 &lt;h6&gt;&lt;/h6&gt;
-&lt;p&gt;3.QT插件库,Qt新增，有点坑爹，路径必须正确
-根据不同的程序，需要不同的插件库
-例如 QT_DIR/plugins/&lt;em&gt;/&lt;/em&gt;.dll
-需要将 platforms/&lt;em&gt;.dll,accessible/&lt;/em&gt;.dll的文件结构保留
-放在你所编译的程序所在目录
-    plugins/platforms/qwindows.dll
-    plugins/accessible/qtaccessiblewidgets.dll&lt;/p&gt;
+&lt;p&gt;3.QT插件库  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Qt&lt;/span&gt;&lt;span class="err"&gt;新增的，路径必须正确&lt;/span&gt;
+&lt;span class="err"&gt;根据不同的程序，需要不同的插件库&lt;/span&gt;
+&lt;span class="err"&gt;例如&lt;/span&gt; &lt;span class="n"&gt;QT_DIR&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;plugins&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="err"&gt;*/&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dll&lt;/span&gt;
+&lt;span class="err"&gt;需要将&lt;/span&gt; &lt;span class="n"&gt;platforms&lt;/span&gt;&lt;span class="o"&gt;/*&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dll&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;accessible&lt;/span&gt;&lt;span class="o"&gt;/*&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dll&lt;/span&gt;&lt;span class="err"&gt;的文件结构保留&lt;/span&gt;
+&lt;span class="err"&gt;放在你所编译的程序所在目录&lt;/span&gt;
+&lt;span class="n"&gt;plugins&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;platforms&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;qwindows&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dll&lt;/span&gt;
+&lt;span class="n"&gt;plugins&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;accessible&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;qtaccessiblewidgets&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dll&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;h6&gt;&lt;/h6&gt;
 &lt;p&gt;4.EGL依赖库，为OpenGL,OpenGL es提供接口
     libEGL.dll
