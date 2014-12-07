@@ -63,8 +63,8 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="../cloudsetuper/Cloud Setuper.html"><h1>Cloud Setuper</h1></a>
-2014-10-12 17:30:00
+            <a href="../python/python pluginbase.html"><h1>python的插件库</h1></a>
+2014-12-07 21:44:00
 
 by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
  
@@ -73,16 +73,61 @@ by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
  
         </div>
         
-        <div><h3>1.项目须知：</h3>
-<ul>
-<li>1.代码管理工具：github</li>
-<li>2.项目协作工具：风车</li>
-<li>3.项目技术需求：c++, python , javsscript, html, linux, git, web</li>
-<li>4.团队成员：杨晋斌 丁江锋 许会</li>
-</ul></div>
+        <div><h5>1.pluginbase</h5>
+<div class="highlight"><pre><span class="n">pluginbase</span><span class="err">是</span><span class="n">Flask</span><span class="err">的作者</span><span class="o">**</span><span class="n">Armin</span> <span class="n">Ronacher</span><span class="o">**</span><span class="err">为</span><span class="n">python</span><span class="err">写的一个插件库，简单易用</span>
+</pre></div>
+
+
+<h5>2.基本使用方式</h5>
+<p>Step 1:</p>
+<p>Create a “plugin base” object. It defines a pseudo package under which all your plugins will reside. For instance it could be yourapplication.plugins:</p>
+<div class="highlight"><pre><span class="n">from</span> <span class="n">pluginbase</span> <span class="n">import</span> <span class="n">PluginBase</span>
+<span class="n">plugin_base</span> <span class="o">=</span> <span class="n">PluginBase</span><span class="p">(</span><span class="n">package</span><span class="o">=</span><span class="err">&#39;</span><span class="n">yourapplication</span><span class="p">.</span><span class="n">plugins</span><span class="err">&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Step 2:</p>
+<p>Now that you have a plugin base, you can define a plugin source which is the list of all sources which provide plugins:</p>
+<div class="highlight"><pre><span class="n">plugin_source</span> <span class="o">=</span> <span class="n">plugin_base</span><span class="p">.</span><span class="n">make_plugin_source</span><span class="p">(</span>
+    <span class="n">searchpath</span><span class="o">=</span><span class="p">[</span><span class="err">&#39;</span><span class="p">.</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">plugins</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="p">.</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">more</span><span class="o">/</span><span class="n">plugins</span><span class="err">&#39;</span><span class="p">])</span>
+</pre></div>
+
+
+<p>Step 3:</p>
+<p>To import a plugin all you need to do is to use the regular import system. The only change is that you need to import the plugin source through the with statement:</p>
+<div class="highlight"><pre><span class="n">with</span> <span class="n">plugin_source</span><span class="o">:</span>
+    <span class="n">from</span> <span class="n">yourapplication</span><span class="p">.</span><span class="n">plugins</span> <span class="n">import</span> <span class="n">my_plugin</span>
+<span class="n">my_plugin</span><span class="p">.</span><span class="n">do_something_cool</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Alternatively you can also import plugins programmatically instead of using the import statement:</p>
+<div class="highlight"><pre><span class="n">my_plugin</span> <span class="o">=</span> <span class="n">plugin_source</span><span class="p">.</span><span class="n">load_plugin</span><span class="p">(</span><span class="err">&#39;</span><span class="n">my_plugin</span><span class="err">&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>详情参见：http://pluginbase.pocoo.org/</p></div>
         <hr />
     </div>
 		
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../cloudsetuper/Cloud Setuper.html"><h2>Cloud Setuper</h2></a>
+        <div class= "well small"> 2014-10-12 17:30:00
+
+by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>做好cloud setuper</p> <a class="btn btn-info xsmall" href="../cloudsetuper/Cloud Setuper.html">read more</a></div>
+    </div>	
+				
 
  
         
@@ -180,7 +225,7 @@ by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
                 <li><a href="../category/lua.html">lua(1)</a></li>
                 <li><a href="../category/node-webkit.html">node-webkit(1)</a></li>
                 <li><a href="../category/pyqtpyside.html">PyQt/PySide(1)</a></li>
-                <li><a href="../category/python.html">Python(2)</a></li>
+                <li><a href="../category/python.html">Python(3)</a></li>
                 <li><a href="../category/qframer.html">QFramer(2)</a></li>
                 <li><a href="../category/qsetuper.html">QSetuper(1)</a></li>
                 <li><a href="../category/qt.html">Qt(2)</a></li>
@@ -217,7 +262,6 @@ by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
                 <li><a href="http://www.programiz.com/">programiz</a></li>
                 <li><a href="http://javascript.ruanyifeng.com/">JavaScript 标准参考教程</a></li>
                 <li><a href="http://codegeekz.com/">codegeekz</a></li>
-                <li><a href="http://v2ex.com/">v2ex社区</a></li>
             </ul>
             </div>
             </div>

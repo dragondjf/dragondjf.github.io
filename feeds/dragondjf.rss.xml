@@ -1,5 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>保持一颗激情的心</title><link>./</link><description></description><atom:link href="./feeds%5Cdragondjf.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 16 Nov 2014 22:30:00 +0800</lastBuildDate><item><title>lua windows上使用注意</title><link>./lua/lua.html</link><description>&lt;h4&gt;1. 安装LuaDist&lt;/h4&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>保持一颗激情的心</title><link>./</link><description></description><atom:link href="./feeds%5Cdragondjf.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 07 Dec 2014 21:44:00 +0800</lastBuildDate><item><title>python的插件库</title><link>./python/python%20pluginbase.html</link><description>&lt;h5&gt;1.pluginbase&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;pluginbase&lt;/span&gt;&lt;span class="err"&gt;是&lt;/span&gt;&lt;span class="n"&gt;Flask&lt;/span&gt;&lt;span class="err"&gt;的作者&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;Armin&lt;/span&gt; &lt;span class="n"&gt;Ronacher&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="err"&gt;为&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="err"&gt;写的一个插件库，简单易用&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;2.基本使用方式&lt;/h5&gt;
+&lt;p&gt;Step 1:&lt;/p&gt;
+&lt;p&gt;Create a “plugin base” object. It defines a pseudo package under which all your plugins will reside. For instance it could be yourapplication.plugins:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;pluginbase&lt;/span&gt; &lt;span class="n"&gt;import&lt;/span&gt; &lt;span class="n"&gt;PluginBase&lt;/span&gt;
+&lt;span class="n"&gt;plugin_base&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;PluginBase&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;package&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;yourapplication&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plugins&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Step 2:&lt;/p&gt;
+&lt;p&gt;Now that you have a plugin base, you can define a plugin source which is the list of all sources which provide plugins:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;plugin_source&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;plugin_base&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;make_plugin_source&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;searchpath&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;plugins&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;more&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;plugins&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Step 3:&lt;/p&gt;
+&lt;p&gt;To import a plugin all you need to do is to use the regular import system. The only change is that you need to import the plugin source through the with statement:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;with&lt;/span&gt; &lt;span class="n"&gt;plugin_source&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;yourapplication&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plugins&lt;/span&gt; &lt;span class="n"&gt;import&lt;/span&gt; &lt;span class="n"&gt;my_plugin&lt;/span&gt;
+&lt;span class="n"&gt;my_plugin&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;do_something_cool&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Alternatively you can also import plugins programmatically instead of using the import statement:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;my_plugin&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;plugin_source&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;load_plugin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;my_plugin&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;详情参见：http://pluginbase.pocoo.org/&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">dragondjf</dc:creator><pubDate>Sun, 07 Dec 2014 21:44:00 +0800</pubDate><guid>tag:,2014-12-07:./python/python pluginbase.html</guid><category>python</category><category>pluginbase</category></item><item><title>lua windows上使用注意</title><link>./lua/lua.html</link><description>&lt;h4&gt;1. 安装LuaDist&lt;/h4&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mf"&gt;1.&lt;/span&gt; &lt;span class="err"&gt;安装&lt;/span&gt;&lt;span class="n"&gt;MinGW&lt;/span&gt;
 &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mf"&gt;2.&lt;/span&gt; &lt;span class="err"&gt;安装&lt;/span&gt;&lt;span class="n"&gt;cmake&lt;/span&gt;
 &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mf"&gt;3.&lt;/span&gt; &lt;span class="err"&gt;安装&lt;/span&gt;&lt;span class="n"&gt;git&lt;/span&gt;
