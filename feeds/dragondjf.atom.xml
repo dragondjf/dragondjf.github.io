@@ -32,7 +32,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;详情参见：http://pluginbase.pocoo.org/&lt;/p&gt;</summary><category term="python"></category><category term="pluginbase"></category></entry><entry><title>lua windows上使用注意</title><link href="./lua/lua.html" rel="alternate"></link><updated>2014-11-16T22:30:00+08:00</updated><author><name>dragondjf</name></author><id>tag:,2014-11-16:./lua/lua.html</id><summary type="html">&lt;h4&gt;1. 安装LuaDist&lt;/h4&gt;
+&lt;p&gt;详情参见：&lt;a href="http://pluginbase.pocoo.org/"&gt;http://pluginbase.pocoo.org/&lt;/a&gt;&lt;/p&gt;</summary><category term="python"></category><category term="pluginbase"></category></entry><entry><title>lua windows上使用注意</title><link href="./lua/lua.html" rel="alternate"></link><updated>2014-11-16T22:30:00+08:00</updated><author><name>dragondjf</name></author><id>tag:,2014-11-16:./lua/lua.html</id><summary type="html">&lt;h4&gt;1. 安装LuaDist&lt;/h4&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mf"&gt;1.&lt;/span&gt; &lt;span class="err"&gt;安装&lt;/span&gt;&lt;span class="n"&gt;MinGW&lt;/span&gt;
 &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mf"&gt;2.&lt;/span&gt; &lt;span class="err"&gt;安装&lt;/span&gt;&lt;span class="n"&gt;cmake&lt;/span&gt;
 &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mf"&gt;3.&lt;/span&gt; &lt;span class="err"&gt;安装&lt;/span&gt;&lt;span class="n"&gt;git&lt;/span&gt;

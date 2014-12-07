@@ -32,7 +32,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;详情参见：http://pluginbase.pocoo.org/&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">dragondjf</dc:creator><pubDate>Sun, 07 Dec 2014 21:44:00 +0800</pubDate><guid>tag:,2014-12-07:./python/python pluginbase.html</guid><category>python</category><category>pluginbase</category></item><item><title>lua windows上使用注意</title><link>./lua/lua.html</link><description>&lt;h4&gt;1. 安装LuaDist&lt;/h4&gt;
+&lt;p&gt;详情参见：&lt;a href="http://pluginbase.pocoo.org/"&gt;http://pluginbase.pocoo.org/&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">dragondjf</dc:creator><pubDate>Sun, 07 Dec 2014 21:44:00 +0800</pubDate><guid>tag:,2014-12-07:./python/python pluginbase.html</guid><category>python</category><category>pluginbase</category></item><item><title>lua windows上使用注意</title><link>./lua/lua.html</link><description>&lt;h4&gt;1. 安装LuaDist&lt;/h4&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mf"&gt;1.&lt;/span&gt; &lt;span class="err"&gt;安装&lt;/span&gt;&lt;span class="n"&gt;MinGW&lt;/span&gt;
 &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mf"&gt;2.&lt;/span&gt; &lt;span class="err"&gt;安装&lt;/span&gt;&lt;span class="n"&gt;cmake&lt;/span&gt;
 &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mf"&gt;3.&lt;/span&gt; &lt;span class="err"&gt;安装&lt;/span&gt;&lt;span class="n"&gt;git&lt;/span&gt;
