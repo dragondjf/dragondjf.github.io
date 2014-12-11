@@ -63,8 +63,8 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="../python/python pluginbase.html"><h1>python的插件库</h1></a>
-2014-12-07 21:44:00
+            <a href="../python/python.html"><h1>python设计RestFul api 可以使用的第三方库</h1></a>
+2014-12-12 21:32:00
 
 by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
  
@@ -73,43 +73,35 @@ by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
  
         </div>
         
-        <div><h5>1.pluginbase</h5>
-<div class="highlight"><pre><span class="n">pluginbase</span><span class="err">是</span><span class="n">Flask</span><span class="err">的作者</span><span class="o">**</span><span class="n">Armin</span> <span class="n">Ronacher</span><span class="o">**</span><span class="err">为</span><span class="n">python</span><span class="err">写的一个插件库，简单易用</span>
-</pre></div>
-
-
-<h5>2.基本使用方式</h5>
-<p>Step 1:</p>
-<p>Create a “plugin base” object. It defines a pseudo package under which all your plugins will reside. For instance it could be yourapplication.plugins:</p>
-<div class="highlight"><pre><span class="n">from</span> <span class="n">pluginbase</span> <span class="n">import</span> <span class="n">PluginBase</span>
-<span class="n">plugin_base</span> <span class="o">=</span> <span class="n">PluginBase</span><span class="p">(</span><span class="n">package</span><span class="o">=</span><span class="err">&#39;</span><span class="n">yourapplication</span><span class="p">.</span><span class="n">plugins</span><span class="err">&#39;</span><span class="p">)</span>
-</pre></div>
-
-
-<p>Step 2:</p>
-<p>Now that you have a plugin base, you can define a plugin source which is the list of all sources which provide plugins:</p>
-<div class="highlight"><pre><span class="n">plugin_source</span> <span class="o">=</span> <span class="n">plugin_base</span><span class="p">.</span><span class="n">make_plugin_source</span><span class="p">(</span>
-    <span class="n">searchpath</span><span class="o">=</span><span class="p">[</span><span class="err">&#39;</span><span class="p">.</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">plugins</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="p">.</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">more</span><span class="o">/</span><span class="n">plugins</span><span class="err">&#39;</span><span class="p">])</span>
-</pre></div>
-
-
-<p>Step 3:</p>
-<p>To import a plugin all you need to do is to use the regular import system. The only change is that you need to import the plugin source through the with statement:</p>
-<div class="highlight"><pre><span class="n">with</span> <span class="n">plugin_source</span><span class="o">:</span>
-    <span class="n">from</span> <span class="n">yourapplication</span><span class="p">.</span><span class="n">plugins</span> <span class="n">import</span> <span class="n">my_plugin</span>
-<span class="n">my_plugin</span><span class="p">.</span><span class="n">do_something_cool</span><span class="p">()</span>
-</pre></div>
-
-
-<p>Alternatively you can also import plugins programmatically instead of using the import statement:</p>
-<div class="highlight"><pre><span class="n">my_plugin</span> <span class="o">=</span> <span class="n">plugin_source</span><span class="p">.</span><span class="n">load_plugin</span><span class="p">(</span><span class="err">&#39;</span><span class="n">my_plugin</span><span class="err">&#39;</span><span class="p">)</span>
-</pre></div>
-
-
-<p>详情参见：<a href="http://pluginbase.pocoo.org/">http://pluginbase.pocoo.org/</a></p></div>
+        <div><h4>1. Restful api</h4>
+<p><a href="http://www.restapitutorial.com/">restful学习</a></p>
+<h4>2. python 设计Restful api</h4>
+<ul>
+<li><a href="https://github.com/gabrielfalcao/HTTPretty">HTTPretty</a></li>
+<li><a href="https://github.com/redodo/tortilla">tortilla</a></li>
+<li><a href="https://github.com/gabrielfalcao/sure">sure</a></li>
+</ul></div>
         <hr />
     </div>
 		
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../python/python pluginbase.html"><h2>python的插件库</h2></a>
+        <div class= "well small"> 2014-12-07 21:44:00
+
+by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
+ 
+
+
+ </div>
+        <div class="summary"> <a class="btn btn-info xsmall" href="../python/python pluginbase.html">read more</a></div>
+    </div>	
+				
 
  
         
@@ -225,7 +217,7 @@ by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
                 <li><a href="../category/lua.html">lua(1)</a></li>
                 <li><a href="../category/node-webkit.html">node-webkit(1)</a></li>
                 <li><a href="../category/pyqtpyside.html">PyQt/PySide(1)</a></li>
-                <li><a href="../category/python.html">Python(3)</a></li>
+                <li><a href="../category/python.html">Python(4)</a></li>
                 <li><a href="../category/qframer.html">QFramer(2)</a></li>
                 <li><a href="../category/qsetuper.html">QSetuper(1)</a></li>
                 <li><a href="../category/qt.html">Qt(2)</a></li>
@@ -262,6 +254,7 @@ by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
                 <li><a href="http://www.programiz.com/">programiz</a></li>
                 <li><a href="http://javascript.ruanyifeng.com/">JavaScript 标准参考教程</a></li>
                 <li><a href="http://codegeekz.com/">codegeekz</a></li>
+                <li><a href="http://v2ex.com/">v2ex社区</a></li>
             </ul>
             </div>
             </div>

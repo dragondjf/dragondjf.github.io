@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>保持一颗激情的心</title><link href="./" rel="alternate"></link><link href="./feeds%5Cdragondjf.atom.xml" rel="self"></link><id>./</id><updated>2014-12-07T21:44:00+08:00</updated><entry><title>python的插件库</title><link href="./python/python%20pluginbase.html" rel="alternate"></link><updated>2014-12-07T21:44:00+08:00</updated><author><name>dragondjf</name></author><id>tag:,2014-12-07:./python/python pluginbase.html</id><summary type="html">&lt;h5&gt;1.pluginbase&lt;/h5&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>保持一颗激情的心</title><link href="./" rel="alternate"></link><link href="./feeds%5Cdragondjf.atom.xml" rel="self"></link><id>./</id><updated>2014-12-12T21:32:00+08:00</updated><entry><title>python设计RestFul api 可以使用的第三方库</title><link href="./python/python.html" rel="alternate"></link><updated>2014-12-12T21:32:00+08:00</updated><author><name>dragondjf</name></author><id>tag:,2014-12-12:./python/python.html</id><summary type="html">&lt;h4&gt;1. Restful api&lt;/h4&gt;
+&lt;p&gt;&lt;a href="http://www.restapitutorial.com/"&gt;restful学习&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;2. python 设计Restful api&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/gabrielfalcao/HTTPretty"&gt;HTTPretty&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/redodo/tortilla"&gt;tortilla&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/gabrielfalcao/sure"&gt;sure&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="python"></category><category term="restful"></category><category term="api"></category></entry><entry><title>python的插件库</title><link href="./python/python%20pluginbase.html" rel="alternate"></link><updated>2014-12-07T21:44:00+08:00</updated><author><name>dragondjf</name></author><id>tag:,2014-12-07:./python/python pluginbase.html</id><summary type="html">&lt;h5&gt;1.pluginbase&lt;/h5&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;pluginbase&lt;/span&gt;&lt;span class="err"&gt;是&lt;/span&gt;&lt;span class="n"&gt;Flask&lt;/span&gt;&lt;span class="err"&gt;的作者&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;Armin&lt;/span&gt; &lt;span class="n"&gt;Ronacher&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="err"&gt;为&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="err"&gt;写的一个插件库，简单易用&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
