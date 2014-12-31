@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>保持一颗激情的心</title><link>./</link><description></description><atom:link href="./feeds%5Cdragondjf.rss.xml" rel="self"></atom:link><lastBuildDate>Fri, 12 Dec 2014 21:32:00 +0800</lastBuildDate><item><title>python设计RestFul api 可以使用的第三方库</title><link>./python/python.html</link><description>&lt;h4&gt;1. Restful api&lt;/h4&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>保持一颗激情的心</title><link>./</link><description></description><atom:link href="./feeds%5Cdragondjf.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 30 Dec 2014 17:30:00 +0800</lastBuildDate><item><title>乐享生活</title><link>./life/interesting%20life.html</link><description>&lt;h4&gt;1.&lt;a href="http://www.morphthing.com/"&gt;Morph&lt;/a&gt;&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Morphthing&lt;/span&gt; &lt;span class="n"&gt;combines&lt;/span&gt; &lt;span class="n"&gt;two&lt;/span&gt; &lt;span class="n"&gt;faces&lt;/span&gt; &lt;span class="n"&gt;into&lt;/span&gt; &lt;span class="n"&gt;one&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">dragondjf</dc:creator><pubDate>Tue, 30 Dec 2014 17:30:00 +0800</pubDate><guid>tag:,2014-12-30:./life/interesting life.html</guid><category>life</category><category>enjoy</category></item><item><title>python设计RestFul api 可以使用的第三方库</title><link>./python/python.html</link><description>&lt;h4&gt;1. Restful api&lt;/h4&gt;
 &lt;p&gt;&lt;a href="http://www.restapitutorial.com/"&gt;restful学习&lt;/a&gt;&lt;/p&gt;
 &lt;h4&gt;2. python 设计Restful api&lt;/h4&gt;
 &lt;ul&gt;
