@@ -125,11 +125,11 @@
 &lt;/ul&gt;
 &lt;p&gt;如果你想了解更多，请参考下面这些文章，并认真研读qt官方文档，&lt;strong&gt;&lt;code&gt;Qt的官方文档永远是解决你问题的最好帮手&lt;/code&gt;&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;参考：
-&lt;a href="http://blog.qt.digia.com/blog/2010/06/17/youre-doing-it-wrong/"&gt;You’re doing it wrong…&lt;/a&gt;
-&lt;a href="http://woboq.com/blog/qthread-you-were-not-doing-so-wrong.html"&gt;You were not doing so wrong.&lt;/a&gt;
-&lt;a href="http://ilearnstuff.blogspot.jp/2012/08/when-qthread-isnt-thread.html"&gt;When a QThread isn't a thread...&lt;/a&gt;
-&lt;a href="http://blog.debao.me/2013/08/how-to-use-qthread-in-the-right-way-part-1/"&gt;How to Use QThread in the Right Way (Part 1)&lt;/a&gt;
-&lt;a href="http://blog.debao.me/2013/08/how-to-use-qthread-in-the-right-way-part-2/"&gt;How to Use QThread in the Right Way (Part 2)&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">dragondjf</dc:creator><pubDate>Wed, 07 Jan 2015 20:53:00 +0800</pubDate><guid>tag:,2015-01-07:./qt/Qt--QThread work-object.html</guid><category>Qt</category><category>QThread</category></item><item><title>乐享生活</title><link>./life/interesting%20life.html</link><description>&lt;h4&gt;1.&lt;a href="http://www.morphthing.com/"&gt;Morph&lt;/a&gt;&lt;/h4&gt;
++ &lt;a href="http://blog.qt.digia.com/blog/2010/06/17/youre-doing-it-wrong/"&gt;You’re doing it wrong…&lt;/a&gt;
++ &lt;a href="http://woboq.com/blog/qthread-you-were-not-doing-so-wrong.html"&gt;You were not doing so wrong.&lt;/a&gt;
++ &lt;a href="http://ilearnstuff.blogspot.jp/2012/08/when-qthread-isnt-thread.html"&gt;When a QThread isn't a thread...&lt;/a&gt;
++ &lt;a href="http://blog.debao.me/2013/08/how-to-use-qthread-in-the-right-way-part-1/"&gt;How to Use QThread in the Right Way (Part 1)&lt;/a&gt;
++ &lt;a href="http://blog.debao.me/2013/08/how-to-use-qthread-in-the-right-way-part-2/"&gt;How to Use QThread in the Right Way (Part 2)&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">dragondjf</dc:creator><pubDate>Wed, 07 Jan 2015 20:53:00 +0800</pubDate><guid>tag:,2015-01-07:./qt/Qt--QThread work-object.html</guid><category>Qt</category><category>QThread</category></item><item><title>乐享生活</title><link>./life/interesting%20life.html</link><description>&lt;h4&gt;1.&lt;a href="http://www.morphthing.com/"&gt;Morph&lt;/a&gt;&lt;/h4&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Morphthing&lt;/span&gt; &lt;span class="n"&gt;combines&lt;/span&gt; &lt;span class="n"&gt;two&lt;/span&gt; &lt;span class="n"&gt;faces&lt;/span&gt; &lt;span class="n"&gt;into&lt;/span&gt; &lt;span class="n"&gt;one&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">dragondjf</dc:creator><pubDate>Tue, 30 Dec 2014 17:30:00 +0800</pubDate><guid>tag:,2014-12-30:./life/interesting life.html</guid><category>life</category><category>enjoy</category></item><item><title>python设计RestFul api 可以使用的第三方库</title><link>./python/python.html</link><description>&lt;h4&gt;1. Restful api&lt;/h4&gt;
 &lt;p&gt;&lt;a href="http://www.restapitutorial.com/"&gt;restful学习&lt;/a&gt;&lt;/p&gt;
