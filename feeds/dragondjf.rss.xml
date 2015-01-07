@@ -89,7 +89,7 @@
 &lt;/blockquote&gt;
 &lt;p&gt;It is important to remember that a QThread instance lives in the old thread that instantiated it, not in the new thread that calls run(). This means that all of QThread's queued slots will execute in the old thread. Thus, a developer who wishes to invoke slots in the new thread must use the worker-object approach; new slots should not be implemented directly into a subclassed QThread.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;记住，一个线程实例对象存活在创建它的老线程内，不是run()启动后的新线程内，这就意味着所有线程的槽函数都将在老线程中执行；因此，开发者如果希望槽函数在新线程中执行，就必须使用work-object方式；注意：槽函数定义不应该在继承QThread的子类中实现。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;记住，一个线程实例对象存活在创建它的老线程内，不是run()启动后的新线程内，但是在run()里构建的对象的线程是属于子线程的。这就意味着所有线程的槽函数都将在老线程中执行；因此，开发者如果希望槽函数在新线程中执行，就必须使用work-object方式；注意：槽函数定义不应该在继承QThread的子类中实现。&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;When subclassing QThread, keep in mind that the constructor executes in the old thread while run() executes in the new thread. If a member variable is accessed from both functions, then the variable is accessed from two different threads. Check that it is safe to do so.&lt;/p&gt;
 &lt;blockquote&gt;
