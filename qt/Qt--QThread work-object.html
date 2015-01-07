@@ -168,9 +168,11 @@ by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
 <li>QThread使用，请使用<code>work-object</code>这种模式，逻辑操作在worker中实现，利用movetoThread与新的线程实现线程关联，调用start方法开启新的线程即可.</li>
 <li>
 <p>如果非要使用继承QThread重写run方法来实现你的逻辑，请认真了解QThread的实现机制和注意事项,遵循如下原则：</p>
-<p>When to subclass and when not to?
-+ If you do not really need an event loop in the thread, you should subclass.
-+ If you need an event loop and handle signals and slots within the thread, you may not need to subclass.</p>
+<p>When to subclass and when not to?</p>
+<ul>
+<li>If you do not really need an event loop in the thread, you should subclass.</li>
+<li>If you need an event loop and handle signals and slots within the thread, you may not need to subclass.</li>
+</ul>
 <p>什么时候使用继承QThread，什么时候不使用？
 + 如果你不需要事件循环，你应当采用继承；
 + 如果你需要事件循环，并希望在新线程内处理信号与槽，你不需要继承。</p>

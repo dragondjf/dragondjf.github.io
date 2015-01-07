@@ -100,9 +100,11 @@
 &lt;li&gt;QThread使用，请使用&lt;code&gt;work-object&lt;/code&gt;这种模式，逻辑操作在worker中实现，利用movetoThread与新的线程实现线程关联，调用start方法开启新的线程即可.&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;如果非要使用继承QThread重写run方法来实现你的逻辑，请认真了解QThread的实现机制和注意事项,遵循如下原则：&lt;/p&gt;
-&lt;p&gt;When to subclass and when not to?
-+ If you do not really need an event loop in the thread, you should subclass.
-+ If you need an event loop and handle signals and slots within the thread, you may not need to subclass.&lt;/p&gt;
+&lt;p&gt;When to subclass and when not to?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;If you do not really need an event loop in the thread, you should subclass.&lt;/li&gt;
+&lt;li&gt;If you need an event loop and handle signals and slots within the thread, you may not need to subclass.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;什么时候使用继承QThread，什么时候不使用？
 + 如果你不需要事件循环，你应当采用继承；
 + 如果你需要事件循环，并希望在新线程内处理信号与槽，你不需要继承。&lt;/p&gt;
