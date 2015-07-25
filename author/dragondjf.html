@@ -63,8 +63,8 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="../qt/Qt--QThread work-object.html"><h1>Qt中QThread的用法</h1></a>
-2015-01-07 20:53:00
+            <a href="../qt/Qt D指针-私有实现.html"><h1>Qt D指针-私有实现</h1></a>
+2015-07-25 15:00:00
 
 by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
  
@@ -73,144 +73,134 @@ by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
  
         </div>
         
-        <div><h1>Qt中QThread的用法</h1>
-<h4>1. QThread使用简介</h4>
-<p>The QThread class provides a platform-independent way to manage threads.</p>
-<blockquote>
-<p><strong>QThread提供了一个平台独立的方式去管理线程操作</strong></p>
-</blockquote>
-<p>A QThread object manages one thread of control within the program. QThreads begin executing in run(). By default, run() starts the event loop by calling exec() and runs a Qt event loop inside the thread.</p>
-<blockquote>
-<p><strong>一个QThread实例对象在程序中管理着线程的控制逻辑。QThreads在run()中开始执行属于自己线程的逻辑。默认，QThread在run()方法内调用exec()开启了一个属于自己线程内部的事件循环。</strong></p>
-</blockquote>
-<p>You can use worker objects by moving them to the thread using QObject::moveToThread.</p>
-<blockquote>
-<p><strong>你可以写一个继承自QObjet的worker对象来实现你的业务逻辑，然后利用 QObject::moveToThread()方法将worker实例对象移动到你期望它被执行的线程对象中去, 实现线程关联，下面称这种方式为<code>work-object</code>模式</strong></p>
-</blockquote>
-<div class="highlight"><pre><span class="n">class</span> <span class="n">Worker</span> <span class="o">:</span> <span class="n">public</span> <span class="n">QObject</span>
-<span class="p">{</span>
-    <span class="n">Q_OBJECT</span>
+        <div><h1>D指针-私有实现</h1>
+<h4>1. 问题来源</h4>
+<p>在<strong>Qt源代码</strong>经常会出现Private类和Q_DECLARE_PRIVATE、Q_DECLARE_PUBLIC、Q_D、Q_Q等宏，这些都是什么东东？
+简而言之，保证代码的二进制兼容性。</p>
+<h4>2. 什么是二进制兼容性？</h4>
+<p>什么是二进制兼容性？大名鼎鼎的KDE项目是这样介绍的：一个库是二进制兼容的，如果一个程序和某个库的某个版本动态链接，并且不需要重新编译，即可在安装有该库较新版本的环境中运行。为什么要保证二进制兼容性？如果不能保证库的二进制兼容性，就意味着每次发布新版本时，依赖该库的所有程序都必须重新编译才能正常运行。显然，这对于像Qt这样被广泛采用的库而言是完全不可接受的。</p>
+<h4>3. Qt中关于D指针的的宏定义</h4>
+<div class="highlight"><pre>    <span class="n">template</span> <span class="o">&lt;</span><span class="kr">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="k">static</span> <span class="kr">inline</span> <span class="n">T</span> <span class="o">*</span><span class="n">qGetPtrHelper</span><span class="p">(</span><span class="n">T</span> <span class="o">*</span><span class="n">ptr</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">ptr</span><span class="p">;</span> <span class="p">}</span>
+    <span class="n">template</span> <span class="o">&lt;</span><span class="kr">typename</span> <span class="n">Wrapper</span><span class="o">&gt;</span> <span class="k">static</span> <span class="kr">inline</span> <span class="kr">typename</span> <span class="n">Wrapper</span><span class="o">::</span><span class="n">pointer</span> <span class="n">qGetPtrHelper</span><span class="p">(</span><span class="k">const</span> <span class="n">Wrapper</span> <span class="o">&amp;</span><span class="n">p</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">p</span><span class="p">.</span><span class="n">data</span><span class="p">();</span> <span class="p">}</span>
 
-<span class="n">public</span> <span class="n">slots</span><span class="o">:</span>
-    <span class="kt">void</span> <span class="n">doWork</span><span class="p">(</span><span class="k">const</span> <span class="n">QString</span> <span class="o">&amp;</span><span class="n">parameter</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">QString</span> <span class="n">result</span><span class="p">;</span>
-        <span class="cm">/* ... here is the expensive or blocking operation ... */</span>
-        <span class="n">emit</span> <span class="nf">resultReady</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
-    <span class="p">}</span>
+    <span class="err">#</span><span class="n">define</span> <span class="n">Q_DECLARE_PRIVATE</span><span class="p">(</span><span class="n">Class</span><span class="p">)</span> \
+        <span class="kr">inline</span> <span class="n">Class</span><span class="err">##</span><span class="n">Private</span><span class="o">*</span> <span class="n">d_func</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">reinterpret_cast</span><span class="o">&lt;</span><span class="n">Class</span><span class="err">##</span><span class="n">Private</span> <span class="o">*&gt;</span><span class="p">(</span><span class="n">qGetPtrHelper</span><span class="p">(</span><span class="n">d_ptr</span><span class="p">));</span> <span class="p">}</span> \
+        <span class="kr">inline</span> <span class="k">const</span> <span class="n">Class</span><span class="err">##</span><span class="n">Private</span><span class="o">*</span> <span class="n">d_func</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">reinterpret_cast</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">Class</span><span class="err">##</span><span class="n">Private</span> <span class="o">*&gt;</span><span class="p">(</span><span class="n">qGetPtrHelper</span><span class="p">(</span><span class="n">d_ptr</span><span class="p">));</span> <span class="p">}</span> \
+        <span class="n">friend</span> <span class="n">class</span> <span class="n">Class</span><span class="err">##</span><span class="n">Private</span><span class="p">;</span>
 
-<span class="nl">signals:</span>
-    <span class="kt">void</span> <span class="n">resultReady</span><span class="p">(</span><span class="k">const</span> <span class="n">QString</span> <span class="o">&amp;</span><span class="n">result</span><span class="p">);</span>
-<span class="p">};</span>
+    <span class="err">#</span><span class="n">define</span> <span class="n">Q_DECLARE_PRIVATE_D</span><span class="p">(</span><span class="n">Dptr</span><span class="p">,</span> <span class="n">Class</span><span class="p">)</span> \
+        <span class="kr">inline</span> <span class="n">Class</span><span class="err">##</span><span class="n">Private</span><span class="o">*</span> <span class="n">d_func</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">reinterpret_cast</span><span class="o">&lt;</span><span class="n">Class</span><span class="err">##</span><span class="n">Private</span> <span class="o">*&gt;</span><span class="p">(</span><span class="n">Dptr</span><span class="p">);</span> <span class="p">}</span> \
+        <span class="kr">inline</span> <span class="k">const</span> <span class="n">Class</span><span class="err">##</span><span class="n">Private</span><span class="o">*</span> <span class="n">d_func</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">reinterpret_cast</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">Class</span><span class="err">##</span><span class="n">Private</span> <span class="o">*&gt;</span><span class="p">(</span><span class="n">Dptr</span><span class="p">);</span> <span class="p">}</span> \
+        <span class="n">friend</span> <span class="n">class</span> <span class="n">Class</span><span class="err">##</span><span class="n">Private</span><span class="p">;</span>
 
-<span class="n">class</span> <span class="n">Controller</span> <span class="o">:</span> <span class="n">public</span> <span class="n">QObject</span>
-<span class="p">{</span>
-    <span class="n">Q_OBJECT</span>
-    <span class="n">QThread</span> <span class="n">workerThread</span><span class="p">;</span>
-<span class="nl">public:</span>
-    <span class="n">Controller</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">Worker</span> <span class="o">*</span><span class="n">worker</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Worker</span><span class="p">;</span>
-        <span class="n">worker</span><span class="o">-&gt;</span><span class="n">moveToThread</span><span class="p">(</span><span class="o">&amp;</span><span class="n">workerThread</span><span class="p">);</span>
-        <span class="n">connect</span><span class="p">(</span><span class="o">&amp;</span><span class="n">workerThread</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">QThread</span><span class="o">::</span><span class="n">finished</span><span class="p">,</span> <span class="n">worker</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">QObject</span><span class="o">::</span><span class="n">deleteLater</span><span class="p">);</span>
-        <span class="n">connect</span><span class="p">(</span><span class="n">this</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">Controller</span><span class="o">::</span><span class="n">operate</span><span class="p">,</span> <span class="n">worker</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">Worker</span><span class="o">::</span><span class="n">doWork</span><span class="p">);</span>
-        <span class="n">connect</span><span class="p">(</span><span class="n">worker</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">Worker</span><span class="o">::</span><span class="n">resultReady</span><span class="p">,</span> <span class="n">this</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">Controller</span><span class="o">::</span><span class="n">handleResults</span><span class="p">);</span>
-        <span class="n">workerThread</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
-    <span class="p">}</span>
-    <span class="o">~</span><span class="n">Controller</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">workerThread</span><span class="p">.</span><span class="n">quit</span><span class="p">();</span>
-        <span class="n">workerThread</span><span class="p">.</span><span class="n">wait</span><span class="p">();</span>
-    <span class="p">}</span>
-<span class="n">public</span> <span class="n">slots</span><span class="o">:</span>
-    <span class="kt">void</span> <span class="n">handleResults</span><span class="p">(</span><span class="k">const</span> <span class="n">QString</span> <span class="o">&amp;</span><span class="p">);</span>
-<span class="nl">signals:</span>
-    <span class="kt">void</span> <span class="nf">operate</span><span class="p">(</span><span class="k">const</span> <span class="n">QString</span> <span class="o">&amp;</span><span class="p">);</span>
-<span class="p">};</span>
+    <span class="err">#</span><span class="n">define</span> <span class="n">Q_DECLARE_PUBLIC</span><span class="p">(</span><span class="n">Class</span><span class="p">)</span>                                    \
+        <span class="kr">inline</span> <span class="n">Class</span><span class="o">*</span> <span class="n">q_func</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">static_cast</span><span class="o">&lt;</span><span class="n">Class</span> <span class="o">*&gt;</span><span class="p">(</span><span class="n">q_ptr</span><span class="p">);</span> <span class="p">}</span> \
+        <span class="kr">inline</span> <span class="k">const</span> <span class="n">Class</span><span class="o">*</span> <span class="n">q_func</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">static_cast</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">Class</span> <span class="o">*&gt;</span><span class="p">(</span><span class="n">q_ptr</span><span class="p">);</span> <span class="p">}</span> \
+        <span class="n">friend</span> <span class="n">class</span> <span class="n">Class</span><span class="p">;</span>
+
+    <span class="err">#</span><span class="n">define</span> <span class="n">Q_D</span><span class="p">(</span><span class="n">Class</span><span class="p">)</span> <span class="n">Class</span><span class="err">##</span><span class="n">Private</span> <span class="o">*</span> <span class="k">const</span> <span class="n">d</span> <span class="o">=</span> <span class="n">d_func</span><span class="p">()</span>
+    <span class="err">#</span><span class="n">define</span> <span class="n">Q_Q</span><span class="p">(</span><span class="n">Class</span><span class="p">)</span> <span class="n">Class</span> <span class="o">*</span> <span class="k">const</span> <span class="n">q</span> <span class="o">=</span> <span class="n">q_func</span><span class="p">()</span>
 </pre></div>
 
 
-<p>The code inside the Worker's slot would then execute in a separate thread. However, you are free to connect the Worker's slots to any signal, from any object, in any thread. It is safe to connect signals and slots across different threads, thanks to a mechanism called queued connections.</p>
-<blockquote>
-<p><strong>the Worker's slot doWork()逻辑将在一个独立的线程中去执行；这样你就可以自由的连接在 任何线程内 任意对象 的信号到 the Worker's slots；得益于Qt信号与槽的queued connections机制，跨线程连接信号和槽是安全的</strong></p>
-</blockquote>
-<p>Another way to make code run in a separate thread, is to subclass QThread and reimplement run(). For example:</p>
-<blockquote>
-<p>另外一种让代码运行在一个独立线程内的方法就是，继承QThread，重写run()方法，例子如下：</p>
-</blockquote>
-<div class="highlight"><pre><span class="n">class</span> <span class="n">WorkerThread</span> <span class="o">:</span> <span class="n">public</span> <span class="n">QThread</span>
+<ul>
+<li>在公有类中定义了一个指针<strong>d_ptr</strong>指向私有实现类，然后用<strong>Q_DECLARE_PRIVATE</strong>宏来定义一些辅助函数和声明友元类；<ul>
+<li><strong>d_func()</strong> 返回私有类指针</li>
+<li>在公有类的接口实现中可以通过宏定义 <strong>Q_D(Class)</strong>来获取指向私有类的d_ptr指针，并赋值给<strong>d</strong>,直接操作<strong>d</strong>即可； </li>
+</ul>
+</li>
+<li>在私有实现类中定义一个指针q_ptr指向公开类（公开类向外提供接口），然后<strong>Q_DECLARE_PUBLIC</strong>宏则定义了辅助函数并声明了友元类<ul>
+<li><strong>q_func()</strong> 返回公有类指针</li>
+<li>在私有类的接口实现中可以通过宏定义<strong>Q_Q(Class)</strong>来获取指向公有类的<strong>q_ptr</strong>指针，并赋值给变量,直接操作<strong>q</strong>即可</li>
+</ul>
+</li>
+</ul>
+<h4>4. Demo</h4>
+<div class="highlight"><pre><span class="c1">// myclass.h</span>
+<span class="p">#</span><span class="n">ifndef</span> <span class="no">MYCLASS_H</span>
+<span class="p">#</span><span class="n">define</span> <span class="no">MYCLASS_H</span>
+<span class="p">#</span><span class="k">include</span> <span class="o">&lt;</span><span class="n">QtCore</span><span class="o">/</span><span class="n">QObject</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="n">MyClassPrivate</span><span class="p">;</span>
+<span class="k">class</span> <span class="nl">MyClass:</span> <span class="n">public</span> <span class="n">QObject</span>
 <span class="p">{</span>
-    <span class="n">Q_OBJECT</span>
-    <span class="kt">void</span> <span class="n">run</span><span class="p">()</span> <span class="n">Q_DECL_OVERRIDE</span> <span class="p">{</span>
-        <span class="n">QString</span> <span class="n">result</span><span class="p">;</span>
-        <span class="cm">/* ... here is the expensive or blocking operation ... */</span>
-        <span class="n">emit</span> <span class="nf">resultReady</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
+    <span class="no">Q_OBJECT</span>
+<span class="nl">public:</span>
+    <span class="n">MyClass</span><span class="p">(</span><span class="n">QObject</span> <span class="o">*</span><span class="n">parent</span> <span class="o">=</span> <span class="mh">0</span><span class="p">);</span>
+    <span class="k">virtual</span> <span class="o">~</span><span class="n">MyClass</span><span class="p">();</span>
+    <span class="k">void</span> <span class="n">dummyFunc</span><span class="p">();</span>
+<span class="nl">signal:</span>
+    <span class="k">void</span> <span class="n">dummySignal</span><span class="p">();</span>
+<span class="nl">private:</span>
+    <span class="n">MyClassPrivate</span> <span class="o">*</span> <span class="k">const</span> <span class="n">d_ptr</span><span class="p">;</span>
+    <span class="no">Q_DECLARE_PRIVATE</span><span class="p">(</span><span class="n">MyClass</span><span class="p">);</span>
+    <span class="no">Q_DISABLE_COPY</span><span class="p">(</span><span class="n">MyClass</span><span class="p">);</span>
+<span class="p">};</span>
+<span class="p">#</span><span class="n">endif</span> <span class="c1">// MYCLASS_H</span>
+
+
+<span class="c1">// myclass.cpp</span>
+<span class="p">#</span><span class="k">include</span> <span class="s">&quot;myclass.h&quot;</span>
+<span class="k">class</span> <span class="n">MyClassPrivate</span>
+<span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="n">MyClassPrivate</span><span class="p">(</span><span class="n">MyClass</span> <span class="o">*</span><span class="n">parent</span><span class="p">)</span>
+        <span class="o">:</span> <span class="n">q_ptr</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+    <span class="p">{</span>
     <span class="p">}</span>
-<span class="nl">signals:</span>
-    <span class="kt">void</span> <span class="n">resultReady</span><span class="p">(</span><span class="k">const</span> <span class="n">QString</span> <span class="o">&amp;</span><span class="n">s</span><span class="p">);</span>
+    <span class="k">void</span> <span class="n">foobar</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="no">Q_Q</span><span class="p">(</span><span class="n">MyClass</span><span class="p">);</span>
+        <span class="n">emit</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">dummySignal</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="nl">private:</span>
+    <span class="n">MyClass</span> <span class="o">*</span> <span class="k">const</span> <span class="n">q_ptr</span><span class="p">;</span>
+    <span class="no">Q_DECLARE_PUBLIC</span><span class="p">(</span><span class="n">MyClass</span><span class="p">);</span>
 <span class="p">};</span>
 
-<span class="kt">void</span> <span class="n">MyObject</span><span class="o">::</span><span class="n">startWorkInAThread</span><span class="p">()</span>
+<span class="n">MyClass</span><span class="o">::</span><span class="n">MyClass</span><span class="p">(</span><span class="n">QObject</span> <span class="o">*</span><span class="n">parent</span><span class="p">)</span>
+  <span class="o">:</span> <span class="n">QObject</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+  <span class="p">,</span> <span class="n">d_ptr</span><span class="p">(</span><span class="k">new</span> <span class="n">MyClassPrivate</span><span class="p">(</span><span class="k">this</span><span class="p">))</span>
 <span class="p">{</span>
-    <span class="n">WorkerThread</span> <span class="o">*</span><span class="n">workerThread</span> <span class="o">=</span> <span class="n">new</span> <span class="n">WorkerThread</span><span class="p">(</span><span class="n">this</span><span class="p">);</span>
-    <span class="n">connect</span><span class="p">(</span><span class="n">workerThread</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">WorkerThread</span><span class="o">::</span><span class="n">resultReady</span><span class="p">,</span> <span class="n">this</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">MyObject</span><span class="o">::</span><span class="n">handleResults</span><span class="p">);</span>
-    <span class="n">connect</span><span class="p">(</span><span class="n">workerThread</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">WorkerThread</span><span class="o">::</span><span class="n">finished</span><span class="p">,</span> <span class="n">workerThread</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">QObject</span><span class="o">::</span><span class="n">deleteLater</span><span class="p">);</span>
-    <span class="n">workerThread</span><span class="o">-&gt;</span><span class="n">start</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="n">MyClass</span><span class="o">::~</span><span class="n">MyClass</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="no">Q_D</span><span class="p">(</span><span class="n">MyClass</span><span class="p">);</span>
+    <span class="n">delete</span> <span class="n">d</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">void</span> <span class="n">MyClass</span><span class="o">::</span><span class="n">dummyFunc</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="no">Q_D</span><span class="p">(</span><span class="n">MyClass</span><span class="p">);</span>
+    <span class="n">d</span><span class="o">-&gt;</span><span class="n">foobar</span><span class="p">();</span>
 <span class="p">}</span>
 </pre></div>
 
 
-<p>In that example, the thread will exit after the run function has returned. There will not be any event loop running in the thread unless you call exec().</p>
-<blockquote>
-<p><strong>在上面的例子中，线程将在run()方法执行返回后退出，这个线程内没有事件循环，除非你在run()函数内部最后调用exec()开启一个事件循环。</strong></p>
-</blockquote>
-<p>It is important to remember that a QThread instance lives in the old thread that instantiated it, not in the new thread that calls run(). This means that all of QThread's queued slots will execute in the old thread. Thus, a developer who wishes to invoke slots in the new thread must use the worker-object approach; new slots should not be implemented directly into a subclassed QThread.</p>
-<blockquote>
-<p><strong>记住，一个线程实例对象存活在创建它的老线程内，不是run()启动后的新线程内，但是在run()里构建的对象是属于子线程的。这就意味着所有线程的槽函数都将在老线程中执行；因此，开发者如果希望槽函数在新线程中执行，就必须使用work-object方式；注意：槽函数定义不应该在继承QThread的子类中实现。</strong></p>
-</blockquote>
-<p>When subclassing QThread, keep in mind that the constructor executes in the old thread while run() executes in the new thread. If a member variable is accessed from both functions, then the variable is accessed from two different threads. Check that it is safe to do so.</p>
-<blockquote>
-<p><strong>当继承QThread时，记住这个线程构建是在老的线程中，而run()执行在新的线程中。如果一个变量在两个线程中访问都被使用，需要确保这样操作是否安全。</strong></p>
-</blockquote>
-<h4>2. 总结：</h4>
-<ul>
-<li>QThread使用，请使用<code>work-object</code>这种模式，逻辑操作在worker中实现，利用movetoThread与新的线程实现线程关联，调用start方法开启新的线程即可.</li>
-<li>
-<p>如果非要使用继承QThread重写run方法来实现你的逻辑，请认真了解QThread的实现机制和注意事项,遵循如下原则：</p>
-<p>When to subclass and when not to?</p>
-<ul>
-<li>If you do not really need an event loop in the thread, you should subclass.</li>
-<li>If you need an event loop and handle signals and slots within the thread, you may not need to subclass.</li>
-</ul>
-<p>什么时候使用继承QThread，什么时候不使用？
-+ 如果你不需要事件循环，你应当采用继承；
-+ 如果你需要事件循环，并希望在新线程内处理信号与槽，你不需要继承。</p>
-</li>
-<li>
-<p>使用QThread的注意事项：</p>
-<ul>
-<li>
-<ol>
-<li>明确你的槽是在主线程还是子线程中执行</li>
-</ol>
-</li>
-<li>
-<ol>
-<li>继承QThread，并在继承类中定义槽方法，然后使用movetoThread(this)/movetoThread(self)是一种糟糕的实践</li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
-<p>如果你想了解更多，请参考下面这些文章，并认真研读qt官方文档，<strong><code>Qt的官方文档永远是解决你问题的最好帮手</code></strong>。</p>
 <p>参考：</p>
 <ul>
-<li><a href="http://blog.qt.digia.com/blog/2010/06/17/youre-doing-it-wrong/">You’re doing it wrong…</a></li>
-<li><a href="http://woboq.com/blog/qthread-you-were-not-doing-so-wrong.html">You were not doing so wrong.</a></li>
-<li><a href="http://ilearnstuff.blogspot.jp/2012/08/when-qthread-isnt-thread.html">When a QThread isn't a thread...</a></li>
-<li><a href="http://blog.debao.me/2013/08/how-to-use-qthread-in-the-right-way-part-1/">How to Use QThread in the Right Way (Part 1)</a></li>
-<li><a href="http://blog.debao.me/2013/08/how-to-use-qthread-in-the-right-way-part-2/">How to Use QThread in the Right Way (Part 2)</a></li>
+<li><a href="https://techbase.kde.org/Policies/Binary_Compatibility_Issues_With_C++">Binary_Compatibility_Issues_With_C++</a></li>
+<li><a href="http://blog.csdn.net/zhu_xz/article/details/6035861">D指针/私有实现</a></li>
 </ul></div>
         <hr />
     </div>
 		
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../qt/Qt--QThread work-object.html"><h2>Qt中QThread的用法</h2></a>
+        <div class= "well small"> 2015-01-07 20:53:00
+
+by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
+ 
+
+
+ </div>
+        <div class="summary"> <a class="btn btn-info xsmall" href="../qt/Qt--QThread work-object.html">read more</a></div>
+    </div>	
+				
 
  
         
@@ -283,24 +273,6 @@ by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
         <div class="summary"> <a class="btn btn-info xsmall" href="../lua/lua.html">read more</a></div>
     </div>	
 				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../linux/linux.html"><h2>linux 备忘</h2></a>
-        <div class= "well small"> 2014-11-12 17:30:00
-
-by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
- 
-
-
- </div>
-        <div class="summary"> <a class="btn btn-info xsmall" href="../linux/linux.html">read more</a></div>
-    </div>	
-				
 <div class="pagination">
 <ul>
     <li class="prev disabled"><a href="#">&larr; Previous</a></li>
@@ -351,7 +323,7 @@ by <a class="url fn" href="../author/dragondjf.html">dragondjf</a>
                 <li><a href="../category/python.html">Python(4)</a></li>
                 <li><a href="../category/qframer.html">QFramer(2)</a></li>
                 <li><a href="../category/qsetuper.html">QSetuper(1)</a></li>
-                <li><a href="../category/qt.html">Qt(3)</a></li>
+                <li><a href="../category/qt.html">Qt(4)</a></li>
                 <li><a href="../category/xue-xi-ji-hua.html">学习计划(1)</a></li></ul>
             </div> <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
             <ul class="nav nav-list">
